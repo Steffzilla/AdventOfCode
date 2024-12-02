@@ -10,7 +10,7 @@ import static com.learning.InputUtils.*;
 // based on https://github.com/afbarboza/KargerAlgorithm
 
 @SuppressWarnings("UnstableApiUsage")
-public class Main {
+public class KargerAlgorithm {
 
     private static final int NUMBER_ITERATIONS_ALGORITHM = 1000;
 
