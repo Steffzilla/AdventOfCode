@@ -1,13 +1,11 @@
 package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.BreadthFirstSearch;
 import de.steffzilla.aoc.CharacterField;
 import org.javatuples.Pair;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -42,16 +40,13 @@ public class Aoc2023_11 {
         List<Pair<Integer, Integer>> galaxies = field.searchCharacters(GALAXY);
         System.out.println("No of Galaxies:"+galaxies.size());
         long sum = 0;
-        int count = 1;
         for (int i = 0; i < galaxies.size(); i++) {
             Pair<Integer, Integer> galaxyStart = galaxies.get(i);
             for (int j = i + 1; j < galaxies.size(); j++) {
                 Pair<Integer, Integer> galaxyEnd = galaxies.get(j);
-                // Manhattan distance
-                long distance = Math.abs(galaxyEnd.getValue0() - galaxyStart.getValue0()) + Math.abs(galaxyEnd.getValue1()-galaxyStart.getValue1());
+                long distance = AocUtils.getManhattanDistance(galaxyEnd, galaxyStart);
                 sum+=distance;
                 System.out.println("Start: "+galaxyStart+" End: "+galaxyEnd+ " Distance:"+distance);
-                //System.out.println(count++);
             }
         }
         System.out.println("\nPart 1 > Result: " + sum);
@@ -70,7 +65,7 @@ public class Aoc2023_11 {
         for (int i = 0; i < newInputLines.size(); i++) {
             builders.add(new StringBuilder());
         }
-        for (int x = 0; x < newInputLines.get(0).length(); x++) {
+        for (int x = 0; x < newInputLines.getFirst().length(); x++) {
             boolean emptyLine = true;
             for (int y = 0; y < newInputLines.size(); y++) {
                 char currentChar = newInputLines.get(y).charAt(x);
@@ -103,7 +98,6 @@ public class Aoc2023_11 {
         System.out.println("No of Galaxies:"+galaxies.size());
         BigInteger sum = new BigInteger("0");
         //long sum=0;
-        int count = 1;
         for (int i = 0; i < galaxies.size(); i++) {
             Pair<Integer, Integer> galaxyStart = galaxies.get(i);
             for (int j = i + 1; j < galaxies.size(); j++) {
@@ -122,8 +116,7 @@ public class Aoc2023_11 {
                     yExpansion = emptyLineNumbers.subSet(galaxyEnd.getValue1(), galaxyStart.getValue1()).size();
                 }
 
-                // Manhattan distance
-                long distanceWithout = Math.abs(galaxyEnd.getValue0() - galaxyStart.getValue0()) + Math.abs(galaxyEnd.getValue1()-galaxyStart.getValue1());
+                long distanceWithout = AocUtils.getManhattanDistance(galaxyEnd, galaxyStart);
 
                 long realDistance = distanceWithout + xExpansion * (EXPANSION_FACTOR-1) + yExpansion * (EXPANSION_FACTOR-1);
 
@@ -139,7 +132,7 @@ public class Aoc2023_11 {
 
     private static TreeSet<Integer> findEmptyColumnNumbers(List<String> inputLines) {
         TreeSet<Integer> emptyColumns = new TreeSet<>();
-        for (int x = 0; x < inputLines.get(0).length(); x++) {
+        for (int x = 0; x < inputLines.getFirst().length(); x++) {
             boolean emptyLine = true;
             for (int y = 0; y < inputLines.size(); y++) {
                 char currentChar = inputLines.get(y).charAt(x);

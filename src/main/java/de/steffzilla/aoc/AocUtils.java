@@ -376,4 +376,7 @@ public class AocUtils {
         return sb.reverse().toString();
     }
 
+    public static int getManhattanDistance(Pair<Integer, Integer> endPoint, Pair<Integer, Integer> startPoint) {
+        return Math.abs(endPoint.getValue0() - startPoint.getValue0()) + Math.abs(endPoint.getValue1() - startPoint.getValue1());
+    }
 }
