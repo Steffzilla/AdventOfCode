@@ -13,18 +13,13 @@ public class Aoc2024_01 {
     private static final String DAY = "01";
     private static final String YEAR = "2024";
     private static final String USERNAME = System.getProperty("user.name");
-    public static final String BASEDIR = "C://Users//"+USERNAME+"//Downloads//AoC"+YEAR+"//";
-    public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
+    public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
+    public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
-    static final String example = """
-            x
-            y
-            """;
-
     public static void main(String[] args) {
-        System.out.println(DAY+".12."+YEAR);
+        System.out.println(DAY + ".12." + YEAR);
         //List<String> inputLines = example.lines().toList();
         List<String> inputLines = AocUtils.getStringList(PATH);
 
@@ -50,14 +45,13 @@ public class Aoc2024_01 {
             int first = firstList.get(i);
             int second = secondList.get(i);
             if (first > second) {
-                sum+=first-second;
+                sum += first - second;
             } else {
-                sum+=second-first;
+                sum += second - first;
             }
         }
         System.out.println("\nPart 1 > Result: " + sum);
     }
-
 
 
     private static void part2(List<String> inputLines) {
