@@ -8,12 +8,8 @@ public class Aoc2023_06 {
     private static final String DAY = "06";
     private static final String YEAR = "2023";
 
-
-
-
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-
 
         part1();
         //part2();

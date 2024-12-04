@@ -20,7 +20,6 @@ public class Aoc2024_01 {
 
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
-        //List<String> inputLines = example.lines().toList();
         List<String> inputLines = AocUtils.getStringList(PATH);
 
         //part1(inputLines);
