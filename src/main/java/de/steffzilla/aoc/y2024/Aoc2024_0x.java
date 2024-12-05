@@ -29,19 +29,21 @@ public class Aoc2024_0x {
     }
 
     private static void part1(List<String> inputLines) {
+        long count = 0;
         for (String line : inputLines) {
 
         }
-        System.out.println("\nPart 1 > Result: " + "x");
+        System.out.println("\nPart 1 > Result: " + count);
     }
 
 
 
     private static void part2(List<String> inputLines) {
+        long count = 0;
         for (String line : inputLines) {
 
         }
-        System.out.println("\nPart 2 > Result: " + "x");
+        System.out.println("\nPart 2 > Result: " + count);
     }
 
     /*
