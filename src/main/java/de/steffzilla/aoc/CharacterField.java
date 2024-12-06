@@ -55,7 +55,7 @@ public class CharacterField {
 
     public CharacterField(List<String> input) {
         maxY = input.size();
-        maxX = input.get(0).length();
+        maxX = input.getFirst().length();
         for (String line : input) {
             if(line.length() != maxX) {
                 throw new IllegalStateException("All lines need to have the same length!");
@@ -115,12 +115,24 @@ public class CharacterField {
         }
     }
 
+    public boolean isContained(Pair<Integer, Integer> pos) {
+        return isContained(pos.getValue0(), pos.getValue1());
+    }
+
     public boolean isContained(int x, int y) {
         return (x >= 0 && y >= 0 && x < maxX && y < maxY);
     }
 
+    public String getCharacterAt(Pair<Integer, Integer> pos) {
+        return getCharacterAt(pos.getValue0(), pos.getValue1());
+    }
+
     public String getCharacterAt(int x, int y) {
         return field.get(y).substring(x, x + 1);
+    }
+
+    public void setCharacterAt(String newCharacter, Pair<Integer, Integer> pos) {
+        setCharacterAt(newCharacter, pos.getValue0(), pos.getValue1());
     }
 
     public void setCharacterAt(String newCharacter, int x, int y) {
@@ -202,4 +214,6 @@ public class CharacterField {
         result = 31 * result + maxX;
         return result;
     }
+
+
 }
