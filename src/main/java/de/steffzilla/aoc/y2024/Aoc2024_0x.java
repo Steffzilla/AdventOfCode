@@ -1,6 +1,7 @@
 package de.steffzilla.aoc.y2024;
 
 import de.steffzilla.aoc.AocUtils;
+import org.javatuples.Pair;
 
 import java.util.List;
 
@@ -24,26 +25,31 @@ public class Aoc2024_0x {
         //List<String> inputLines = example.lines().toList();
         List<String> inputLines = AocUtils.getStringList(PATH);
 
-        part1(inputLines);
-        //part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines) {
         long count = 0;
         for (String line : inputLines) {
 
         }
         System.out.println("\nPart 1 > Result: " + count);
+        return String.valueOf(count);
     }
 
 
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         long count = 0;
         for (String line : inputLines) {
 
         }
         System.out.println("\nPart 2 > Result: " + count);
+        return String.valueOf(count);
     }
 
     /*
@@ -83,6 +89,6 @@ public class Aoc2024_0x {
         }
         return graph;
     }
-     */
+    */
 
 }
