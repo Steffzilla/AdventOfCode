@@ -81,11 +81,8 @@ public class Aoc2024_08 {
             for (int x = 0; x < cf.getMaxX(); x++) {
                 String frequency = cf.getCharacterAt(x, y);
                 if (!frequency.equals(".")) {
-                    List<Pair<Integer, Integer>> positions = antennaPositions.get(frequency);
-                    if (positions == null) {
-                        positions = new ArrayList<>();
-                        antennaPositions.put(frequency, positions);
-                    }
+                    List<Pair<Integer, Integer>> positions =
+                            antennaPositions.computeIfAbsent(frequency, k -> new ArrayList<>());
                     positions.add(new Pair<>(x, y));
                 }
             }
