@@ -43,7 +43,7 @@ public class Aoc2024_06 {
         if (positions.size() != 1) {
             throw new IllegalStateException("^ pos not found");
         }
-        orientation = Directions.UP; // TODO Make this nicer
+        orientation = Directions.UP; // TODO Using a field is rather hacky...
 
         String result1 = part1(inputLines, positions.getFirst());
         String result2 = part2(positions.getFirst());
