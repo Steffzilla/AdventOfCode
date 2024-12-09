@@ -12,8 +12,8 @@ public class Aoc2024_09 {
     private static final String YEAR = "2024";
     private static final String USERNAME = System.getProperty("user.name");
     public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
-    //public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
-    public static final String FILENAME = "sample" + YEAR + "_" + DAY + ".txt";
+    public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
+    //public static final String FILENAME = "sample" + YEAR + "_" + DAY + ".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
     static final String example = "12345";
@@ -112,14 +112,14 @@ public class Aoc2024_09 {
 
     private static String part2(List<String> lineWithIdsAndFreeSpace) {
         List<String> compressed = compressLinePart2(lineWithIdsAndFreeSpace);
-        System.out.println(compressed);
-        long checksum = 32;//calculateChecksum(compressed);
+        //System.out.println(compressed);
+        long checksum = calculateChecksumPart2(compressed);
         System.out.println("\nPart 2 > Result: " + checksum);
         return String.valueOf(checksum);
     }
 
     private static List<String> compressLinePart2(List<String> lineWithIdsAndFreeSpace) {
-        HashMap<Integer, LinkedList<Integer>> mapOfFreeSpace =
+        TreeMap<Integer, Integer> mapOfFreeSpace =
                 calculateMapOfFreeSpace(lineWithIdsAndFreeSpace);
 
         // first copy it
@@ -152,8 +152,10 @@ public class Aoc2024_09 {
         return compressed;
     }
 
-    private static HashMap<Integer, LinkedList<Integer>> calculateMapOfFreeSpace(List<String> lineWithIdsAndFreeSpace) {
-        HashMap<Integer, LinkedList<Integer>> mapOfFreeSpace = new HashMap<>();
+    private static TreeMap<Integer, Integer> calculateMapOfFreeSpace(List<String> lineWithIdsAndFreeSpace) {
+        // key: start pos | value: size of free space
+        TreeMap<Integer, Integer> mapOfFreeSpace = new TreeMap<>();
+
         int startPosOfFreeSpace = -1;
         int counter = 0;
         for (int i = 0; i < lineWithIdsAndFreeSpace.size(); i++) {
@@ -166,32 +168,56 @@ public class Aoc2024_09 {
             } else {
                 if (counter > 0) {
                     // Space section ended
-                    LinkedList<Integer> startPositionsOfFreeSpace =
-                            mapOfFreeSpace.computeIfAbsent(counter, k -> new LinkedList<>());
-                    startPositionsOfFreeSpace.add(startPosOfFreeSpace);
+                    mapOfFreeSpace.put(startPosOfFreeSpace, counter);
+
                     startPosOfFreeSpace = -1;
                     counter = 0;
                 }
             }
-
         }
         return mapOfFreeSpace;
     }
 
-    private static void tryToInsert(HashMap<Integer, LinkedList<Integer>> mapOfFreeSpace, int fileId, int length, List<String> compressed, int startPosOld) {
+    private static void tryToInsert(TreeMap<Integer, Integer> mapOfFreeSpace, int fileId, int length, List<String> compressed, int startPosOld) {
         //System.out.println("fileId:" + fileId + " length:" + length + " currentPos:" + currentPos);
-        Deque<Integer> freeSpaceQueue = mapOfFreeSpace.get(length);
-        if (freeSpaceQueue != null && !freeSpaceQueue.isEmpty()) {
-            Integer startPos = freeSpaceQueue.pop();
-            // add it to the free space
-            for (int i = startPos; i < startPos + length; i++) {
-                compressed.set(i, String.valueOf(fileId));
+
+        for (Map.Entry<Integer, Integer> entry : mapOfFreeSpace.entrySet()) {
+            Integer startPos = entry.getKey();
+            Integer sizeOfFreeSpace = entry.getValue();
+            if(startPos >= startPosOld) {
+                break; // don't move backward
             }
-            // remove it at the end
-            for (int i = startPosOld; i < startPosOld + length; i++) {
-                compressed.set(i, SPACE);
+
+            boolean spaceFound = false;
+            if (sizeOfFreeSpace == length) {
+                spaceFound = true;
+                mapOfFreeSpace.remove(startPos);
+            } else if (sizeOfFreeSpace > length) {
+                spaceFound = true;
+                mapOfFreeSpace.remove(startPos);
+                mapOfFreeSpace.put(startPos + length, sizeOfFreeSpace - length);
+            }
+            if (spaceFound) {
+                for (int i = startPos; i < startPos + length; i++) {
+                    compressed.set(i, String.valueOf(fileId));
+                }
+                // remove it at the end
+                for (int i = startPosOld; i < startPosOld + length; i++) {
+                    compressed.set(i, SPACE);
+                }
+                break;
             }
         }
+    }
+
+    private static long calculateChecksumPart2(List<String> compressed) {
+        long checksum = 0;
+        for (int i = 0; i < compressed.size(); i++) {
+            if (!compressed.get(i).equals(SPACE)) {
+                checksum += (long) i * Integer.parseInt(compressed.get(i));
+            }
+        }
+        return checksum;
     }
 
 }
