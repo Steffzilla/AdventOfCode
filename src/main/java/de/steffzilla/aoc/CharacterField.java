@@ -63,7 +63,6 @@ public class CharacterField {
         }
         // ensure that the list is modifiable
         this.field = new ArrayList<>(input);
-
     }
 
     /** Copy constructor */
@@ -71,6 +70,21 @@ public class CharacterField {
         this.maxX = otherField.maxX;
         this.maxY = otherField.maxY;
         this.field = new ArrayList<>(otherField.field);
+    }
+
+    /**
+     * Creates a new CharacterField prefilled with the same character.
+     */
+    public CharacterField(int maxX, int maxY, String filler) {
+        if(filler.length() != 1) {
+            throw new IllegalStateException("filler needs to be a single character!");
+        }
+        field = new ArrayList<>();
+        for (int y = 0; y < maxY; y++) {
+            field.add(filler.repeat(maxX)); // initialize with space chars
+        }
+        this.maxX = maxX;
+        this.maxY = maxY;
     }
 
     private CharacterField(int maxX, int maxY) {
