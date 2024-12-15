@@ -1,6 +1,7 @@
 package de.steffzilla.aoc.y2024;
 
 import de.steffzilla.aoc.AocUtils;
+import org.javatuples.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,11 +23,14 @@ public class Aoc2024_01 {
         System.out.println(DAY + ".12." + YEAR);
         List<String> inputLines = AocUtils.getStringList(PATH);
 
-        //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines) {
         long sum = 0;
         List<Integer> firstList = new ArrayList<>();
         List<Integer> secondList = new ArrayList<>();
@@ -50,10 +54,11 @@ public class Aoc2024_01 {
             }
         }
         System.out.println("\nPart 1 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         long sum = 0;
         List<Integer> firstList = new ArrayList<>();
         List<Integer> secondList = new ArrayList<>();
@@ -70,6 +75,7 @@ public class Aoc2024_01 {
             sum += first * secondList.stream().filter(x -> x.equals(first)).count();
         }
         System.out.println("\nPart 2 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
 }
