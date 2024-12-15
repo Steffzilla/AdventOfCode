@@ -137,6 +137,10 @@ public class CharacterField {
         return (x >= 0 && y >= 0 && x < maxX && y < maxY);
     }
 
+    public boolean lineContains(int y, String charSequence) {
+        return field.get(y).contains(charSequence);
+    }
+
     public String getCharacterAt(Pair<Integer, Integer> pos) {
         return getCharacterAt(pos.getValue0(), pos.getValue1());
     }
