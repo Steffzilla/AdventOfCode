@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,27 +51,22 @@ public class InputUtils {
         }
     }
 
-    public static Pair<List<String>, List<String>> getStringLists(String path) {
-        try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            List<String> wholeList = stream.toList();
-            int emptyLineIndex = wholeList.indexOf("");
+    public static Pair<List<String>, List<String>> splitLists(List<String> wholeList) {
+        int emptyLineIndex = wholeList.indexOf("");
 
-            List<String> beforeEmptyLine;
-            List<String> afterEmptyLine;
+        List<String> beforeEmptyLine;
+        List<String> afterEmptyLine;
 
-            if (emptyLineIndex == -1) {
-                // No empty line found, all goes into the first list
-                beforeEmptyLine = new ArrayList<>(wholeList);
-                afterEmptyLine = new ArrayList<>();
-            } else {
-                // Split the list at the empty line
-                beforeEmptyLine = new ArrayList<>(wholeList.subList(0, emptyLineIndex));
-                afterEmptyLine = new ArrayList<>(wholeList.subList(emptyLineIndex + 1, wholeList.size()));
-            }
-            return new Pair<>(beforeEmptyLine, afterEmptyLine);
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
+        if (emptyLineIndex == -1) {
+            // No empty line found, all goes into the first list
+            beforeEmptyLine = new ArrayList<>(wholeList);
+            afterEmptyLine = new ArrayList<>();
+        } else {
+            // Split the list at the empty line
+            beforeEmptyLine = new ArrayList<>(wholeList.subList(0, emptyLineIndex));
+            afterEmptyLine = new ArrayList<>(wholeList.subList(emptyLineIndex + 1, wholeList.size()));
         }
+        return new Pair<>(beforeEmptyLine, afterEmptyLine);
     }
 
 }
