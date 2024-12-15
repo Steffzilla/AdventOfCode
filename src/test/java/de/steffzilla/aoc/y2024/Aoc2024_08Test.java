@@ -42,8 +42,8 @@ public class Aoc2024_08Test {
         JsonNode root = mapper.readTree(inputStream);
 
         Pair<String, String> solutions = Aoc2024_08.solve(AocUtils.getStringList(Aoc2024_08.PATH));
-        assertEquals(root.at("/adventOfCode/2024/day8/part1").asText(), solutions.getValue0());
-        assertEquals(root.at("/adventOfCode/2024/day8/part2").asText(), solutions.getValue1());
+        assertEquals(root.at("/adventOfCode/2024/day08/part1").asText(), solutions.getValue0());
+        assertEquals(root.at("/adventOfCode/2024/day08/part2").asText(), solutions.getValue1());
     }
 
 }
