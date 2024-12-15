@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class InputUtils {
+public class KargerInputUtils {
     public static BufferedReader reader;
-    public static String FILE_PATH = "KargerAlgorithemInput.txt";
+    public static String FILE_PATH = "KargerAlgorithmInput.txt";
 
     public static void initInputReader() {
         try {
             FileReader fileReader = new FileReader(FILE_PATH);
             reader = new BufferedReader(fileReader);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 
@@ -30,12 +30,10 @@ public class InputUtils {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
-
         return "";
     }
-
 
     public static ArrayList<String> parseLineIntoStringList(String line) {
         line = line.trim();
@@ -45,7 +43,6 @@ public class InputUtils {
             s = s.trim();
             edges.add(s);
         }
-
         return edges;
     }
 

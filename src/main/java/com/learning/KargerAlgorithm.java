@@ -5,7 +5,7 @@ import com.google.common.graph.*;
 import java.security.SecureRandom;
 import java.util.*;
 
-import static com.learning.InputUtils.*;
+import static com.learning.KargerInputUtils.*;
 
 // based on https://github.com/afbarboza/KargerAlgorithm
 
