@@ -19,7 +19,7 @@ public class CharacterField {
 
     private final List<String> field;
     private final int maxY; // 1 based -> Number of lines
-    private final int maxX; // 1 based -> Number of characters in line
+    private final int maxX; // 1 based -> Number of characters per line
 
     public static void main(String[] args) {
         String field = """
@@ -74,6 +74,9 @@ public class CharacterField {
 
     /**
      * Creates a new CharacterField prefilled with the same character.
+     * @param maxX Number of characters per line
+     * @param maxY Number of lines
+     * @param filler Character to fill the whole board
      */
     public CharacterField(int maxX, int maxY, String filler) {
         if(filler.length() != 1) {
