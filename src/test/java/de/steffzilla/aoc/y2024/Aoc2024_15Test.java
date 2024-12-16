@@ -86,12 +86,31 @@ public class Aoc2024_15Test {
             ####################
             """;
 
+    static final String resultingMiniSamplePart2 = """
+            ################
+            ##...[].........
+            ##..............
+            """;
+
+    static final String resultingFieldSamplePart2 = """
+            ####################
+            ##[].......[].[][]##
+            ##[]...........[].##
+            ##[]........[][][]##
+            ##[]......[]....[]##
+            ##..##......[]....##
+            ##..[]............##
+            ##..@......[].[][]##
+            ##......[][]..[]..##
+            ####################
+            """;
+
     @Test
     public void testSumOfGPSCoordinates() {
         CharacterField cf = new CharacterField(resultingFieldSmallSamplePart1);
-        assertEquals(2028, Aoc2024_15.sumOfGPSCoordinates(cf));
+        assertEquals(2028, Aoc2024_15.sumOfGPSCoordinates(cf, Aoc2024_15.BOX));
         cf = new CharacterField(resultingFieldSamplePart1);
-        assertEquals(10092, Aoc2024_15.sumOfGPSCoordinates(cf));
+        assertEquals(10092, Aoc2024_15.sumOfGPSCoordinates(cf, Aoc2024_15.BOX));
     }
 
     @Test
@@ -100,6 +119,14 @@ public class Aoc2024_15Test {
         CharacterField cf = new CharacterField(fieldOfSample);
         CharacterField largeField = Aoc2024_15.enlargeField(cf);
         assertEquals(resultingStartFieldSample, largeField.getFieldAsString());
+    }
+
+    @Test
+    public void testSumOfGPSCoordinatesPart2() {
+        CharacterField cf = new CharacterField(resultingMiniSamplePart2);
+        assertEquals(105, Aoc2024_15.sumOfGPSCoordinates(cf, Aoc2024_15.BIG_BOX_LEFT));
+        cf = new CharacterField(resultingFieldSamplePart2);
+        assertEquals(9021, Aoc2024_15.sumOfGPSCoordinates(cf, Aoc2024_15.BIG_BOX_LEFT));
     }
 
     @Test

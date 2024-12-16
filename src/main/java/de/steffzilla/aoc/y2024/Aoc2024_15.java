@@ -52,24 +52,29 @@ public class Aoc2024_15 {
     static Pair<String, String> solve(List<String> inputLines) {
         Pair<List<String>, List<String>> inputs = InputUtils.splitLists(inputLines);
         CharacterField cf = new CharacterField(inputs.getValue0());
+
+        List<String> movementLines = inputs.getValue1();
+        StringBuilder sbMovements = new StringBuilder();
+        for (String line : movementLines) {
+            sbMovements.append(line);
+        }
+        return new Pair<>(part1(sbMovements.toString(), cf), part2(sbMovements.toString(), cf));
+    }
+
+    private static String part1(String movements, CharacterField cf) {
+        setRobotPosition(cf);
+        doMovements(movements, cf);
+        long sumOfGPSCoordinates = sumOfGPSCoordinates(cf, BOX);
+        System.out.println("\nPart 1 > Result: " + sumOfGPSCoordinates);
+        return String.valueOf(sumOfGPSCoordinates);
+    }
+
+    private static void setRobotPosition(CharacterField cf) {
         List<Pair<Integer, Integer>> positions = cf.searchCharacters(ROBOT);
         if (positions.size() != 1) {
             throw new IllegalStateException("Robot position needs to be unique!" + positions.size());
         }
         robotPos = positions.getFirst();
-        List<String> movementLines = inputs.getValue1();
-        StringBuilder sb = new StringBuilder();
-        for (String line : movementLines) {
-            sb.append(line);
-        }
-        return new Pair<>(part1(sb.toString(), cf), part2(sb.toString(), cf));
-    }
-
-    private static String part1(String movements, CharacterField cf) {
-        doMovements(movements, cf);
-        long sumOfGPSCoordinates = sumOfGPSCoordinates(cf);
-        System.out.println("\nPart 1 > Result: " + sumOfGPSCoordinates);
-        return String.valueOf(sumOfGPSCoordinates);
     }
 
     private static void doMovements(String movements, CharacterField cf) {
@@ -130,20 +135,22 @@ public class Aoc2024_15 {
         }
     }
 
-    static long sumOfGPSCoordinates(CharacterField characterField) {
+    static long sumOfGPSCoordinates(CharacterField characterField, String boxCharacter) {
         long sum = 0;
-        List<Pair<Integer, Integer>> boxes = characterField.searchCharacters(BOX);
+        List<Pair<Integer, Integer>> boxes = characterField.searchCharacters(boxCharacter);
         for (Pair<Integer, Integer> pos : boxes) {
             sum += pos.getValue0() + pos.getValue1() * 100;
         }
         return sum;
     }
 
-    private static String part2(String movements, CharacterField cf) {
-        long count = 0;
-
-        System.out.println("\nPart 2 > Result: " + count);
-        return String.valueOf(count);
+    private static String part2(String movements, CharacterField smallField) {
+        CharacterField largeField = enlargeField(smallField);
+        setRobotPosition(largeField);
+        //doMovementsPart2(movements, largeField);
+        long sumOfGPSCoordinates = sumOfGPSCoordinates(largeField, BIG_BOX_LEFT);
+        System.out.println("\nPart 2 > Result: " + sumOfGPSCoordinates);
+        return String.valueOf(sumOfGPSCoordinates);
     }
 
     public static CharacterField enlargeField(CharacterField cf) {
@@ -164,4 +171,5 @@ public class Aoc2024_15 {
         }
         return new CharacterField(sb.toString());
     }
+
 }
