@@ -73,12 +73,33 @@ public class Aoc2024_15Test {
             ##########
             """;
 
+    static final String resultingStartFieldSample = """
+            ####################
+            ##....[]....[]..[]##
+            ##............[]..##
+            ##..[][]....[]..[]##
+            ##....[]@.....[]..##
+            ##[]##....[]......##
+            ##[]....[]....[]..##
+            ##..[][]..[]..[][]##
+            ##........[]......##
+            ####################
+            """;
+
     @Test
     public void testSumOfGPSCoordinates() {
         CharacterField cf = new CharacterField(resultingFieldSmallSamplePart1);
         assertEquals(2028, Aoc2024_15.sumOfGPSCoordinates(cf));
         cf = new CharacterField(resultingFieldSamplePart1);
         assertEquals(10092, Aoc2024_15.sumOfGPSCoordinates(cf));
+    }
+
+    @Test
+    public void testEnlargeFieldPart2() {
+        String fieldOfSample = sample.substring(0, 110);
+        CharacterField cf = new CharacterField(fieldOfSample);
+        CharacterField largeField = Aoc2024_15.enlargeField(cf);
+        assertEquals(resultingStartFieldSample, largeField.getFieldAsString());
     }
 
     @Test

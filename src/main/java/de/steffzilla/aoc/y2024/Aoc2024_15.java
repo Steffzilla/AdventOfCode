@@ -13,7 +13,7 @@ public class Aoc2024_15 {
     private static final String YEAR = "2024";
     private static final String USERNAME = System.getProperty("user.name");
     public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
-    public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
+    public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
     //public static final String FILENAME = "sample" + YEAR + "_" + DAY + ".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
@@ -32,6 +32,8 @@ public class Aoc2024_15 {
     public static final String ROBOT = "@";
     public static final String WALL = "#";
     public static final String BOX = "O";
+    public static final String BIG_BOX_LEFT = "[";
+    public static final String BIG_BOX_RIGHT = "]";
     public static final String RIGHT = ">";
     public static final String LEFT = "<";
     public static final String DOWN = "v";
@@ -144,4 +146,22 @@ public class Aoc2024_15 {
         return String.valueOf(count);
     }
 
+    public static CharacterField enlargeField(CharacterField cf) {
+        StringBuilder sb = new StringBuilder();
+        for (int y = 0; y < cf.getMaxY(); y++) {
+            for (int x = 0; x < cf.getMaxX(); x++) {
+                String orgCharacter = cf.getCharacterAt(x, y);
+                String s = switch (orgCharacter) {
+                    case WALL -> WALL + WALL;
+                    case BOX -> BIG_BOX_LEFT + BIG_BOX_RIGHT;
+                    case EMPTY -> EMPTY + EMPTY;
+                    case ROBOT -> ROBOT + EMPTY;
+                    default -> throw new IllegalStateException("Unexpected character in field: " + orgCharacter);
+                };
+                sb.append(s);
+            }
+            sb.append("\n");
+        }
+        return new CharacterField(sb.toString());
+    }
 }
