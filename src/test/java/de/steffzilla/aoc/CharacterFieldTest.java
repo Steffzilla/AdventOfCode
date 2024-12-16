@@ -145,4 +145,16 @@ public class CharacterFieldTest {
         CharacterField characterField6 = characterField1.copyFieldPartially(3, 3,2, 2);
         assertEquals(characterField5, characterField6);
     }
+
+    @Test
+    public void testGetFieldAsString() {
+        String field = """
+            ABCD
+            EFGH
+            IJKL
+            """;
+        CharacterField cf = new CharacterField(field);
+        assertEquals(field, cf.getFieldAsString());
+    }
+
 }

@@ -201,6 +201,15 @@ public class CharacterField {
         return maxX;
     }
 
+    public String getFieldAsString() {
+        StringBuilder sb = new StringBuilder();
+        for (String line : field) {
+            sb.append(line);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
     public void prettyPrint() {
         for (String line : this.field) {
             System.out.println(line);
