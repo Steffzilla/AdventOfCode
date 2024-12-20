@@ -5,7 +5,7 @@ import de.steffzilla.aoc.CharacterField;
 import de.steffzilla.aoc.InputUtils;
 import org.javatuples.Pair;
 
-import java.util.List;
+import java.util.*;
 
 public class Aoc2024_15 {
 
@@ -51,25 +51,25 @@ public class Aoc2024_15 {
 
     static Pair<String, String> solve(List<String> inputLines) {
         Pair<List<String>, List<String>> inputs = InputUtils.splitLists(inputLines);
-        CharacterField cf = new CharacterField(inputs.getValue0());
 
         List<String> movementLines = inputs.getValue1();
         StringBuilder sbMovements = new StringBuilder();
         for (String line : movementLines) {
             sbMovements.append(line);
         }
-        return new Pair<>(part1(sbMovements.toString(), cf), part2(sbMovements.toString(), cf));
+        return new Pair<>(part1(sbMovements.toString(), new CharacterField(inputs.getValue0())),
+                part2(sbMovements.toString(), new CharacterField(inputs.getValue0())));
     }
 
     private static String part1(String movements, CharacterField cf) {
         setRobotPosition(cf);
-        doMovements(movements, cf);
+        doMovements(movements, true, cf);
         long sumOfGPSCoordinates = sumOfGPSCoordinates(cf, BOX);
         System.out.println("\nPart 1 > Result: " + sumOfGPSCoordinates);
         return String.valueOf(sumOfGPSCoordinates);
     }
 
-    private static void setRobotPosition(CharacterField cf) {
+    static void setRobotPosition(CharacterField cf) {
         List<Pair<Integer, Integer>> positions = cf.searchCharacters(ROBOT);
         if (positions.size() != 1) {
             throw new IllegalStateException("Robot position needs to be unique!" + positions.size());
@@ -77,53 +77,83 @@ public class Aoc2024_15 {
         robotPos = positions.getFirst();
     }
 
-    private static void doMovements(String movements, CharacterField cf) {
+    static void doMovements(String movements, boolean part1, CharacterField cf) {
         for (int i = 0; i < movements.length(); i++) {
             String move = movements.substring(i, i + 1);
-            int x = 0;
-            int y = 0;
-            switch (move) {
-                case LEFT:
-                    x = -1;
-                    break;
-                case RIGHT:
-                    x = 1;
-                    break;
-                case UP:
-                    y = -1;
-                    break;
-                case DOWN:
-                    y = 1;
-                    break;
-                default:
-                    throw new IllegalStateException("Invalid move character" + move);
-            }
-            if (tryMove(robotPos, x, y, cf)) {
-                Pair<Integer, Integer> oldPos = robotPos;
-                Pair<Integer, Integer> newPos = new Pair<>(robotPos.getValue0() + x, robotPos.getValue1() + y);
-                cf.setCharacterAt(cf.getCharacterAt(oldPos), newPos);
-                cf.setCharacterAt(EMPTY, oldPos);
-                robotPos = newPos;
+            //System.out.println(move);
+            Pair<Integer, Integer> movementDelta = getMovementDelta(move);
+            int xDelta = movementDelta.getValue0();
+            int yDelta = movementDelta.getValue1();
+            if (part1) {
+                if (tryMovePart1(robotPos, xDelta, yDelta, cf)) {
+                    moveRobot(cf, xDelta, yDelta);
+                }
+            } else {
+                Queue<Pair<Integer, Integer>> boxesToBeMoved = new LinkedList<>();
+                if (tryMovePart2(robotPos, xDelta, yDelta, boxesToBeMoved, cf)) {
+                    for (Pair<Integer, Integer> boxLeft : boxesToBeMoved) {
+                        Pair<Integer, Integer> boxRight = new Pair<>(boxLeft.getValue0() + 1, boxLeft.getValue1());
+                        cf.setCharacterAt(EMPTY, boxLeft);
+                        cf.setCharacterAt(EMPTY, boxRight);
+                        // move left side
+                        cf.setCharacterAt(BIG_BOX_LEFT,
+                                new Pair<>(boxLeft.getValue0() + xDelta, boxLeft.getValue1() + yDelta));
+                        // move right side
+                        cf.setCharacterAt(BIG_BOX_RIGHT,
+                                new Pair<>(boxRight.getValue0() + xDelta, boxRight.getValue1() + yDelta));
+                    }
+                    moveRobot(cf, xDelta, yDelta);
+                }
             }
             //cf.prettyPrint();
         }
     }
 
-    static boolean tryMove(Pair<Integer, Integer> oldPos, int x, int y, CharacterField cf) {
+    private static Pair<Integer, Integer> getMovementDelta(String move) {
+        int x = 0;
+        int y = 0;
+        switch (move) {
+            case LEFT:
+                x = -1;
+                break;
+            case RIGHT:
+                x = 1;
+                break;
+            case UP:
+                y = -1;
+                break;
+            case DOWN:
+                y = 1;
+                break;
+            default:
+                throw new IllegalStateException("Invalid move character" + move);
+        }
+        return new Pair<>(x, y);
+    }
+
+    private static void moveRobot(CharacterField cf, int x, int y) {
+        Pair<Integer, Integer> oldPos = robotPos;
+        Pair<Integer, Integer> newPos = new Pair<>(robotPos.getValue0() + x, robotPos.getValue1() + y);
+        cf.setCharacterAt(cf.getCharacterAt(oldPos), newPos);
+        cf.setCharacterAt(EMPTY, oldPos);
+        robotPos = newPos;
+    }
+
+    static boolean tryMovePart1(Pair<Integer, Integer> oldPos, int x, int y, CharacterField cf) {
         Pair<Integer, Integer> potentialNewPos = new Pair<>(oldPos.getValue0() + x, oldPos.getValue1() + y);
         String nextCharacter = cf.getCharacterAt(potentialNewPos);
         switch (nextCharacter) {
             case WALL -> {
-                System.out.println(potentialNewPos + " wall");
+                //System.out.println(potentialNewPos + " wall");
                 return false;
             }
             case EMPTY -> {
-                System.out.println(potentialNewPos + " empty");
+                //System.out.println(potentialNewPos + " empty");
                 return true;
             }
             case BOX -> {
-                if (tryMove(potentialNewPos, x, y, cf)) {
-                    System.out.println("do move:");
+                if (tryMovePart1(potentialNewPos, x, y, cf)) {
+                    //System.out.println("do move:");
                     cf.setCharacterAt(cf.getCharacterAt(potentialNewPos),
                             new Pair<>(potentialNewPos.getValue0() + x, potentialNewPos.getValue1() + y));
                     cf.setCharacterAt(EMPTY, potentialNewPos);
@@ -132,6 +162,60 @@ public class Aoc2024_15 {
                 return false;
             }
             default -> throw new IllegalStateException("Unexpected field value: '" + nextCharacter + "'");
+        }
+    }
+
+    /**
+     * Checks if the object at oldPos can be moved by the delta x and y.
+     * Boxes that should potentially be moved are collected in boxesToBeMoved
+     */
+    static boolean tryMovePart2(Pair<Integer, Integer> oldPos, int x, int y, Queue<Pair<Integer, Integer>> boxesToBeMoved, CharacterField cf) {
+        Pair<Integer, Integer> potentialNewPos = new Pair<>(oldPos.getValue0() + x, oldPos.getValue1() + y);
+        String nextCharacter = cf.getCharacterAt(potentialNewPos);
+        switch (nextCharacter) {
+            case WALL -> {
+                //System.out.println(potentialNewPos + " wall");
+                return false;
+            }
+            case EMPTY -> {
+                //System.out.println(potentialNewPos + " empty");
+                return true;
+            }
+            case BIG_BOX_LEFT -> {
+                boolean canMove = handleBigBox(x, y, cf, 1, potentialNewPos, boxesToBeMoved);
+                if (canMove) {
+                    // collect the coordinates of the left side box the boxes that shall possibly be moved
+                    if (!boxesToBeMoved.contains(potentialNewPos)) {
+                        boxesToBeMoved.add(potentialNewPos);
+                    }
+                }
+                return canMove;
+            }
+            case BIG_BOX_RIGHT -> {
+                boolean canMove = handleBigBox(x, y, cf, -1, potentialNewPos, boxesToBeMoved);
+                if (canMove) {
+                    // collect the coordinates of the left side box the boxes that shall possibly be moved
+                    Pair<Integer, Integer> leftSideOfTheBox = new Pair<>(potentialNewPos.getValue0() - 1, potentialNewPos.getValue1());
+                    if (!boxesToBeMoved.contains(leftSideOfTheBox)) {
+                        boxesToBeMoved.add(leftSideOfTheBox);
+                    }
+                }
+                return canMove;
+            }
+            default -> throw new IllegalStateException("Unexpected field value: '" + nextCharacter + "'");
+        }
+    }
+
+    private static boolean handleBigBox(int x, int y, CharacterField cf, int deltaOf2ndHalf, Pair<Integer, Integer> potentialNewPos, Queue<Pair<Integer, Integer>> boxesToBeMoved) {
+        if (y == 0) {
+            // horizontal case = easy case
+            return tryMovePart2(potentialNewPos, x, y, boxesToBeMoved, cf);
+        } else {
+            // try to move both parts
+            Pair<Integer, Integer> potentialNewPos2ndHalf =
+                    new Pair<>(potentialNewPos.getValue0() + deltaOf2ndHalf, potentialNewPos.getValue1());
+            return tryMovePart2(potentialNewPos, x, y, boxesToBeMoved, cf) &&
+                    tryMovePart2(potentialNewPos2ndHalf, x, y, boxesToBeMoved, cf);
         }
     }
 
@@ -144,10 +228,13 @@ public class Aoc2024_15 {
         return sum;
     }
 
-    private static String part2(String movements, CharacterField smallField) {
+    static String part2(String movements, CharacterField smallField) {
         CharacterField largeField = enlargeField(smallField);
+        //largeField.prettyPrint();
+        //System.out.println();
         setRobotPosition(largeField);
-        //doMovementsPart2(movements, largeField);
+        doMovements(movements, false, largeField);
+        //largeField.prettyPrint();
         long sumOfGPSCoordinates = sumOfGPSCoordinates(largeField, BIG_BOX_LEFT);
         System.out.println("\nPart 2 > Result: " + sumOfGPSCoordinates);
         return String.valueOf(sumOfGPSCoordinates);

@@ -133,14 +133,62 @@ public class Aoc2024_15Test {
     public void testSolveSmallExample() {
         Pair<String, String> solutions = Aoc2024_15.solve(smallSample.lines().toList());
         assertEquals("2028", solutions.getValue0());
-        //assertEquals("6", solutions.getValue1());
     }
 
     @Test
     public void testSolveExample() {
         Pair<String, String> solutions = Aoc2024_15.solve(sample.lines().toList());
         assertEquals("10092", solutions.getValue0());
-        //assertEquals("9021", solutions.getValue1());
+        assertEquals("9021", solutions.getValue1());
+    }
+
+    @Test
+    public void testSolveExamplePart2() {
+        String sField = """
+                #######
+                #...#.#
+                #.....#
+                #..OO@#
+                #..O..#
+                #.....#
+                #######
+                """;
+        String fieldAfterMovements = """
+                ##############
+                ##...[].##..##
+                ##...@.[]...##
+                ##....[]....##
+                ##..........##
+                ##..........##
+                ##############
+                """;
+        long sum = Aoc2024_15.sumOfGPSCoordinates(new CharacterField(fieldAfterMovements), Aoc2024_15.BIG_BOX_LEFT);
+        assertEquals(String.valueOf(sum),
+                Aoc2024_15.part2("<vv<<^^<<^^", new CharacterField(sField)));
+    }
+
+    @Test
+    public void testDoMovementsPart2()  {
+        String fieldBeforeMovements = """
+                ############
+                ##.[].##..##
+                ##.@[].[].##
+                ##..[]....##
+                ##........##
+                ############
+                """;
+        String fieldAfterMovements = """
+                ############
+                ##.[].##..##
+                ##....[][]##
+                ##...@....##
+                ##..[]....##
+                ############
+                """;
+        CharacterField cf = new CharacterField(fieldBeforeMovements);
+        Aoc2024_15.setRobotPosition(cf);
+        Aoc2024_15.doMovements(">>>v", false, cf);
+        assertEquals(new CharacterField(fieldAfterMovements), cf);
     }
 
     @Test
@@ -151,7 +199,7 @@ public class Aoc2024_15Test {
 
         Pair<String, String> solutions = Aoc2024_15.solve(AocUtils.getStringList(Aoc2024_15.PATH));
         assertEquals(root.at("/adventOfCode/2024/day15/part1").asText(), solutions.getValue0());
-        //assertEquals(root.at("/adventOfCode/2024/day15/part2").asText(), solutions.getValue1());
+        assertEquals(root.at("/adventOfCode/2024/day15/part2").asText(), solutions.getValue1());
     }
 
 }
