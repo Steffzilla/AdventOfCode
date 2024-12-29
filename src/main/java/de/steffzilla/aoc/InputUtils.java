@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+
 import org.javatuples.Pair;
 
 public class InputUtils {
@@ -67,6 +68,27 @@ public class InputUtils {
             afterEmptyLine = new ArrayList<>(wholeList.subList(emptyLineIndex + 1, wholeList.size()));
         }
         return new Pair<>(beforeEmptyLine, afterEmptyLine);
+    }
+
+    public static List<Pair<Integer, Integer>> readLinesAsCoordinates(List<String> inputLines) {
+        return readLinesAsCoordinates(inputLines, Integer.MAX_VALUE);
+    }
+
+    /**
+     * Returns the lines as coordinates including line number untilLineNumber.
+     */
+    public static List<Pair<Integer, Integer>> readLinesAsCoordinates(List<String> inputLines, int untilLineNumber) {
+        List<Pair<Integer, Integer>> coordinates = new ArrayList<>();
+        int lineNumber = 1;
+        for (String line : inputLines) {
+            if (lineNumber > untilLineNumber) {
+                break;
+            }
+            String[] parts = line.split(",");
+            coordinates.add(new Pair<>(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])));
+            lineNumber++;
+        }
+        return coordinates;
     }
 
 }
