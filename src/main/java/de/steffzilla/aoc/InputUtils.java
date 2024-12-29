@@ -27,7 +27,7 @@ public class InputUtils {
         return result;
     }
 
-    public static List<List<Integer>> readLinesAsInts(String regex, List<String> inputLines) {
+    public static List<List<Integer>> readLinesAsIntegers(String regex, List<String> inputLines) {
         Pattern pattern = Pattern.compile(regex);
         List<List<Integer>> result = new ArrayList<>();
         for (String line : inputLines) {

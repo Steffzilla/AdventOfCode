@@ -32,7 +32,7 @@ public class Aoc2024_14 {
     }
 
     static Pair<String, String> solve(List<String> inputLines) {
-        List<List<Integer>> inputData = InputUtils.readLinesAsInts("^p=(-?\\d*),(-?\\d*) v=(-?\\d*),(-?\\d*)", inputLines);
+        List<List<Integer>> inputData = InputUtils.readLinesAsIntegers("^p=(-?\\d*),(-?\\d*) v=(-?\\d*),(-?\\d*)", inputLines);
         return new Pair<>(part1(inputData), part2(inputData));
     }
 
