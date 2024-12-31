@@ -1,12 +1,16 @@
 package de.steffzilla.aoc;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.javatuples.Pair;
@@ -42,6 +46,13 @@ public class InputUtils {
             result.add(groupResults);
         }
         return result;
+    }
+
+    /**
+     * Converts the numbers in the given line to {@link BigInteger}s. regex is used to split line.
+     */
+    public static List<BigInteger> readLineAsBigIntegers(String line, String regex) {
+        return Arrays.stream(line.split(regex)).map(BigInteger::new).collect(Collectors.toCollection(LinkedList::new));
     }
 
     public static List<String> getStringList(String path) {
