@@ -32,6 +32,13 @@ public class InputUtils {
         return result;
     }
 
+    /**
+     * Extracts integers form lines by a regular expression.
+     * Example:
+     * p=79,42 v=17,-55
+     * p=74,2 v=60,8
+     * readLinesAsIntegers("^p=(-?\\d*),(-?\\d*) v=(-?\\d*),(-?\\d*)", inputLines);
+     */
     public static List<List<Integer>> readLinesAsIntegers(String regex, List<String> inputLines) {
         Pattern pattern = Pattern.compile(regex);
         List<List<Integer>> result = new ArrayList<>();
