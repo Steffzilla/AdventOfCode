@@ -1,15 +1,15 @@
 package de.steffzilla.aoc.y2021;
 
-public class Laternfish {
+public class Lanternfish {
 
     private int timer;
 
-    public Laternfish(int timer) {
+    public Lanternfish(int timer) {
         this.timer = timer;
     }
 
     public boolean age() {
-        if(timer==0) {
+        if (timer == 0) {
             timer = 6;
             return true;
         } else {
