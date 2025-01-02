@@ -24,61 +24,61 @@ public class Aoc2021_6 {
     }
 
     private static void part2(String[] sNumbers) {
-        long[] fishs = new long[9];
+        long[] fishes = new long[9];
         for (int i = 0; i < sNumbers.length; i++) {
             int internalTimer = Integer.parseInt(sNumbers[i]);
-            fishs[internalTimer]++;
+            fishes[internalTimer]++;
         }
-        System.out.println(Arrays.toString(fishs));
+        System.out.println(Arrays.toString(fishes));
 
         for (int i = 0; i < DAYS; i++) {
-            long internalTimerWasZeroFishs = fishs[0];
+            long internalTimerWasZeroFishes = fishes[0];
             // internal timer --
-            fishs[0] = fishs[1];
-            fishs[1] = fishs[2];
-            fishs[2] = fishs[3];
-            fishs[3] = fishs[4];
-            fishs[4] = fishs[5];
-            fishs[5] = fishs[6];
-            fishs[6] = fishs[7] + internalTimerWasZeroFishs; // +old generation
-            fishs[7] = fishs[8];
-            fishs[8] = internalTimerWasZeroFishs; // new generation
+            fishes[0] = fishes[1];
+            fishes[1] = fishes[2];
+            fishes[2] = fishes[3];
+            fishes[3] = fishes[4];
+            fishes[4] = fishes[5];
+            fishes[5] = fishes[6];
+            fishes[6] = fishes[7] + internalTimerWasZeroFishes; // +old generation
+            fishes[7] = fishes[8];
+            fishes[8] = internalTimerWasZeroFishes; // new generation
         }
 
         long numberOfFishs = 0;
-        for (long fish : fishs) {
+        for (long fish : fishes) {
             numberOfFishs = numberOfFishs + fish;
         }
         System.out.println(numberOfFishs);
     }
 
-    private static int getDirectChilds(int days) {
+    private static int getDirectChildren(int days) {
         return (int) Math.ceil((double) days / 7);
     }
 
     private static void part1(String[] sNumbers) {
-        List<Lanternfish> fishs = new ArrayList<>();
-        // create Fishs
+        List<Lanternfish> fishes = new ArrayList<>();
+        // create Fishes
         for (int i = 0; i < sNumbers.length; i++) {
-            fishs.add(new Lanternfish(Integer.parseInt(sNumbers[i])));
+            fishes.add(new Lanternfish(Integer.parseInt(sNumbers[i])));
         }
-        System.out.println(fishs);
+        System.out.println(fishes);
 
         for (int i = 1; i <= DAYS; i++) {
-            List<Lanternfish> newFishs = new ArrayList<>();
+            List<Lanternfish> newFishes = new ArrayList<>();
 
-            for (Lanternfish fish : fishs) {
+            for (Lanternfish fish : fishes) {
                 boolean newFish = fish.age();
 
                 if (newFish) {
-                    newFishs.add(new Lanternfish(8));
+                    newFishes.add(new Lanternfish(8));
                 }
             }
-            fishs.addAll(newFishs);
-            //System.out.println("after day "+i+": "+fishs);
+            fishes.addAll(newFishes);
+            //System.out.println("after day "+i+": "+fishes);
         }
 
-        System.out.println("\nResult: " + fishs.size());
+        System.out.println("\nResult: " + fishes.size());
     }
 
 }
