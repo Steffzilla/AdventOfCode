@@ -43,62 +43,42 @@ public class AocUtils {
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             strings = stream.toArray(String[]::new);
         } catch (IOException e) {
-            e.printStackTrace();
-            strings = new String[0];
+            throw new RuntimeException(e);
         }
         return splitStringToIntArray(strings[0], regex);
     }
 
     /**
      * File contains one int per line
-     * @param path
-     * @return
      */
     public static int[] getIntArrayFromFile(String path) {
         int[] numbers;
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             numbers = stream.mapToInt(Integer::parseInt).toArray(); // Integer.parseInt(num)
         } catch (IOException e) {
-            e.printStackTrace();
-            numbers = new int[0];
+            throw new RuntimeException(e);
         }
         return numbers;
     }
 
     /**
      * File contains one long per line
-     * @param path
-     * @return
      */
     public static long[] getLongArrayFromFile(String path) {
         long[] numbers;
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             numbers = stream.mapToLong(Long::parseLong).toArray(); // Long.parseLong(num)
         } catch (IOException e) {
-            e.printStackTrace();
-            numbers = new long[0];
+            throw new RuntimeException(e);
         }
         return numbers;
-    }
-
-
-    public static String[] getStringArray(String path) {
-        String[] strings;
-        try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            strings = stream.toArray(String[]::new);
-        } catch (IOException e) {
-            e.printStackTrace();
-            strings = new String[0];
-        }
-        return strings;
     }
 
     public static List<String> getStringList(String path) {
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             return stream.toList();
         } catch (IOException e) {
-            e.printStackTrace();
-            return Collections.emptyList();
+            throw new RuntimeException(e);
         }
     }
 
@@ -108,7 +88,7 @@ public class AocUtils {
         try {
             lines = Files.lines(path).count();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return lines;
     }
@@ -234,10 +214,6 @@ public class AocUtils {
 
     /**
      * reads an int matrix from the inputLines.
-     * @param inputLines
-     * @param xDimension
-     * @param yDimension
-     * @return
      */
     public static int[][] readIntMatrix(List<String> inputLines, int xDimension, int yDimension) {
         int[][] matrix = new int[xDimension][yDimension];
@@ -253,8 +229,6 @@ public class AocUtils {
 
     /**
      * Returns the binary string <strong>without leading zeros</strong>
-     * @param hex
-     * @return
      */
     public static String hexToBinWithoutLeadingZeros(String hex) {
         return new BigInteger(hex, 16).toString(2);
@@ -312,7 +286,7 @@ public class AocUtils {
     }
 
     public static long leastCommonMultiple(List<Long> numbers) {
-        long result = numbers.get(0);
+        long result = numbers.getFirst();
         for(int i = 1; i < numbers.size(); i++) {
             result = leastCommonMultiple(result, numbers.get(i));
         }
