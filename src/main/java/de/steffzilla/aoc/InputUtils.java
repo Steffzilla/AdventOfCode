@@ -109,4 +109,15 @@ public class InputUtils {
         return coordinates;
     }
 
+    /**
+     * For a file with one number per line a list of Longs is returned.
+     */
+    public static List<Long> getListOfLongFromFile(String path) {
+        try (Stream<String> stream = Files.lines(Paths.get(path))) {
+            return stream.mapToLong(Long::valueOf).boxed().toList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
