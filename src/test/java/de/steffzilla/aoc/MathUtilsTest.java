@@ -37,4 +37,16 @@ public class MathUtilsTest {
         assertEquals(7969170, MathUtils.leastCommonMultiple(Arrays.asList(682L, 95L, 123L)));
     }
 
+    @Test
+    public void testGreatestCommonDivisor() {
+        long[] numbers = {15L, 35L};
+        assertEquals(5L, MathUtils.greatestCommonDivisor(numbers));
+        long[] numbers2 = {35L, 15L};
+        assertEquals(5L, MathUtils.greatestCommonDivisor(numbers2));
+        long[] numbers3 = {2378L, 1769L};
+        assertEquals(29L, MathUtils.greatestCommonDivisor(numbers3));
+        long[] numbers4 = {35L, 266L, 182L};
+        assertEquals(7L, MathUtils.greatestCommonDivisor(numbers4));
+    }
+
 }
