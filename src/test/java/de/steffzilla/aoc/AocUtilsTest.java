@@ -51,34 +51,6 @@ public class AocUtilsTest {
                 AocUtils.areCharactersUnique("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".toUpperCase()));
     }
 
-    @Test
-    public void testGetPrimeNumbers() {
-        assertEquals(Arrays.asList(101L, 103L, 107L, 109L, 113L, 127L, 131L, 137L, 139L, 149L, 151L,
-                157L, 163L, 167L, 173L, 179L, 181L, 191L, 193L, 197L, 199L), AocUtils.getPrimeNumbers(100, 200));
-    }
-
-    @Test
-    public void testGetPrimeFactorization() {
-        assertEquals(Arrays.asList(3L, 5L, 5L), AocUtils.getPrimeFactorization(75));
-        assertEquals(Arrays.asList(3L, 3L, 5L, 7L), AocUtils.getPrimeFactorization(315));
-        assertEquals(Arrays.asList(23L, 23L), AocUtils.getPrimeFactorization(529));
-        assertEquals(Arrays.asList(2L, 2L, 2L, 2L, 3L, 3L, 5L, 7L), AocUtils.getPrimeFactorization(5040));
-    }
-
-    @Test
-    public void testIsPrime() {
-        assertTrue(AocUtils.isPrime(3));
-        assertTrue(AocUtils.isPrime(101));
-        assertFalse(AocUtils.isPrime(100));
-    }
-
-    @Test
-    public void testLeastCommonMultiple() {
-        assertEquals(new BigInteger("36"), AocUtils.leastCommonMultiple(new BigInteger("12"), new BigInteger("18")));
-        assertEquals(36L, AocUtils.leastCommonMultiple(Arrays.asList(12L, 18L)));
-        assertEquals(7969170, AocUtils.leastCommonMultiple(Arrays.asList(682L, 95L, 123L)));
-    }
-
 /*
     @Test
     public void testAreAsciiCharactersUnique() {

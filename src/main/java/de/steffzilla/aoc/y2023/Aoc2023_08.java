@@ -1,6 +1,7 @@
 package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.aoc.MathUtils;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class Aoc2023_08 {
         for (String startNode : startNodes) {
             stepsPerCamel.add(getStepsPerCamelPart2(instructions, startNode, map));
         }
-        System.out.println("\nPart 2 > Result: " + AocUtils.leastCommonMultiple(stepsPerCamel));
+        System.out.println("\nPart 2 > Result: " + MathUtils.leastCommonMultiple(stepsPerCamel));
     }
 
     private static Long getStepsPerCamelPart2(String instructions, String startNode, HashMap<String, Pair<String, String>> map) {
