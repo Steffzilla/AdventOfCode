@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2022;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Aoc2022_25Test {
 

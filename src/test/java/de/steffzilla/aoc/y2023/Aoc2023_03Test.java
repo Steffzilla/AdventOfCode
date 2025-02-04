@@ -1,8 +1,9 @@
 package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.aoc.CharacterField;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Aoc2023_03Test {
 
@@ -48,28 +49,13 @@ public class Aoc2023_03Test {
     @Test
     public void testGetGearRatio() {
         Aoc2023_03.field = new CharacterField(field1);
-        Assert.assertEquals(63045, Aoc2023_03.getGearRatio(3,1));
+        assertEquals(63045, Aoc2023_03.getGearRatio(3,1));
         Aoc2023_03.field = new CharacterField(field2);
-        Assert.assertEquals(451490, Aoc2023_03.getGearRatio(5,2));
+        assertEquals(451490, Aoc2023_03.getGearRatio(5,2));
         Aoc2023_03.field = new CharacterField(field3);
-        Assert.assertEquals(2864, Aoc2023_03.getGearRatio(0, 0));
-        Assert.assertEquals(30745, Aoc2023_03.getGearRatio(11, 1));
-        Assert.assertEquals(972, Aoc2023_03.getGearRatio(30, 2));
-
-        /*Aoc2023_03.field = new CharacterField(field4);
-        Assert.assertEquals(9922, Aoc2023_03.getGearRatio(0, 0));
-        Assert.assertEquals(644490, Aoc2023_03.getGearRatio(12, 0));
-        Assert.assertEquals(76307, Aoc2023_03.getGearRatio(22,1));
-        Assert.assertEquals(0, Aoc2023_03.getGearRatio(6,1));
-        Assert.assertEquals(14, Aoc2023_03.getGearRatio(2,3));
-        Assert.assertEquals(18, Aoc2023_03.getGearRatio(24,3));
-        Assert.assertEquals(12, Aoc2023_03.getGearRatio(4,3));
-        Assert.assertEquals(20, Aoc2023_03.getGearRatio(2,5));
-        Aoc2023_03.field = new CharacterField(field5);
-        Assert.assertEquals(108344, Aoc2023_03.getGearRatio(27, 0));
-        Assert.assertEquals(66, Aoc2023_03.getGearRatio(16, 1));
-        Assert.assertEquals(40, Aoc2023_03.getGearRatio(0, 2));
-        Assert.assertEquals(24, Aoc2023_03.getGearRatio(29, 3));*/
+        assertEquals(2864, Aoc2023_03.getGearRatio(0, 0));
+        assertEquals(30745, Aoc2023_03.getGearRatio(11, 1));
+        assertEquals(972, Aoc2023_03.getGearRatio(30, 2));
     }
 
 }

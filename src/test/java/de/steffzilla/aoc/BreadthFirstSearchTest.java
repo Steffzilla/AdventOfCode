@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BreadthFirstSearchTest {
 
@@ -17,7 +17,7 @@ public class BreadthFirstSearchTest {
         graph.put(1, Arrays.asList(0,3));
         graph.put(2, Arrays.asList(0,3));
         graph.put(3, Arrays.asList(0,1,2,4));
-        graph.put(4, Arrays.asList(3));
+        graph.put(4, List.of(3));
         BreadthFirstSearch<Integer> bfs = new BreadthFirstSearch<>(graph);
         List<Integer> shortestPath = bfs.search(0, 4);
         assertEquals(3, shortestPath.size());
@@ -31,8 +31,8 @@ public class BreadthFirstSearchTest {
         graph.put(1, Arrays.asList(8, 10));
         graph.put(2, Arrays.asList(3, 12));
         graph.put(3, Arrays.asList(2, 4, 7));
-        graph.put(4, Arrays.asList(3));
-        graph.put(5, Arrays.asList(6));
+        graph.put(4, List.of(3));
+        graph.put(5, List.of(6));
         graph.put(6, Arrays.asList(5, 7));
         graph.put(7, Arrays.asList(0, 3, 6, 11));
         graph.put(8, Arrays.asList(1, 9, 12));
@@ -40,7 +40,7 @@ public class BreadthFirstSearchTest {
         graph.put(10, Arrays.asList(1, 9));
         graph.put(11, Arrays.asList(0, 7));
         graph.put(12, Arrays.asList(2, 8));
-        BreadthFirstSearch<Integer> bfs = new BreadthFirstSearch(graph);
+        BreadthFirstSearch<Integer> bfs = new BreadthFirstSearch<>(graph);
         List<Integer> shortestPath = bfs.search(0, 5);
         assertEquals(4, shortestPath.size());
         assertEquals(Integer.valueOf(0), shortestPath.get(0));

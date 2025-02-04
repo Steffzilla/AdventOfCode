@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Aoc2022_13Test {
 
@@ -36,9 +36,9 @@ public class Aoc2022_13Test {
 
     @Test
     public void testCheckRightOrder() {
-        assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(1), Arrays.asList(2)));
-        assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(2), Arrays.asList(1)));
-        assertEquals(Aoc2022_13.State.UNKNOWN, Aoc2022_13.checkRightOrder(Arrays.asList(1), Arrays.asList(1)));
+        assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(List.of(1), List.of(2)));
+        assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(List.of(2), List.of(1)));
+        assertEquals(Aoc2022_13.State.UNKNOWN, Aoc2022_13.checkRightOrder(List.of(1), List.of(1)));
         assertEquals(Aoc2022_13.State.UNKNOWN, Aoc2022_13.checkRightOrder(Arrays.asList(1,1,3,1,1), Arrays.asList(1,1,3,1,1)));
 
         assertEquals(Aoc2022_13.State.UNKNOWN, Aoc2022_13.checkRightOrder(
@@ -46,7 +46,7 @@ public class Aoc2022_13Test {
                         Arrays.asList(Arrays.asList(1,1,3,1,1),5)));
         assertEquals(Aoc2022_13.State.UNKNOWN, Aoc2022_13.checkRightOrder(
                 Arrays.asList(Arrays.asList(1,1,3,1,1), 5),
-                Arrays.asList(Arrays.asList(1,1,3,1,1), Arrays.asList(5))));
+                Arrays.asList(Arrays.asList(1,1,3,1,1), List.of(5))));
 
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(1,1,3,1,1), Arrays.asList(1,1,5,1,1)));
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(1,1,3,1,1), Arrays.asList(1,1,5)));
@@ -57,39 +57,39 @@ public class Aoc2022_13Test {
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(7,7,7), Arrays.asList(7,7,7,7)));
 
         assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(1,1,5), Collections.EMPTY_LIST));
-        assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(9), Arrays.asList(Arrays.asList(1,1,5))));
+        assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(List.of(9), List.of(Arrays.asList(1, 1, 5))));
 
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(0,0,0)),
-                Arrays.asList(2)));
+                List.of(Arrays.asList(0, 0, 0)),
+                List.of(2)));
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(1), Arrays.asList(2,3,4)),
-                Arrays.asList(Arrays.asList(1), 4)));
-        assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(Arrays.asList(9), Arrays.asList(Arrays.asList(8,7,6))));
+                Arrays.asList(List.of(1), Arrays.asList(2,3,4)),
+                Arrays.asList(List.of(1), 4)));
+        assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(List.of(9), List.of(Arrays.asList(8, 7, 6))));
 
         assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(Arrays.asList())),
-                Arrays.asList(Arrays.asList())));
+                List.of(List.of(List.of())),
+                List.of(List.of())));
 
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList()),
-                Arrays.asList(Arrays.asList(Arrays.asList()))));
+                List.of(List.of()),
+                List.of(List.of(List.of()))));
 
         assertEquals(Aoc2022_13.State.INCORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(3)),
-                Arrays.asList(Arrays.asList(Arrays.asList()))));
+                List.of(List.of(3)),
+                List.of(List.of(List.of()))));
 
         assertEquals(Aoc2022_13.State.UNKNOWN, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(3)),
-                Arrays.asList(Arrays.asList(Arrays.asList(3)))));
+                List.of(List.of(3)),
+                List.of(List.of(List.of(3)))));
 
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(4), 3),
-                Arrays.asList(Arrays.asList(5), 2)));
+                Arrays.asList(List.of(4), 3),
+                Arrays.asList(List.of(5), 2)));
 
         assertEquals(Aoc2022_13.State.CORRECT, Aoc2022_13.checkRightOrder(
-                Arrays.asList(Arrays.asList(Arrays.asList(1), 1)),
-                Arrays.asList(Arrays.asList(1,1,1))));
+                List.of(Arrays.asList(List.of(1), 1)),
+                List.of(Arrays.asList(1, 1, 1))));
         /*
         ([[1],[2,3,4]],[[1],4]),'smaller')
 ([1,1,1],[1, 1]),'bigger')

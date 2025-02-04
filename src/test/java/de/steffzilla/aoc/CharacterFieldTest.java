@@ -6,14 +6,17 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CharacterFieldTest {
 
     @Test
     public void testGetCharacterAt() {
         CharacterField characterField = new CharacterField(Arrays.asList("ABCD","EFGH","IJKL"));
-        assertEquals("A",characterField.getCharacterAt(0,0));
+        assertEquals("A", characterField.getCharacterAt(0,0));
         assertEquals("F",characterField.getCharacterAt(1,1));
         assertEquals("L",characterField.getCharacterAt(3,2));
     }
@@ -49,7 +52,7 @@ public class CharacterFieldTest {
         CharacterField characterField = new CharacterField(Arrays.asList("....", "S...", "...."));
         List<Pair<Integer, Integer>> s = characterField.searchCharacters("S");
         assertTrue(s!=null && s.size()==1);
-        assertEquals(new Pair<>(0,1), s.get(0));
+        assertEquals(new Pair<>(0,1), s.getFirst());
         s = characterField.searchCharacters(".");
         assertTrue(s!=null && s.size()==11);
     }
