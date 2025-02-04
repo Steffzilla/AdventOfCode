@@ -1,64 +1,45 @@
 package de.steffzilla.aoc;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.Assert.*;
-
-public class AocUtilsTest {
+class AocUtilsTest {
 
     @Test
-    public void testFindDiffChar() {
+    void testFindDiffChar() {
         Character diffChar = AocUtils.findDiffChar("abc", "ab");
-        assertEquals(Character.valueOf('c'),diffChar);
+        Assertions.assertEquals(Character.valueOf('c'), diffChar);
 
         diffChar = AocUtils.findDiffChar("cba", "ab");
-        assertEquals(Character.valueOf('c'),diffChar);
+        Assertions.assertEquals(Character.valueOf('c'), diffChar);
 
         diffChar = AocUtils.findDiffChar("ba", "abc");
-        assertEquals(Character.valueOf('c'),diffChar);
+        Assertions.assertEquals(Character.valueOf('c'), diffChar);
 
         diffChar = AocUtils.findDiffChar("$ü@ä", "$ä@");
-        assertEquals(Character.valueOf('ü'),diffChar);
+        Assertions.assertEquals(Character.valueOf('ü'), diffChar);
 
         diffChar = AocUtils.findDiffChar("abc", "abc");
-        Assert.assertNull(diffChar);
+        Assertions.assertNull(diffChar);
     }
 
     @Test
-    public void testCountCharInString() {
+    void testCountCharInString() {
         long l = AocUtils.countCharInString("aaAAAccA", 'A');
-        Assert.assertEquals(4, l);
+        Assertions.assertEquals(4, l);
 
         l = AocUtils.countCharInString("aaAAAccA", 'c');
-        Assert.assertEquals(2, l);
+        Assertions.assertEquals(2, l);
     }
 
     @Test
-    public void testAreCharactersUnique() {
-        Assert.assertEquals(false, AocUtils.areCharactersUnique("aa"));
-        Assert.assertEquals(true, AocUtils.areCharactersUnique("aC"));
-        Assert.assertEquals(true, AocUtils.areCharactersUnique(""));
-        Assert.assertEquals(true, AocUtils.areCharactersUnique("abcDÜÄ=@"));
-        Assert.assertEquals(false, AocUtils.areCharactersUnique("a2Cäölkja1"));
-        Assert.assertEquals(true,
-                AocUtils.areCharactersUnique("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".toUpperCase()));
+    void testAreCharactersUnique() {
+        Assertions.assertFalse(AocUtils.areCharactersUnique("aa"));
+        Assertions.assertTrue(AocUtils.areCharactersUnique("aC"));
+        Assertions.assertTrue(AocUtils.areCharactersUnique(""));
+        Assertions.assertTrue(AocUtils.areCharactersUnique("abcDÜÄ=@"));
+        Assertions.assertFalse(AocUtils.areCharactersUnique("a2Cäölkja1"));
+        Assertions.assertTrue(AocUtils.areCharactersUnique("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".toUpperCase()));
     }
-
-/*
-    @Test
-    public void testAreAsciiCharactersUnique() {
-        Assert.assertEquals(false, AocUtils.areAsciiCharactersUnique("aa"));
-        Assert.assertEquals(true, AocUtils.areAsciiCharactersUnique("aC"));
-        Assert.assertEquals(true, AocUtils.areAsciiCharactersUnique(""));
-        Assert.assertEquals(true, AocUtils.areAsciiCharactersUnique("abcDÜÄ=@"));
-        Assert.assertEquals(true, AocUtils.areAsciiCharactersUnique("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".toUpperCase()));
-    }*/
 
 }
