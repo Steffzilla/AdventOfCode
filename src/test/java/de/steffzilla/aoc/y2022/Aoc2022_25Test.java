@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 

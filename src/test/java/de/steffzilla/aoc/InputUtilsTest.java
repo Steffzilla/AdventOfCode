@@ -1,6 +1,6 @@
 package de.steffzilla.aoc;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.util.List;

@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.aoc.CharacterField;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Aoc2023_03Test {
 

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.steffzilla.aoc.AocUtils;
 import de.steffzilla.aoc.CharacterField;
 import org.javatuples.Pair;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
