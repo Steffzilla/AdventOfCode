@@ -1,11 +1,13 @@
 package de.steffzilla.aoc;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class MathUtilsTest {
 
@@ -47,6 +49,8 @@ public class MathUtilsTest {
         assertEquals(29L, MathUtils.greatestCommonDivisor(numbers3));
         long[] numbers4 = {35L, 266L, 182L};
         assertEquals(7L, MathUtils.greatestCommonDivisor(numbers4));
+        long[] numbers5 = {3L, 4L, 5L};
+        assertEquals(1L, MathUtils.greatestCommonDivisor(numbers5));
     }
 
 }
