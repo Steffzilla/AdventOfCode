@@ -3,7 +3,6 @@ package de.steffzilla.aoc.y2025;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.y2022.Aoc2022_21;
 import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 
