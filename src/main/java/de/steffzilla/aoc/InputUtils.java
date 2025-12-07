@@ -62,6 +62,24 @@ public class InputUtils {
         return Arrays.stream(line.split(regex)).map(BigInteger::new).collect(Collectors.toCollection(LinkedList::new));
     }
 
+    public static List<String> readColumnOfFileFromRight(List<String> inputLines) {
+        int length = inputLines.getFirst().length();
+        for (String line : inputLines) {
+            if (line.length() != length) throw new IllegalStateException("Line length needs to be the same! " + line);
+        }
+
+        List<String> result = new ArrayList<>();
+        for (int i = length - 1; i >= 0; i--) {
+            StringBuilder column = new StringBuilder();
+            for (String line : inputLines) {
+                column.append(line.charAt(i));
+            }
+            result.add(column.toString());
+        }
+
+        return result;
+    }
+
     public static List<String> getStringList(String path) {
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             return stream.toList();
