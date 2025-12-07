@@ -1,10 +1,9 @@
 package de.steffzilla.aoc;
 
 import org.javatuples.Pair;
+import org.javatuples.Tuple;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Field of String Characters.
@@ -46,7 +45,7 @@ public class CharacterField {
         maxY = lines.length;
         maxX = lines[0].length();
         for (String line : lines) {
-            if(line.length() != maxX) {
+            if (line.length() != maxX) {
                 throw new IllegalStateException("All lines need to have the same length!");
             }
         }
@@ -57,7 +56,7 @@ public class CharacterField {
         maxY = input.size();
         maxX = input.getFirst().length();
         for (String line : input) {
-            if(line.length() != maxX) {
+            if (line.length() != maxX) {
                 throw new IllegalStateException("All lines need to have the same length!");
             }
         }
@@ -65,7 +64,9 @@ public class CharacterField {
         this.field = new ArrayList<>(input);
     }
 
-    /** Copy constructor */
+    /**
+     * Copy constructor
+     */
     public CharacterField(CharacterField otherField) {
         this.maxX = otherField.maxX;
         this.maxY = otherField.maxY;
@@ -74,12 +75,13 @@ public class CharacterField {
 
     /**
      * Creates a new CharacterField prefilled with the same character.
-     * @param maxX Number of characters per line
-     * @param maxY Number of lines
+     *
+     * @param maxX   Number of characters per line
+     * @param maxY   Number of lines
      * @param filler Character to fill the whole board
      */
     public CharacterField(int maxX, int maxY, String filler) {
-        if(filler.length() != 1) {
+        if (filler.length() != 1) {
             throw new IllegalStateException("filler needs to be a single character!");
         }
         field = new ArrayList<>();
@@ -101,16 +103,52 @@ public class CharacterField {
 
     public List<Pair<Integer, Integer>> searchCharacters(String character) {
         List<Pair<Integer, Integer>> list = new ArrayList<>();
-        if(character != null) {
+        if (character != null) {
             for (int y = 0; y < maxY; y++) {
                 for (int x = 0; x < maxX; x++) {
-                    if(character.equals(getCharacterAt(x, y))) {
+                    if (character.equals(getCharacterAt(x, y))) {
                         list.add(new Pair<>(x, y));
                     }
                 }
             }
         }
         return list;
+    }
+
+    public List<String> getSurroundingChars(int x, int y) {
+        if (!isContained(x, y)) {
+            throw new IllegalStateException("These coordinates are out of Bounds: " + x + "," + y);
+        }
+        List<String> chars = new ArrayList<>();
+        for (int yPos = y - 1; yPos <= y + 1; yPos++) {
+            for (int xPos = x - 1; xPos <= x + 1; xPos++) {
+                if (yPos == y && xPos == x) {
+                    continue;
+                }
+                if (isContained(xPos, yPos)) chars.add(getCharacterAt(xPos, yPos));
+            }
+        }
+        return chars;
+    }
+
+    public HashMap<Pair<Integer, Integer>, String> getSurroundingFields(int x, int y, Optional<String> ignoreChar) {
+        if (!isContained(x, y)) {
+            throw new IllegalStateException("These coordinates are out of Bounds: " + x + "," + y);
+        }
+        HashMap<Pair<Integer, Integer>, String> fields = new HashMap<>();
+        for (int yPos = y - 1; yPos <= y + 1; yPos++) {
+            for (int xPos = x - 1; xPos <= x + 1; xPos++) {
+                if (yPos == y && xPos == x) {
+                    continue;
+                }
+                if (isContained(xPos, yPos)) {
+                    String characterFound = getCharacterAt(xPos, yPos);
+                    if (ignoreChar.isPresent() && ignoreChar.get().equals(characterFound)) continue;
+                    fields.put(new Pair<>(xPos, yPos), characterFound);
+                }
+            }
+        }
+        return fields;
     }
 
     public boolean areRowsEqual(int lineNo1, int lineNo2) {
@@ -170,10 +208,11 @@ public class CharacterField {
 
     /**
      * Returns a partial copy of the field.
+     *
      * @param fromX Horizontal "from". 0 based. is included in the copy.
-     * @param toX Horizontal "to". 0 based. is included in the copy.
+     * @param toX   Horizontal "to". 0 based. is included in the copy.
      * @param fromY Vertical "from". 0 based. is included in the copy.
-     * @param toY Vertical "to". 0 based. is included in the copy.
+     * @param toY   Vertical "to". 0 based. is included in the copy.
      * @return a copy of a part of the field
      */
     public CharacterField copyFieldPartially(int fromX, int toX, int fromY, int toY) {
