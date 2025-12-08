@@ -1,5 +1,7 @@
 package de.steffzilla.aoc;
 
+import org.javatuples.Triplet;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ public class MathUtils {
 
     public static long greatestCommonDivisor(long[] input) {
         long result = input[0];
-        for(int i = 1; i < input.length; i++) result = greatestCommonDivisor(result, input[i]);
+        for (int i = 1; i < input.length; i++) result = greatestCommonDivisor(result, input[i]);
         return result;
     }
 
@@ -39,7 +41,7 @@ public class MathUtils {
 
     public static long leastCommonMultiple(List<Long> numbers) {
         long result = numbers.getFirst();
-        for(int i = 1; i < numbers.size(); i++) {
+        for (int i = 1; i < numbers.size(); i++) {
             result = leastCommonMultiple(result, numbers.get(i));
         }
         return result;
@@ -63,9 +65,9 @@ public class MathUtils {
         }
 
         // number must be odd at this point. So we can skip one element (Note i = i +2)
-        for (long i = 3L; i <= Math.sqrt(number); i+= 2L) {
+        for (long i = 3L; i <= Math.sqrt(number); i += 2L) {
             // While i divides number, collect i and divide n
-            while (number %i == 0) {
+            while (number % i == 0) {
                 result.add(i);
                 number /= i;
             }
@@ -95,6 +97,13 @@ public class MathUtils {
             if (isPrime(i)) primes.add(i);
         }
         return primes;
+    }
+
+    public static double euclideanDistance3D(Triplet<Integer, Integer, Integer> p1, Triplet<Integer, Integer, Integer> p2) {
+        int dx = p2.getValue0() - p1.getValue0();
+        int dy = p2.getValue1() - p1.getValue1();
+        int dz = p2.getValue2() - p1.getValue2();
+        return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
 }

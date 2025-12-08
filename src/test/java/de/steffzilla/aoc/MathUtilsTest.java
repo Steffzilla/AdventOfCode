@@ -1,5 +1,6 @@
 package de.steffzilla.aoc;
 
+import org.javatuples.Triplet;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -51,6 +52,27 @@ public class MathUtilsTest {
         assertEquals(7L, MathUtils.greatestCommonDivisor(numbers4));
         long[] numbers5 = {3L, 4L, 5L};
         assertEquals(1L, MathUtils.greatestCommonDivisor(numbers5));
+    }
+
+    @Test
+    public void testEuclideanDistance3D() {
+        Triplet<Integer, Integer, Integer> p1 = new Triplet<>(10,10,10);
+        assertEquals(0d, MathUtils.euclideanDistance3D(p1, p1));
+
+        p1 = new Triplet<>(0, 0, 0);
+        Triplet<Integer, Integer, Integer> p2 = new Triplet<>(5, 0, 0);
+
+        assertEquals(5d, MathUtils.euclideanDistance3D(p1, p2));
+
+        p1 = new Triplet<>(1, 2, 3);
+        p2 = new Triplet<>(4, 6, 15);
+
+        assertEquals(13d, MathUtils.euclideanDistance3D(p1, p2));
+
+        p1 = new Triplet<>(3, -4, 1);
+        p2 = new Triplet<>(-3, 4, 1);
+
+        assertEquals(10d, MathUtils.euclideanDistance3D(p1, p2));
     }
 
 }
