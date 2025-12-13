@@ -149,12 +149,38 @@ public class Aoc2025_08 {
     }
 
     private static String part2(List<String> inputLines) {
-        long count = 0;
-        for (String line : inputLines) {
+        List<Triplet<Integer, Integer, Integer>> boxes = getBoxes(inputLines);
 
+        Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultEdge.class);
+        TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> distances =
+                getDistancesAndAddVerticesToGraph(boxes, graph);
+
+        long result = Long.MIN_VALUE;
+        for (Map.Entry<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> entry : distances.entrySet()) {
+            Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>> pairs = entry.getValue();
+            for (Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>> pair : pairs) {
+                Triplet<Integer, Integer, Integer> box1 = pair.getValue0();
+                Triplet<Integer, Integer, Integer> box2 = pair.getValue1();
+                ConnectivityInspector<Triplet<Integer, Integer, Integer>, DefaultEdge> inspector =
+                        new ConnectivityInspector<>(graph);
+                if (!inspector.pathExists(box1, box2)) {
+                    graph.addEdge(box1, box2);
+                }
+                // find first connection which causes all the junction boxes to form a single circuit
+                inspector = new ConnectivityInspector<>(graph);
+                List<Set<Triplet<Integer, Integer, Integer>>> connectedComponents = inspector.connectedSets();
+                if (connectedComponents.size() == 1) {
+                    result = (long) box1.getValue0() * box2.getValue0();
+                    break;
+                }
+            }
+            if (result != Long.MIN_VALUE) {
+                break;
+            }
         }
-        System.out.println("\nPart 2 > Result: " + count);
-        return String.valueOf(count);
+
+        System.out.println("\nPart 2 > Result: " + result);
+        return String.valueOf(result);
     }
 
 }
