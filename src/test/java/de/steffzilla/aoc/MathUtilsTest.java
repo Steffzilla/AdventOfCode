@@ -56,7 +56,7 @@ public class MathUtilsTest {
 
     @Test
     public void testEuclideanDistance3D() {
-        Triplet<Integer, Integer, Integer> p1 = new Triplet<>(10,10,10);
+        Triplet<Integer, Integer, Integer> p1 = new Triplet<>(10, 10, 10);
         assertEquals(0d, MathUtils.euclideanDistance3D(p1, p1));
 
         p1 = new Triplet<>(0, 0, 0);
@@ -73,6 +73,33 @@ public class MathUtilsTest {
         p2 = new Triplet<>(-3, 4, 1);
 
         assertEquals(10d, MathUtils.euclideanDistance3D(p1, p2));
+
+        // test large coordinates overflow risk
+        p1 = new Triplet<>(1_000_000_000, 0, 0);
+        p2 = new Triplet<>(-1_000_000_000, 0, 0);
+
+        // dx = -2000000000, Abstand = 2000000000
+        assertEquals(2_000_000_000d, MathUtils.euclideanDistance3D(p1, p2), 0.000001);
+
+        // test with Integer Max and Min
+        p1 = new Triplet<>(Integer.MAX_VALUE, 0, 0);
+        p2 = new Triplet<>(Integer.MIN_VALUE, 0, 0);
+
+        long dx = (long) Integer.MIN_VALUE - (long) Integer.MAX_VALUE;
+        double expected = Math.sqrt((double) dx * dx);
+
+        assertEquals(expected, MathUtils.euclideanDistance3D(p1, p2), 0.000001);
+
+        // test symmetric negative positive
+        p1 = new Triplet<>(-1000, -1000, -1000);
+        p2 = new Triplet<>(1000, 1000, 1000);
+
+        expected = Math.sqrt(
+                2000d * 2000d +
+                        2000d * 2000d +
+                        2000d * 2000d);
+
+        assertEquals(expected, MathUtils.euclideanDistance3D(p1, p2), 0.000001);
     }
 
 }

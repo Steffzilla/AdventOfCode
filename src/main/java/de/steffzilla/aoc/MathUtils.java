@@ -100,10 +100,10 @@ public class MathUtils {
     }
 
     public static double euclideanDistance3D(Triplet<Integer, Integer, Integer> p1, Triplet<Integer, Integer, Integer> p2) {
-        int dx = p2.getValue0() - p1.getValue0();
-        int dy = p2.getValue1() - p1.getValue1();
-        int dz = p2.getValue2() - p1.getValue2();
-        return Math.sqrt(dx * dx + dy * dy + dz * dz);
+        long dx = (long) p2.getValue0() - p1.getValue0();
+        long dy = (long) p2.getValue1() - p1.getValue1();
+        long dz = (long) p2.getValue2() - p1.getValue2();
+        return Math.sqrt((double) dx * dx + (double) dy * dy + (double) dz * dz);
     }
 
 }
