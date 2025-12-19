@@ -1,7 +1,6 @@
 package de.steffzilla.aoc;
 
 import org.javatuples.Pair;
-import org.javatuples.Tuple;
 
 import java.util.*;
 
@@ -115,9 +114,9 @@ public class CharacterField {
         return list;
     }
 
-    public List<String> getSurroundingChars(int x, int y) {
+    public List<String> getNeighborChars(int x, int y) {
         if (!isContained(x, y)) {
-            throw new IllegalStateException("These coordinates are out of Bounds: " + x + "," + y);
+            throw new IllegalStateException("These coordinates are out of bounds: " + x + "," + y);
         }
         List<String> chars = new ArrayList<>();
         for (int yPos = y - 1; yPos <= y + 1; yPos++) {
@@ -131,7 +130,11 @@ public class CharacterField {
         return chars;
     }
 
-    public HashMap<Pair<Integer, Integer>, String> getSurroundingFields(int x, int y, Optional<String> ignoreChar) {
+    public Map<Pair<Integer, Integer>, String> getNeighbors(int x, int y) {
+        return getNeighbors(x, y, null);
+    }
+
+    public Map<Pair<Integer, Integer>, String> getNeighbors(int x, int y, String ignoreChar) {
         if (!isContained(x, y)) {
             throw new IllegalStateException("These coordinates are out of Bounds: " + x + "," + y);
         }
@@ -143,7 +146,7 @@ public class CharacterField {
                 }
                 if (isContained(xPos, yPos)) {
                     String characterFound = getCharacterAt(xPos, yPos);
-                    if (ignoreChar.isPresent() && ignoreChar.get().equals(characterFound)) continue;
+                    if (ignoreChar!=null && ignoreChar.equals(characterFound)) continue;
                     fields.put(new Pair<>(xPos, yPos), characterFound);
                 }
             }

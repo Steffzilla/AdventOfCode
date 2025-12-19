@@ -55,7 +55,7 @@ public class Aoc2025_04 {
         for (int y = 0; y < cf.getMaxY(); y++) {
             for (int x = 0; x < cf.getMaxX(); x++) {
                 if (!cf.getCharacterAt(x, y).equals(ROLL)) continue;
-                List<String> surroundingChars = cf.getSurroundingChars(x, y);
+                List<String> surroundingChars = cf.getNeighborChars(x, y);
                 int frequency = Collections.frequency(surroundingChars, ROLL);
                 if (frequency < 4) counter++;
             }
@@ -68,7 +68,7 @@ public class Aoc2025_04 {
         for (int y = 0; y < cf.getMaxY(); y++) {
             for (int x = 0; x < cf.getMaxX(); x++) {
                 if (!cf.getCharacterAt(x, y).equals(ROLL)) continue;
-                List<String> surroundingChars = cf.getSurroundingChars(x, y);
+                List<String> surroundingChars = cf.getNeighborChars(x, y);
                 int frequency = Collections.frequency(surroundingChars, ROLL);
                 if (frequency < 4) {
                     toBeRemoved.add(new Pair<>(x, y));

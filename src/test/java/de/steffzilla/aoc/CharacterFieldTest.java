@@ -3,8 +3,7 @@ package de.steffzilla.aoc;
 import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +18,49 @@ public class CharacterFieldTest {
         assertEquals("A", characterField.getCharacterAt(0,0));
         assertEquals("F",characterField.getCharacterAt(1,1));
         assertEquals("L",characterField.getCharacterAt(3,2));
+    }
+
+    @Test
+    public void getNeighborChars() {
+        CharacterField characterField = new CharacterField(Arrays.asList("ABCD","EFGH","IJKL"));
+        List<String> surroundingChars = characterField.getNeighborChars(0, 0);
+        assertEquals(3, surroundingChars.size());
+        assertTrue(surroundingChars.contains("B"));
+        assertTrue(surroundingChars.contains("F"));
+        assertTrue(surroundingChars.contains("E"));
+
+        surroundingChars = characterField.getNeighborChars(1, 1);
+        assertEquals(8, surroundingChars.size());
+        assertTrue(surroundingChars.contains("A"));
+        assertTrue(surroundingChars.contains("B"));
+        assertTrue(surroundingChars.contains("C"));
+        assertTrue(surroundingChars.contains("E"));
+        assertTrue(surroundingChars.contains("G"));
+        assertTrue(surroundingChars.contains("I"));
+        assertTrue(surroundingChars.contains("J"));
+        assertTrue(surroundingChars.contains("K"));
+
+        surroundingChars = characterField.getNeighborChars(3, 2);
+        assertEquals(3, surroundingChars.size());
+        assertTrue(surroundingChars.contains("G"));
+        assertTrue(surroundingChars.contains("H"));
+        assertTrue(surroundingChars.contains("K"));
+    }
+
+    @Test
+    public void testGetNeighbors() {
+        CharacterField characterField = new CharacterField(Arrays.asList("ABCD","EFGH","IJKL"));
+        Map<Pair<Integer, Integer>, String> surroundingFields =
+                characterField.getNeighbors(0, 0);
+        assertEquals(3, surroundingFields.size());
+        // FIXME: only a highlevel test so far
+        surroundingFields =
+                characterField.getNeighbors(0, 0, ".");
+        assertEquals(3, surroundingFields.size());
+
+        surroundingFields =
+                characterField.getNeighbors(1, 1, "A");
+        assertEquals(7, surroundingFields.size());
     }
 
     @Test
