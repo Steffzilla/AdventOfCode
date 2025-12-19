@@ -15,7 +15,6 @@ public class Aoc2025_06 {
     private static final String USERNAME = System.getProperty("user.name");
     public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
     public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
-    //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
     static final String example = """
@@ -29,7 +28,7 @@ public class Aoc2025_06 {
         System.out.println(DAY + ".12." + YEAR);
         //List<String> inputLines = example.lines().toList();
         List<String> inputLines =
-        AocUtils.getStringList(PATH);
+                AocUtils.getStringList(PATH);
 
         solve(inputLines);
     }
@@ -39,32 +38,35 @@ public class Aoc2025_06 {
     }
 
     private static String part1(List<String> inputLines) {
-        // TODO Refactor so that different line numbers work
         BigInteger result = BigInteger.ZERO;
-        /*
-        List<Long> row1 = getNumberRow(inputLines, 0);
-        List<Long> row2 = getNumberRow(inputLines, 1);
-        List<Long> row3 = getNumberRow(inputLines, 2);
-        List<Long> row4 = getNumberRow(inputLines, 3);
-
+        List<List<Long>> rows = new ArrayList<>();
+        for (int i = 0; i < inputLines.size() - 1; i++) {
+            rows.add(getNumberRow(inputLines, i));
+        }
 
         int index = 0;
         String operatorLine = inputLines.getLast();
         String[] operators = operatorLine.split("\\s+");
         for (String operator : operators) {
             if ("+".equals(operator)) {
-                long localResult = row1.get(index) + row2.get(index) + row3.get(index) + row4.get(index);
+                long localResult = 0L;
+                for (List<Long> row : rows) {
+                    localResult += row.get(index);
+                }
                 //System.out.println(operator + " --> " + localResult);
                 result = result.add(BigInteger.valueOf(localResult));
             } else if ("*".equals(operator)) {
-                long localResult = row1.get(index) * row2.get(index) * row3.get(index) * row4.get(index);
+                long localResult = 1L;
+                for (List<Long> row : rows) {
+                    localResult *= row.get(index);
+                }
                 //System.out.println(operator + " --> " + localResult);
                 result = result.add(BigInteger.valueOf(localResult));
             } else {
                 throw new IllegalStateException("Should never occur: " + operator);
             }
             index++;
-        }*/
+        }
 
         System.out.println("\nPart 1 > Result: " + result);
         return String.valueOf(result);
@@ -99,7 +101,7 @@ public class Aoc2025_06 {
                     break;
                 }
                 String trimmedNumber = numbersAsStrings.get(numbersIndex).trim();
-                if(!trimmedNumber.isEmpty()) {
+                if (!trimmedNumber.isEmpty()) {
                     numbers.add(Long.parseLong(trimmedNumber));
                 } else {
                     keepGoing = false;
