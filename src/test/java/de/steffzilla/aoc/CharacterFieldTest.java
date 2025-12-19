@@ -50,17 +50,29 @@ public class CharacterFieldTest {
     @Test
     public void testGetNeighbors() {
         CharacterField characterField = new CharacterField(Arrays.asList("ABCD","EFGH","IJKL"));
-        Map<Pair<Integer, Integer>, String> surroundingFields =
+        Map<Pair<Integer, Integer>, String> neighbors =
                 characterField.getNeighbors(0, 0);
-        assertEquals(3, surroundingFields.size());
-        // FIXME: only a highlevel test so far
-        surroundingFields =
+        assertEquals(3, neighbors.size());
+        assertTrue(neighbors.containsValue("B"));
+        assertTrue(neighbors.containsValue("E"));
+        assertTrue(neighbors.containsValue("F"));
+        neighbors =
                 characterField.getNeighbors(0, 0, ".");
-        assertEquals(3, surroundingFields.size());
+        assertEquals(3, neighbors.size());
+        assertTrue(neighbors.containsValue("B"));
+        assertTrue(neighbors.containsValue("E"));
+        assertTrue(neighbors.containsValue("F"));
 
-        surroundingFields =
+        neighbors =
                 characterField.getNeighbors(1, 1, "A");
-        assertEquals(7, surroundingFields.size());
+        assertEquals(7, neighbors.size());
+        assertTrue(neighbors.containsValue("B"));
+        assertTrue(neighbors.containsValue("C"));
+        assertTrue(neighbors.containsValue("E"));
+        assertTrue(neighbors.containsValue("G"));
+        assertTrue(neighbors.containsValue("I"));
+        assertTrue(neighbors.containsValue("J"));
+        assertTrue(neighbors.containsValue("K"));
     }
 
     @Test
