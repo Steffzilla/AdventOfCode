@@ -17,9 +17,10 @@ public class Aoc2025_11Test {
 
     @Test
     public void testSolveExample() {
-        Pair<String, String> solutions = Aoc2025_11.solve(Aoc2025_11.example.lines().toList());
+        Pair<String, String> solutions = Aoc2025_11.solve(Aoc2025_11.examplePart1.lines().toList());
         assertEquals("5", solutions.getValue0());
-        //assertEquals("2", solutions.getValue1());
+        solutions = Aoc2025_11.solve(Aoc2025_11.examplePart2.lines().toList());
+        assertEquals("2", solutions.getValue1());
     }
 
     @Test
@@ -30,7 +31,7 @@ public class Aoc2025_11Test {
 
         Pair<String, String> solutions = Aoc2025_11.solve(AocUtils.getStringList(Aoc2025_11.PATH));
         assertEquals(root.at("/adventOfCode/2025/day" + DAY + "/part1").asText(), solutions.getValue0());
-        //assertEquals(root.at("/adventOfCode/2025/day" + DAY + "/part2").asText(), solutions.getValue1());
+        assertEquals(root.at("/adventOfCode/2025/day" + DAY + "/part2").asText(), solutions.getValue1());
     }
 
 }
