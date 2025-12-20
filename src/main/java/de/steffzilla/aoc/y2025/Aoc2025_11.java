@@ -85,7 +85,7 @@ public class Aoc2025_11 {
             }
         }
 
-        //GraphUtil.printGraphBaseData(graph);
+        //GraphUtil.printDirectedGraphBaseData(graph);
 
         // only the real input is valid for part1 and part2
         if (vertices.contains(FFT) && vertices.contains(YOU)) {
