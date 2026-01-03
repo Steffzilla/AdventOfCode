@@ -1,8 +1,10 @@
 package de.steffzilla.aoc.y2024;
 
 import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.aoc.MathUtils;
 import org.javatuples.Pair;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -14,25 +16,39 @@ public class Aoc2024_13 {
     private static final String YEAR = "2024";
     private static final String USERNAME = System.getProperty("user.name");
     public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
-    public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
-    //public static final String FILENAME = "sample" + YEAR + "_" + DAY + ".txt";
+    public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
     // Max 100 times per button
     public static final int MAX_BUTTON_PRESSING = 100;
     public static final int COST_BTN_A = 3;
     public static final int COST_BTN_B = 1;
+    public static final long CONVERSION_FACTOR_PART2 = 10000000000000L;
 
     static final String example = """
-            x
-            y
+            Button A: X+94, Y+34
+            Button B: X+22, Y+67
+            Prize: X=8400, Y=5400
+            
+            Button A: X+26, Y+66
+            Button B: X+67, Y+21
+            Prize: X=12748, Y=12176
+            
+            Button A: X+17, Y+86
+            Button B: X+84, Y+37
+            Prize: X=7870, Y=6450
+            
+            Button A: X+69, Y+23
+            Button B: X+27, Y+71
+            Prize: X=18641, Y=10279
             """;
     public static final int NO_RESULT = -1;
 
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
         //List<String> inputLines = example.lines().toList();
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines =
+                AocUtils.getStringList(PATH);
 
         solve(inputLines);
     }
@@ -82,17 +98,29 @@ public class Aoc2024_13 {
         } else {
             return minimalTokens;
         }
-
     }
 
 
     private static String part2(List<Game> games) {
-        long count = 0;
+        long totalCost = 0;
         for (Game game : games) {
-
+            Pair<BigInteger, BigInteger> solution =
+                    MathUtils.solveLinearDiophantineSystem2x2(BigInteger.valueOf(game.buttonA_X),
+                            BigInteger.valueOf(game.buttonB_X),
+                            BigInteger.valueOf(game.prizeX + CONVERSION_FACTOR_PART2),
+                            BigInteger.valueOf(game.buttonA_Y),
+                            BigInteger.valueOf(game.buttonB_Y),
+                            BigInteger.valueOf(game.prizeY + CONVERSION_FACTOR_PART2));
+            if (solution != null) {
+                long bttnA = solution.getValue0().longValue();
+                long bttnB = solution.getValue1().longValue();
+                long cost = 3 * bttnA + bttnB;
+                //System.out.println("Button A: " + bttnA + " | Button B: " + bttnB + " | Cost: " + cost);
+                totalCost += cost;
+            }
         }
-        System.out.println("\nPart 2 > Result: " + count);
-        return String.valueOf(count);
+        System.out.println("\nPart 2 > Result: " + totalCost);
+        return String.valueOf(totalCost);
     }
 
     private static List<Game> readGames(List<String> inputLines) {
