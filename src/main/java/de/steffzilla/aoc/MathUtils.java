@@ -1,5 +1,6 @@
 package de.steffzilla.aoc;
 
+import org.javatuples.Pair;
 import org.javatuples.Triplet;
 
 import java.math.BigInteger;
@@ -104,6 +105,29 @@ public class MathUtils {
         long dy = (long) p2.getValue1() - p1.getValue1();
         long dz = (long) p2.getValue2() - p1.getValue2();
         return Math.sqrt((double) dx * dx + (double) dy * dy + (double) dz * dz);
+    }
+
+    /**
+     *  Solves a 2x2 system of linear Diophantine equations using Cramer's rule.
+     *  (equations with integer coefficients that only allow integer solutions)
+     *    a1*x + b1*y = c1
+     *    a2*x + b2*y = c2
+     *  Returns an exact integer solution (x, y) if it exists, otherwise (no solution or infinite solutions) null.
+     */
+    public static Pair<BigInteger, BigInteger> solveLinearDiophantineSystem2x2(BigInteger a1, BigInteger b1, BigInteger c1, BigInteger a2, BigInteger b2, BigInteger c2) {
+        // System of linear equations:
+        //   a1*x + b1*y = c1
+        //   a2*x + b2*y = c2
+        BigInteger det = a1.multiply(b2).subtract(a2.multiply(b1));
+        if (!det.equals(BigInteger.ZERO)) {
+            BigInteger[] xDivRem = (c1.multiply(b2).subtract(c2.multiply(b1))).divideAndRemainder(det);
+            BigInteger[] yDivRem = (a1.multiply(c2).subtract(a2.multiply(c1))).divideAndRemainder(det);
+            if (xDivRem[1].equals(BigInteger.ZERO) && yDivRem[1].equals(BigInteger.ZERO)) {
+                // Integer solution found
+                return new Pair<>(xDivRem[0], yDivRem[0]);
+            }
+        }
+        return null; // No integer solution or no unambiguous solution found
     }
 
 }
