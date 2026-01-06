@@ -1,4 +1,4 @@
-package de.steffzilla.aoc;
+package de.steffzilla.competitive;
 
 public class NodeWrapper<N> implements Comparable<NodeWrapper<N>> {
 

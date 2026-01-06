@@ -3,8 +3,8 @@ package de.steffzilla.aoc.y2021;
 import java.util.*;
 import com.google.common.graph.*;
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.DijkstraWithPriorityQueue;
-import de.steffzilla.aoc.NodeWrapper;
+import de.steffzilla.competitive.DijkstraWithPriorityQueue;
+import de.steffzilla.competitive.NodeWrapper;
 
 public class Aoc2021_15 {
 

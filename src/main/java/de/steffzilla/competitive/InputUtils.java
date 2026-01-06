@@ -1,4 +1,4 @@
-package de.steffzilla.aoc;
+package de.steffzilla.competitive;
 
 import java.io.IOException;
 import java.math.BigInteger;

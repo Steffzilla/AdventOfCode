@@ -1,4 +1,4 @@
-package de.steffzilla.aoc;
+package de.steffzilla.competitive;
 
 import org.javatuples.Pair;
 import org.javatuples.Triplet;

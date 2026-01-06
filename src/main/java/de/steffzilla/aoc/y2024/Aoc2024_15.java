@@ -1,8 +1,8 @@
 package de.steffzilla.aoc.y2024;
 
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.CharacterField;
-import de.steffzilla.aoc.InputUtils;
+import de.steffzilla.competitive.CharacterField;
+import de.steffzilla.competitive.InputUtils;
 import org.javatuples.Pair;
 
 import java.util.*;

@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2025;
 
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.MathUtils;
+import de.steffzilla.competitive.MathUtils;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 import org.jgrapht.Graph;

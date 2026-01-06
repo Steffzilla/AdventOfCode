@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
-import de.steffzilla.aoc.CharacterField;
+import de.steffzilla.competitive.CharacterField;
 import org.javatuples.Pair;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;

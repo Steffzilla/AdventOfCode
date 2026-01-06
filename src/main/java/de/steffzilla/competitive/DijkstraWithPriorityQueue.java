@@ -1,4 +1,4 @@
-package de.steffzilla.aoc;
+package de.steffzilla.competitive;
 
 import com.google.common.graph.ValueGraph;
 

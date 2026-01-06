@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.CharacterField;
+import de.steffzilla.competitive.CharacterField;
 
 import java.util.ArrayList;
 import java.util.List;

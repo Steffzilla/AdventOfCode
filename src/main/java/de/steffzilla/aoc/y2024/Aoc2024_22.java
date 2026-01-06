@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
-import de.steffzilla.aoc.InputUtils;
+import de.steffzilla.competitive.InputUtils;
 import org.javatuples.Pair;
 
 import java.util.List;

@@ -3,9 +3,9 @@ package de.steffzilla.aoc.y2022;
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.CharacterField;
-import de.steffzilla.aoc.DijkstraWithPriorityQueue;
-import de.steffzilla.aoc.NodeWrapper;
+import de.steffzilla.competitive.CharacterField;
+import de.steffzilla.competitive.DijkstraWithPriorityQueue;
+import de.steffzilla.competitive.NodeWrapper;
 import org.javatuples.Pair;
 
 import java.util.*;

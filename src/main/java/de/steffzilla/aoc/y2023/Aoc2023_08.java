@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.aoc.AocUtils;
-import de.steffzilla.aoc.MathUtils;
+import de.steffzilla.competitive.MathUtils;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
