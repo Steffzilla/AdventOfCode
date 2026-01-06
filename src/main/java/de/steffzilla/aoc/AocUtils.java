@@ -39,7 +39,7 @@ public class AocUtils {
      */
     @Deprecated
     public static int[] getIntArrayFromFile(String path, String regex) {
-        String [] strings;
+        String[] strings;
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             strings = stream.toArray(String[]::new);
         } catch (IOException e) {
@@ -84,13 +84,13 @@ public class AocUtils {
 
     public static long countLines(String fileName) {
         Path path = Paths.get(fileName);
-        long lines = 0;
-        try {
-            lines = Files.lines(path).count();
+        long numberOfLines = 0;
+        try (Stream<String> lines = Files.lines(path)) {
+            numberOfLines = lines.count();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return lines;
+        return numberOfLines;
     }
 
     /*public static long getMax(Long[] numbers) {
@@ -104,7 +104,7 @@ public class AocUtils {
         char[] chars2 = str2.toCharArray();
         char[] biggerCharArray;
         char[] smallerCharArray;
-        if(chars1.length > chars2.length) {
+        if (chars1.length > chars2.length) {
             biggerCharArray = chars1;
             smallerCharArray = chars2;
         } else {
@@ -116,6 +116,7 @@ public class AocUtils {
             for (Character char2 : smallerCharArray) {
                 if (char1.equals(char2)) {
                     found = true;
+                    break;
                 }
             }
             if (!found) {
@@ -135,7 +136,7 @@ public class AocUtils {
         HashSet<Character> char_set = new HashSet<>();
 
         // Inserting character of String into set
-        for(int c  = 0; c< str.length();c++) {
+        for (int c = 0; c < str.length(); c++) {
             char_set.add(str.charAt(c));
         }
 
@@ -162,7 +163,7 @@ public class AocUtils {
         Arrays.fill(chars, false);
 
         for (int i = 0; i < str.length(); i++) {
-            int index = (int)str.charAt(i);
+            int index = (int) str.charAt(i);
 
             // If the value is already true, string has duplicate characters, return false
             if (chars[index] == true) {
@@ -176,7 +177,7 @@ public class AocUtils {
     public static List<List<String>> createFilledDotMatrix(List<Pair<Integer, Integer>> points, int dimensionX, int dimensionY, String empty) {
         List<List<String>> twoDimList = createEmptyMatrix(dimensionX, dimensionY, empty);
 
-        for (Pair<Integer,Integer> point : points) {
+        for (Pair<Integer, Integer> point : points) {
             int x = point.getValue0();
             int y = point.getValue1();
             List<String> list = twoDimList.get(y);
@@ -220,7 +221,7 @@ public class AocUtils {
         int lineIndex = 0;
         for (String line : inputLines) {
             for (int x = 0; x < line.length(); x++) {
-                matrix[x][lineIndex] = Integer.parseInt(line.substring(x, x+1));
+                matrix[x][lineIndex] = Integer.parseInt(line.substring(x, x + 1));
             }
             lineIndex++;
         }
