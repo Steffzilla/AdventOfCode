@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 
 import java.util.List;
 import java.util.regex.Matcher;

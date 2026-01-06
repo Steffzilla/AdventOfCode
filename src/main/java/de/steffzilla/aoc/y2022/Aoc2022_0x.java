@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import org.javatuples.Pair;
 
 import java.util.List;

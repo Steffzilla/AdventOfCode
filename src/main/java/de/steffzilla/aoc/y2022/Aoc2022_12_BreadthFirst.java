@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import de.steffzilla.competitive.BreadthFirstSearch;
 import de.steffzilla.competitive.CharacterField;
 import org.javatuples.Pair;

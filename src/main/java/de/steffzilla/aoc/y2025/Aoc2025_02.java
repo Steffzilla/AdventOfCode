@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import org.javatuples.Pair;
 
 import java.util.HashSet;

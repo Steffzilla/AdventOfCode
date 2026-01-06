@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.javatuples.Pair;
 import org.jspecify.annotations.NonNull;

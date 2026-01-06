@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import de.steffzilla.competitive.MathUtils;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;

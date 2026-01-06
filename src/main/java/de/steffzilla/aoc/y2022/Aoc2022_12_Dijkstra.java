@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2022;
 
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.DijkstraWithPriorityQueue;
 import de.steffzilla.competitive.NodeWrapper;

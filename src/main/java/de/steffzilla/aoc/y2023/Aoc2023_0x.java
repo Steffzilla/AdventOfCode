@@ -1,8 +1,7 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Aoc2023_0x {

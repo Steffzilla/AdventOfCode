@@ -1,6 +1,5 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.aoc.AocUtils;
 import org.javatuples.Pair;
 
 import java.util.*;

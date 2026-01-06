@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2021;
 
 import java.util.*;
 import com.google.common.graph.*;
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 import de.steffzilla.competitive.DijkstraWithPriorityQueue;
 import de.steffzilla.competitive.NodeWrapper;
 

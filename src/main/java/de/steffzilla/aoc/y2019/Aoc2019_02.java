@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2019;
 
-import de.steffzilla.aoc.AocUtils;
+import de.steffzilla.competitive.AocUtils;
 
 import java.util.Arrays;
 import java.util.List;

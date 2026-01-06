@@ -1,4 +1,4 @@
-package de.steffzilla.aoc;
+package de.steffzilla.competitive;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
