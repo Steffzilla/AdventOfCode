@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
+import de.steffzilla.aoc.LegacyUtils;
 import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class Aoc2021_4 {
         List<Bingoboard> bingoboards = new ArrayList<>();
         String bingoInput = stringList.get(0);
 
-        int[] drawnNumbers = Utils.splitStringToIntArray(bingoInput, ",");
+        int[] drawnNumbers = LegacyUtils.splitStringToIntArray(bingoInput, ",");
 
         for (int i = 2; i < stringList.size(); i+=Bingoboard.SIZE+1) {
             Bingoboard bingoboard = new Bingoboard(

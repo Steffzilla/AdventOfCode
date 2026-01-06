@@ -18,16 +18,6 @@ public class Utils {
     public static final String HEX_WEBCOLOR_PATTERN = "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$";
     public static final String HEX_COLOR_PATTERN_6CHARS = "^#([a-fA-F0-9]{6})$";
 
-    @Deprecated
-    public static int[] splitStringToIntArray(String input, String regex) {
-        String[] sInput = input.split(regex);
-        int[] returnValue = new int[sInput.length];
-        for (int i = 0; i < sInput.length; i++) {
-            returnValue[i] = Integer.parseInt(sInput[i]);
-        }
-        return returnValue;
-    }
-
     public static long[] splitStringToLongArray(String input, String regex) {
         String[] sInput = input.split(regex);
         long[] returnValue = new long[sInput.length];
@@ -35,20 +25,6 @@ public class Utils {
             returnValue[i] = Long.parseLong(sInput[i]);
         }
         return returnValue;
-    }
-
-    /**
-     * @param path File with 1 line
-     */
-    @Deprecated
-    public static int[] getIntArrayFromFile(String path, String regex) {
-        String[] strings;
-        try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            strings = stream.toArray(String[]::new);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return splitStringToIntArray(strings[0], regex);
     }
 
     /**
