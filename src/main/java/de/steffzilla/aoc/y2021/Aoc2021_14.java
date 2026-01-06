@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.Hashtable;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Aoc2021_14 {
     private static final int ITERATIONS_PART2 = 40;
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         String template = inputLines.get(0);
 
         Hashtable<String, String> rules = readRules(inputLines);
@@ -64,7 +64,7 @@ public class Aoc2021_14 {
         long noOfMostCommonElements = 0;
         long noOfLeastCommonElements = 0;
         for (char c = 'A'; c <= 'Z' ; c++) {
-            long l = AocUtils.countCharInString(template, c);
+            long l = Utils.countCharInString(template, c);
             if(l>0) {
                 if(l>noOfMostCommonElements) {
                     noOfMostCommonElements = l;
@@ -144,7 +144,7 @@ public class Aoc2021_14 {
         long noOfMostCommonElements = 0;
         long noOfLeastCommonElements = 0;
         for (char c = 'A'; c <= 'Z' ; c++) {
-            long l = AocUtils.countCharInString(sb.toString(), c);
+            long l = Utils.countCharInString(sb.toString(), c);
             if(l>0) {
                 if(l>noOfMostCommonElements) {
                     noOfMostCommonElements = l;

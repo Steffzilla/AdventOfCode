@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,7 +20,7 @@ public class Aoc2020_4 {
     public static String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
         Pattern pattern = Pattern.compile("([a-zA]{3})(\\S+)");
         PassData passData = new PassData();
         int validPasses = 0;

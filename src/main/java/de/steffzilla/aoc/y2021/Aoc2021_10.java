@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +29,7 @@ public class Aoc2021_10 {
     private static final List<String> END_CHARS = List.of(RUND_ENDE, ECKIG_ENDE, GESCHWEIFT_ENDE, SPITZ_ENDE);
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         /*System.out.println(checkLine("(((((((((())))))))))"));
         System.out.println(checkLine("[]"));

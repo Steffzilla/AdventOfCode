@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Aoc2021_2 {
 
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
         for (String move: stringList) {
             String[] strings = move.split(" ");
             //doMove(strings[0], Integer.parseInt(strings[1]));

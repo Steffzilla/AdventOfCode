@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2025;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class Aoc2025_08Test {
         JsonNode root = mapper.readTree(inputStream);
 
         Pair<String, String> solutions =
-                Aoc2025_08.solve(AocUtils.getStringList(Aoc2025_08.PATH), Aoc2025_08.REAL_MAX_CONNECTIONS_PART1);
+                Aoc2025_08.solve(Utils.getStringList(Aoc2025_08.PATH), Aoc2025_08.REAL_MAX_CONNECTIONS_PART1);
         assertEquals(root.at("/adventOfCode/2025/day" + DAY + "/part1").asText(), solutions.getValue0());
         assertEquals(root.at("/adventOfCode/2025/day" + DAY + "/part2").asText(), solutions.getValue1());
     }

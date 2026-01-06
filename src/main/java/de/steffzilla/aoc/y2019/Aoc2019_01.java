@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2019;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 public class Aoc2019_01 {
 
@@ -18,7 +18,7 @@ public class Aoc2019_01 {
     }
 
     private static void part1(){
-        long[] numbers = AocUtils.getLongArrayFromFile(PATH);
+        long[] numbers = Utils.getLongArrayFromFile(PATH);
         double fuelSum = 0;
         for (int i = 0; i < numbers.length; i++) {
             double requiredFuel = getRequiredFuel(numbers[i]);
@@ -44,7 +44,7 @@ public class Aoc2019_01 {
     }
 
     private static void part2() {
-        int[] numbers = AocUtils.getIntArrayFromFile(PATH);
+        int[] numbers = Utils.getIntArrayFromFile(PATH);
         double fuelSum = 0;
         for (int i = 0; i < numbers.length; i++) {
             double requiredFuel = getRequiredFuelRecursive((double)numbers[i]);

@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.InputUtils;
 import org.javatuples.Pair;
@@ -38,13 +38,13 @@ public class Aoc2024_18 {
             maxXCoordinate = 70;
             maxYCoordinate = 70;
             numberOfBytesPart1 = 1024;
-            inputLines = AocUtils.getStringList(BASEDIR + INPUT_FILENAME);
+            inputLines = Utils.getStringList(BASEDIR + INPUT_FILENAME);
         } else {
             System.out.println(DAY + ".12." + YEAR + ": Solving the example");
             maxXCoordinate = 6;
             maxYCoordinate = 6;
             numberOfBytesPart1 = 12;
-            inputLines = AocUtils.getStringList(BASEDIR + SAMPLE_FILENAME);
+            inputLines = Utils.getStringList(BASEDIR + SAMPLE_FILENAME);
         }
         return inputLines;
     }

@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 
 import java.util.*;
@@ -22,7 +22,7 @@ public class Aoc2024_09 {
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
         //List<String> inputLines = example.lines().toList();
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         if (inputLines.size() != 1) {
             throw new IllegalStateException("Unexpected number of lines!");
         }

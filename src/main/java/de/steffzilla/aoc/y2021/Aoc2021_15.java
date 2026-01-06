@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2021;
 
 import java.util.*;
 import com.google.common.graph.*;
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.DijkstraWithPriorityQueue;
 import de.steffzilla.competitive.NodeWrapper;
 
@@ -18,7 +18,7 @@ public class Aoc2021_15 {
     private final static int FACTOR = 5;
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
         part2(inputLines);

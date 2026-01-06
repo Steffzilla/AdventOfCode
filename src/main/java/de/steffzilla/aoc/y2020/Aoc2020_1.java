@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 public class Aoc2020_1 {
 
@@ -13,7 +13,7 @@ public class Aoc2020_1 {
     public static String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
-        int[] numbers = AocUtils.getIntArrayFromFile(PATH);
+        int[] numbers = Utils.getIntArrayFromFile(PATH);
 
         //doFirstPart(numbers);
         doSecondPart(numbers);

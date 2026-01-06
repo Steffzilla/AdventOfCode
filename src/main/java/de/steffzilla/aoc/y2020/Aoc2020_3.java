@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,7 +18,7 @@ public class Aoc2020_3 {
     public static String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
         long noOfLines = stringList.size();
 
         int countedTrees1 = getCountedTrees(stringList, noOfLines, 1, 1);

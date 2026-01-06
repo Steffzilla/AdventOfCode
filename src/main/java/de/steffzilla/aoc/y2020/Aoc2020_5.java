@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Aoc2020_5 {
 
     public static void main(String[] args) {
         int maxSeatNumber = 0;
-        List<String> seatCodes = AocUtils.getStringList(PATH);
+        List<String> seatCodes = Utils.getStringList(PATH);
         //getSeatNumber("FBFBBFFRLR");
         HashMap<Integer,String> occupiedSeats = new HashMap<>();
         for (String seatCode: seatCodes) {

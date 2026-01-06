@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class Aoc2020_2 {
     public static String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
-        List<String> strings = AocUtils.getStringList(PATH);
+        List<String> strings = Utils.getStringList(PATH);
         //System.out.println(strings);
         int correctPasswords = 0;
         for (String line : strings) {

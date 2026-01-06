@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2019;
 
 import java.util.*;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 
 public class Aoc2019_03 {
@@ -24,7 +24,7 @@ public class Aoc2019_03 {
 
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         String sInputWire1 = inputLines.get(0);
         String sInputWire2 = inputLines.get(1);
         String[] inputWire1 = sInputWire1.split(",");

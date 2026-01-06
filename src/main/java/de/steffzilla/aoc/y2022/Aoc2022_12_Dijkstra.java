@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2022;
 
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.DijkstraWithPriorityQueue;
 import de.steffzilla.competitive.NodeWrapper;
@@ -31,7 +31,7 @@ public class Aoc2022_12_Dijkstra {
 
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         part1(inputLines);
         //part2(inputLines);

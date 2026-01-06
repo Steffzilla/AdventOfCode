@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jgrapht.Graph;
@@ -61,7 +61,7 @@ public class Aoc2025_11 {
         //List<String> inputLines = examplePart1.lines().toList();
         //List<String> inputLines = examplePart2.lines().toList();
         List<String> inputLines =
-                AocUtils.getStringList(PATH);
+                Utils.getStringList(PATH);
 
         solve(inputLines);
     }

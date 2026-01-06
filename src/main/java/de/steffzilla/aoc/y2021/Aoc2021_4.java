@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Aoc2021_4 {
 
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
 
         /*Bingoboard bingoboard = new Bingoboard();
         bingoboard.markedFields[0][3] = true;
@@ -30,7 +30,7 @@ public class Aoc2021_4 {
         List<Bingoboard> bingoboards = new ArrayList<>();
         String bingoInput = stringList.get(0);
 
-        int[] drawnNumbers = AocUtils.splitStringToIntArray(bingoInput, ",");
+        int[] drawnNumbers = Utils.splitStringToIntArray(bingoInput, ",");
 
         for (int i = 2; i < stringList.size(); i+=Bingoboard.SIZE+1) {
             Bingoboard bingoboard = new Bingoboard(

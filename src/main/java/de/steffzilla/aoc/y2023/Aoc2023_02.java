@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,7 +20,7 @@ public class Aoc2023_02 {
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
 
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
         part2(inputLines);

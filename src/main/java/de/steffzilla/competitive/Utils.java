@@ -10,7 +10,10 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class AocUtils {
+/**
+ * General util methods that are useful e.g. for competitive programming but not only.
+ */
+public class Utils {
 
     public static final String HEX_WEBCOLOR_PATTERN = "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$";
     public static final String HEX_COLOR_PATTERN_6CHARS = "^#([a-fA-F0-9]{6})$";

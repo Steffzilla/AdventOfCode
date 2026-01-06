@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2024;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class Aoc2024_25Test {
         JsonNode root = mapper.readTree(inputStream);
 
         assertEquals(root.at("/adventOfCode/2024/day" + DAY + "/part1").asText(),
-                Aoc2024_25.solve(AocUtils.getStringList(Aoc2024_25.PATH)));
+                Aoc2024_25.solve(Utils.getStringList(Aoc2024_25.PATH)));
     }
 
 }

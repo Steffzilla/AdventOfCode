@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class Aoc2021_3 {
         int oxygenGenRating = 0;
         int co2ScrubberRating = 0;
 
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
         int[] intArray = new int[stringList.get(0).length()];
         for (String code: stringList) {
             for (int i = 0; i < code.length(); i++) {

@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class Aoc2025_09 {
         System.out.println(DAY + ".12." + YEAR);
         //List<String> inputLines = example.lines().toList();
         List<String> inputLines =
-        AocUtils.getStringList(PATH);
+        Utils.getStringList(PATH);
 
         solve(inputLines);
     }

@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import org.javatuples.Pair;
 
@@ -27,7 +27,7 @@ public class Aoc2023_11 {
 
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
         part2(inputLines);
@@ -44,7 +44,7 @@ public class Aoc2023_11 {
             Pair<Integer, Integer> galaxyStart = galaxies.get(i);
             for (int j = i + 1; j < galaxies.size(); j++) {
                 Pair<Integer, Integer> galaxyEnd = galaxies.get(j);
-                long distance = AocUtils.getManhattanDistance(galaxyEnd, galaxyStart);
+                long distance = Utils.getManhattanDistance(galaxyEnd, galaxyStart);
                 sum+=distance;
                 System.out.println("Start: "+galaxyStart+" End: "+galaxyEnd+ " Distance:"+distance);
             }
@@ -116,7 +116,7 @@ public class Aoc2023_11 {
                     yExpansion = emptyLineNumbers.subSet(galaxyEnd.getValue1(), galaxyStart.getValue1()).size();
                 }
 
-                long distanceWithout = AocUtils.getManhattanDistance(galaxyEnd, galaxyStart);
+                long distanceWithout = Utils.getManhattanDistance(galaxyEnd, galaxyStart);
 
                 long realDistance = distanceWithout + xExpansion * (EXPANSION_FACTOR-1) + yExpansion * (EXPANSION_FACTOR-1);
 

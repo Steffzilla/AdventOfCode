@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.MathUtils;
 import org.javatuples.Pair;
 
@@ -26,7 +26,7 @@ public class Aoc2023_08 {
 
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         String instructions = inputLines.get(0);
         HashMap<String, Pair<String, String>> map = readNetwork(inputLines);
 

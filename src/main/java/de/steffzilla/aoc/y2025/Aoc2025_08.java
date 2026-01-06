@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.MathUtils;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
@@ -52,7 +52,7 @@ public class Aoc2025_08 {
         //solve(inputLines, SAMPLE_MAX_CONNECTIONS_PART1);
 
         List<String> inputLines =
-                AocUtils.getStringList(PATH);
+                Utils.getStringList(PATH);
         solve(inputLines, REAL_MAX_CONNECTIONS_PART1);
     }
 

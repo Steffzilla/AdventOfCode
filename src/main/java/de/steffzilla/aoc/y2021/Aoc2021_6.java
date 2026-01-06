@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ public class Aoc2021_6 {
     static final int DAYS = 256;
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
         String[] sNumbers = stringList.getFirst().split(",");
         //part1(sNumbers);
         part2(sNumbers);

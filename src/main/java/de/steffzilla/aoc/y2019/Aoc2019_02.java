@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2019;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,8 +20,8 @@ public class Aoc2019_02 {
     private static long[] numbers;
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
-        numbers = AocUtils.splitStringToLongArray(stringList.get(0), ",");
+        List<String> stringList = Utils.getStringList(PATH);
+        numbers = Utils.splitStringToLongArray(stringList.get(0), ",");
 
         //part1(12, 2);
         part2();

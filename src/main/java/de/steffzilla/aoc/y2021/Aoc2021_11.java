@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Aoc2021_11 {
     private static final int NUMBER_OF_ROUNDS=500;
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         part1(inputLines);
     }

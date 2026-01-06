@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class Aoc2021_8 {
     private static final Character SEGMENT_GGGG = 'g';
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         part1(inputLines);
         //part2();
@@ -84,7 +84,7 @@ public class Aoc2021_8 {
                 adjustMap(segmentCharToInputChars, inputPattern, List.of(SEGMENT_CCCC, SEGMENT_FFFF));
                 if(digitToPattern.containsKey(DIGIT_7)) {
                     String sevenPattern = digitToPattern.get(DIGIT_7);
-                    Character difference = AocUtils.findDiffChar(inputPattern, sevenPattern);
+                    Character difference = Utils.findDiffChar(inputPattern, sevenPattern);
                     //a-->d => d as input means segment a
                     segmentCharToInputChars.put(SEGMENT_AAAA, Set.of(difference));
                 }
@@ -98,7 +98,7 @@ public class Aoc2021_8 {
                 adjustMap(segmentCharToInputChars, inputPattern, List.of(SEGMENT_AAAA, SEGMENT_CCCC, SEGMENT_FFFF));
                 if(digitToPattern.containsKey(DIGIT_1)) {
                     String onePattern = digitToPattern.get(DIGIT_1);
-                    Character difference = AocUtils.findDiffChar(inputPattern, onePattern);
+                    Character difference = Utils.findDiffChar(inputPattern, onePattern);
                     //a-->d => d as input means segment a
                     segmentCharToInputChars.put(SEGMENT_AAAA, Set.of(difference));
                 }

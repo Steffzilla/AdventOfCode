@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,7 +18,7 @@ public class Aoc2020_6 {
     public static String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
-        List<String> answers = AocUtils.getStringList(PATH);
+        List<String> answers = Utils.getStringList(PATH);
         int subOfGroupCounts = getSumOfGroupCountsPart2(answers);
         System.out.println("\nResult:" + subOfGroupCounts);
     }

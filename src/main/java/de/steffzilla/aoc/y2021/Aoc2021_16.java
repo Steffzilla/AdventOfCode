@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class Aoc2021_16 {
     }
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         if(inputLines.size() != 1) {
             throw new IllegalStateException("Expecting 1 line!");
         }
@@ -53,7 +53,7 @@ public class Aoc2021_16 {
         //String sample = "F600BC2D8F";
         String sample = "9C0141080250320F1802104A08";
         //String binaryInput = AocUtils.hexToBinWithLeadingZeros(sample);
-        String binaryInput = AocUtils.hexToBinWithLeadingZeros(inputLines.get(0));
+        String binaryInput = Utils.hexToBinWithLeadingZeros(inputLines.get(0));
 
         //part1(binaryInput);
         part2(binaryInput);

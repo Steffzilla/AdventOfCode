@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -20,7 +20,7 @@ public class Aoc2021_12 {
     private static Set<String> pathsPart2;
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         Hashtable<String, Cave> caves = new Hashtable<>();
         for (String line : inputLines) {
             String[] nodes = line.split("-");

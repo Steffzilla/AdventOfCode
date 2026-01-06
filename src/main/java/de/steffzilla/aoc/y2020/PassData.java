@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -130,7 +130,7 @@ class PassData {
     private boolean checkHexColor(String color) {
         boolean result = false;
         //Pattern pattern = Pattern.compile("^#[0-9a-f]{6}");
-        Pattern pattern = Pattern.compile(AocUtils.HEX_COLOR_PATTERN_6CHARS);
+        Pattern pattern = Pattern.compile(Utils.HEX_COLOR_PATTERN_6CHARS);
         Matcher matcher = pattern.matcher(color);
         if (matcher.find()) {
             System.out.println("Color VALID:"+color);

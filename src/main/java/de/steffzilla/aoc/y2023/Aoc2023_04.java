@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Aoc2023_04 {
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
 
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
         part2(inputLines);
@@ -64,7 +64,7 @@ public class Aoc2023_04 {
 
     private static void part2(List<String> inputLines) {
         int cardNumber = 0;
-        long[] noOfCards = new long[(int) AocUtils.countLines(PATH)];
+        long[] noOfCards = new long[(int) Utils.countLines(PATH)];
         Arrays.fill(noOfCards, 1);
 
         for (String line : inputLines) {

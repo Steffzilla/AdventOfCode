@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -24,7 +24,7 @@ public class Aoc2023_15 {
 
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         if (inputLines.size() != 1) {
             throw new IllegalStateException("Size of input not correct! " + inputLines.size());
         }

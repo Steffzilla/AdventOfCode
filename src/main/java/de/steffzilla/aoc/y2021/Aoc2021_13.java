@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Aoc2021_13 {
     public static final String HASH = "#";
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         List<List<String>> paper;
         Pattern pattern = Pattern.compile("fold along (x|y){1}=(\\d{1,3})");
         List<Pair<String, Integer>> foldings = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Aoc2021_13 {
             }
         }
         System.out.println(maxX+"|"+maxY);
-        paper = AocUtils.createFilledDotMatrix(points, maxX+1, maxY+1, " ");
+        paper = Utils.createFilledDotMatrix(points, maxX+1, maxY+1, " ");
 
         //part1(paper, foldings);
         part2(paper, foldings);
@@ -119,8 +119,8 @@ public class Aoc2021_13 {
             newXSize = paper.get(0).size();
             newYSize = (paper.size()-1)/2;
         }
-        newPaper= AocUtils.createEmptyMatrix(newXSize, newYSize," ");
-        AocUtils.copyMatrix(paper, newPaper, 0, newXSize, 0, newYSize);
+        newPaper= Utils.createEmptyMatrix(newXSize, newYSize," ");
+        Utils.copyMatrix(paper, newPaper, 0, newXSize, 0, newYSize);
         if (isXFolding) {
             copyRightPartleft(paper, newPaper, newXSize);
         } else {

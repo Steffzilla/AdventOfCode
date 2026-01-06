@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Aoc2022_04 {
     public static final String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
         part2(inputLines);

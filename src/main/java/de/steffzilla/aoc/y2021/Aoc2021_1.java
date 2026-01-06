@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 public class Aoc2021_1 {
 
@@ -14,7 +14,7 @@ public class Aoc2021_1 {
 
     public static void main(String[] args) {
         //List<String> stringList = AocUtils.getStringList(PATH);
-        int[] numbers = AocUtils.getIntArrayFromFile(PATH);
+        int[] numbers = Utils.getIntArrayFromFile(PATH);
         int counter = 0;//doPart1(numbers);
 
         for (int i = 4; i <= numbers.length; i++) {

@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -21,7 +21,7 @@ public class Aoc2021_5 {
     static final Pattern LINEPATTERN = Pattern.compile("(\\d{1,3}),(\\d{1,3})( -> )(\\d{1,3}),(\\d{1,3})");
 
     public static void main(String[] args) {
-        List<String> stringList = AocUtils.getStringList(PATH);
+        List<String> stringList = Utils.getStringList(PATH);
         //processLine("72,504 -> 422,154"/*stringList.get(5)*/,field);
         for (String line : stringList) {
             processLine(line, field);

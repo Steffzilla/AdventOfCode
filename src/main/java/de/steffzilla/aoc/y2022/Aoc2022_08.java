@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 
@@ -19,14 +19,14 @@ public class Aoc2022_08 {
 
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
         part2(inputLines);
     }
 
     private static void part1(List<String> inputLines){
-        int[][] matrix = AocUtils.readIntMatrix(inputLines, xDimension, yDimension);
+        int[][] matrix = Utils.readIntMatrix(inputLines, xDimension, yDimension);
         int sumOfVisibleTrees=0;
         for (int y = 0; y < yDimension; y++) {
             for (int x = 0; x < xDimension; x++) {
@@ -96,7 +96,7 @@ public class Aoc2022_08 {
 
 
     private static void part2(List<String> inputLines) {
-        int[][] matrix = AocUtils.readIntMatrix(inputLines, xDimension, yDimension);
+        int[][] matrix = Utils.readIntMatrix(inputLines, xDimension, yDimension);
         long maxScore=0;
         for (int y = 0; y < yDimension; y++) {
             for (int x = 0; x < xDimension; x++) {

@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2024;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
@@ -197,7 +197,7 @@ public class Aoc2024_15Test {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(inputStream);
 
-        Pair<String, String> solutions = Aoc2024_15.solve(AocUtils.getStringList(Aoc2024_15.PATH));
+        Pair<String, String> solutions = Aoc2024_15.solve(Utils.getStringList(Aoc2024_15.PATH));
         assertEquals(root.at("/adventOfCode/2024/day15/part1").asText(), solutions.getValue0());
         assertEquals(root.at("/adventOfCode/2024/day15/part2").asText(), solutions.getValue1());
     }

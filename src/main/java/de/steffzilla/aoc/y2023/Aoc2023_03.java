@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import de.steffzilla.competitive.AocUtils;
+import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -22,7 +22,7 @@ public class Aoc2023_03 {
 
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
-        List<String> inputLines = AocUtils.getStringList(PATH);
+        List<String> inputLines = Utils.getStringList(PATH);
         field = new CharacterField(inputLines);
         field.prettyPrint();
         System.out.println();
