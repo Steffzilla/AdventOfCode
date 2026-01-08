@@ -17,7 +17,7 @@ public class Aoc2024_01Test {
 
     @Test
     public void testSolvePuzzle() throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("solutions.json");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("solutionsAoC.json");
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(inputStream);
 
