@@ -20,7 +20,7 @@ public class EC2025Day01 {
     static final String EXAMPLE = """
             Vyrdax,Drakzyph,Fyrryn,Elarzris
             
-            R3,L2,R3,L5
+            R3,L2,R3,L1
             """;
 
     static final String EXAMPLE3 = """
