@@ -1,7 +1,6 @@
 package de.steffzilla.aoc.y2025;
 
 import de.steffzilla.competitive.Utils;
-import org.apache.commons.lang3.StringUtils;
 import org.javatuples.Pair;
 import org.jspecify.annotations.NonNull;
 import org.ojalgo.optimisation.Expression;
@@ -186,7 +185,8 @@ public class Aoc2025_10 {
     static List<int[]> reformatButtonWiringList(List<Integer> buttonWiringList, int length) {
         List<int[]> bW = new ArrayList<>();
         for (int buttonWiring : buttonWiringList) {
-            String binaryString = StringUtils.leftPad(Integer.toBinaryString(buttonWiring), length, '0');
+            String raw = Integer.toBinaryString(buttonWiring);
+            String binaryString = "0".repeat(Math.max(0, length - raw.length())) + raw;
             int[] bits = new int[binaryString.length()];
             for (int i = 0; i < binaryString.length(); i++) {
                 bits[i] = Character.getNumericValue(binaryString.charAt(i));

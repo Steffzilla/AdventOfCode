@@ -1,6 +1,5 @@
 package de.steffzilla.aoc.y2022;
 
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.Objects;
 
@@ -27,7 +26,7 @@ public class Aoc22File implements FilesystemNode {
 
     @Override
     public void addSize(long size) {
-        throw new NotImplementedException("");
+        throw new UnsupportedOperationException("");
     }
 
     @Override

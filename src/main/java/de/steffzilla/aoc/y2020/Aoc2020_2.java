@@ -1,7 +1,6 @@
 package de.steffzilla.aoc.y2020;
 
 import de.steffzilla.competitive.Utils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +30,7 @@ public class Aoc2020_2 {
     private static boolean checkCode(String line) {
         String[] s = line.split(" ");
         System.out.println(line + "-->"+Arrays.stream(s).toList());
-        String[] splittedMinMax = StringUtils.split(s[0], "-");
+        String[] splittedMinMax = s[0].split("-", 2);
         int min = Integer.parseInt(splittedMinMax[0]);
         //Character.getNumericValue(s[0].charAt(0));
         int max = Integer.parseInt(splittedMinMax[1]);
@@ -40,7 +39,7 @@ public class Aoc2020_2 {
     }
 
     private static boolean checkPart1(String[] s, int min, int max, char letter) {
-        long count = StringUtils.countMatches(s[2],letter);
+        long count = s[2].chars().filter(c -> c == letter).count();
 
         if(count >= min && count <= max) {
             System.out.println("min:"+ min +" max:"+ max +"|Letter:"+letter+"|count:"+count+"-->ok");

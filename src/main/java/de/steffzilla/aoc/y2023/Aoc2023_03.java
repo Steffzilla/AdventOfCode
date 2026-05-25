@@ -2,7 +2,6 @@ package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class Aoc2023_03 {
             for (int x = 0; x < field.getMaxX(); x++) {
                 String character = field.getCharacterAt(x,y);
                 if (!character.equals(".")) {
-                     if(NumberUtils.isCreatable(character)) {
+                     if(Character.isDigit(character.charAt(0))) {
                          // first digit found
                          String number = getCompleteNumber(x, y);
                          System.out.println(number);
@@ -66,7 +65,7 @@ public class Aoc2023_03 {
             for (int x2 = x-1; x2 <= x+number.length(); x2++) {
                 if (field.isContained(x2,y2)) {
                     String character = field.getCharacterAt(x2, y2);
-                    if (!character.equals(".") && !NumberUtils.isCreatable(character)) {
+                    if (!character.equals(".") && !Character.isDigit(character.charAt(0))) {
                         System.out.println("found " + character + " for "+number);
                         return true;
                     }
@@ -82,7 +81,7 @@ public class Aoc2023_03 {
             boolean numberFound = false;
             for (int x = xGear - 1; x <= xGear + 1; x++) {
                 if(field.isContained(x,y)) {
-                    if (!NumberUtils.isCreatable(field.getCharacterAt(x, y))) {
+                    if (!Character.isDigit(field.getCharacterAt(x, y).charAt(0))) {
                         // reset number found to be ready for a potential next number
                         numberFound = false;
                     } else if (!numberFound) {
@@ -105,7 +104,7 @@ public class Aoc2023_03 {
         StringBuilder stringBuilder = new StringBuilder();
         // first go left to the start
         for (int x1 = x; x1 >= 0; x1--) {
-            if (field.isContained(x1-1, y) && NumberUtils.isCreatable(field.getCharacterAt(x1-1, y))) {
+            if (field.isContained(x1-1, y) && Character.isDigit(field.getCharacterAt(x1-1, y).charAt(0))) {
                 continue;
             } else {
                 // start found
@@ -118,7 +117,7 @@ public class Aoc2023_03 {
             String nextCharacter = field.getCharacterAt(x2, y);
             stringBuilder.append(nextCharacter);
             // look ahead
-            if (field.isContained(x2+1, y) && NumberUtils.isCreatable(field.getCharacterAt(x2+1, y))) {
+            if (field.isContained(x2+1, y) && Character.isDigit(field.getCharacterAt(x2+1, y).charAt(0))) {
                 continue;
             } else {
                 break;
