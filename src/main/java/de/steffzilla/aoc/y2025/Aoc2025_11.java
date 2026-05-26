@@ -2,7 +2,6 @@ package de.steffzilla.aoc.y2025;
 
 import de.steffzilla.competitive.Utils;
 import org.javatuples.Pair;
-import org.jetbrains.annotations.NotNull;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
@@ -147,7 +146,7 @@ public class Aoc2025_11 {
         return String.valueOf(pathsThroughP1P2);
     }
 
-    private static @NotNull Map<String, Long> getPathsBetween(Graph<String, DefaultEdge> graph, String p1, Map<String, Long> pathsFromSource, int iP1, int iP2, List<String> topoOrder) {
+    private static Map<String, Long> getPathsBetween(Graph<String, DefaultEdge> graph, String p1, Map<String, Long> pathsFromSource, int iP1, int iP2, List<String> topoOrder) {
         Map<String, Long> pathsBetween = new HashMap<>();
 
         // Start value: all paths that reach P1
@@ -172,7 +171,7 @@ public class Aoc2025_11 {
         return pathsBetween;
     }
 
-    private static @NotNull Map<String, Long> getPathsFromSource(Graph<String, DefaultEdge> graph, List<String> topoOrder) {
+    private static Map<String, Long> getPathsFromSource(Graph<String, DefaultEdge> graph, List<String> topoOrder) {
         Map<String, Long> pathsFromSource = new HashMap<>();
         pathsFromSource.put(SVR, 1L);
 
@@ -186,7 +185,7 @@ public class Aoc2025_11 {
         return pathsFromSource;
     }
 
-    private static @NotNull Map<String, Long> getPathsToSink(Graph<String, DefaultEdge> graph, List<String> topoOrder) {
+    private static Map<String, Long> getPathsToSink(Graph<String, DefaultEdge> graph, List<String> topoOrder) {
         Map<String, Long> pathsToSink = new HashMap<>();
         pathsToSink.put(OUT, 1L);
 

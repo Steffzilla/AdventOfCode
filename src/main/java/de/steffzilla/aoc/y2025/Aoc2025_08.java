@@ -8,8 +8,6 @@ import org.jgrapht.Graph;
 import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultUndirectedGraph;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 
 public class Aoc2025_08 {
@@ -89,7 +87,7 @@ public class Aoc2025_08 {
         return String.valueOf(result);
     }
 
-    private static @NotNull TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> getDistancesAndAddVerticesToGraph(List<Triplet<Integer, Integer, Integer>> boxes, Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph) {
+    private static TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> getDistancesAndAddVerticesToGraph(List<Triplet<Integer, Integer, Integer>> boxes, Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph) {
         TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> distances =
                 new TreeMap<>();
         for (int i = 0; i < boxes.size(); i++) {
@@ -137,7 +135,7 @@ public class Aoc2025_08 {
         return (long) max1 * max2 * max3;
     }
 
-    private static @NotNull List<Triplet<Integer, Integer, Integer>> getBoxes(List<String> inputLines) {
+    private static List<Triplet<Integer, Integer, Integer>> getBoxes(List<String> inputLines) {
         List<Triplet<Integer, Integer, Integer>> boxes = new ArrayList<>();
         for (String line : inputLines) {
             String[] split = line.split(",");
