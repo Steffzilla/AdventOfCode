@@ -1,7 +1,7 @@
 package de.steffzilla.competitive;
 
-import org.javatuples.Pair;
-import org.javatuples.Triplet;
+import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Triplet;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

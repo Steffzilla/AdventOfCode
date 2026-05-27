@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2021;
 
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

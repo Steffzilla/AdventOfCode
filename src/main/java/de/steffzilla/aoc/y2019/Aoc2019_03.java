@@ -3,7 +3,7 @@ package de.steffzilla.aoc.y2019;
 import java.util.*;
 
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 public class Aoc2019_03 {
 

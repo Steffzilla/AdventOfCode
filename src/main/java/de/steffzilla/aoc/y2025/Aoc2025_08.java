@@ -2,8 +2,8 @@ package de.steffzilla.aoc.y2025;
 
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.MathUtils;
-import org.javatuples.Pair;
-import org.javatuples.Triplet;
+import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Triplet;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.graph.DefaultEdge;

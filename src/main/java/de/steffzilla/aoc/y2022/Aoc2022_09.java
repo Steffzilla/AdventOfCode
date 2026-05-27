@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 public class Aoc2022_09 {
 

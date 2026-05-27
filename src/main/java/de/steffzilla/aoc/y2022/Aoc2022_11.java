@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.math.BigInteger;
 import java.util.*;

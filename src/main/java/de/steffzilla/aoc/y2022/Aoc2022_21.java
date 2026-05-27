@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2022;
 
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.*;
 import java.util.regex.Matcher;

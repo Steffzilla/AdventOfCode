@@ -4,7 +4,7 @@ import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.BreadthFirstSearch;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.GraphUtil;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.*;
 

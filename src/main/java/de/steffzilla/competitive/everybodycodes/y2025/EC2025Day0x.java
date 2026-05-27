@@ -1,7 +1,7 @@
 package de.steffzilla.competitive.everybodycodes.y2025;
 
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.List;
 

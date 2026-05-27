@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2025;
 
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.Collections;
 import java.util.HashSet;

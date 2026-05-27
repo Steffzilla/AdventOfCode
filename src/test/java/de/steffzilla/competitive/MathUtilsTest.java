@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import org.javatuples.Triplet;
+import de.steffzilla.competitive.Triplet;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;

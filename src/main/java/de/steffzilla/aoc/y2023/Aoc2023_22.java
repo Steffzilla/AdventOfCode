@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Triplet;
+import de.steffzilla.competitive.Triplet;
 
 import java.util.*;
 import java.util.regex.Matcher;

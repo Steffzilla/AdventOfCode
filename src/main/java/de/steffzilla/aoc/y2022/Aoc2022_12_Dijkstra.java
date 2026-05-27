@@ -6,7 +6,7 @@ import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.DijkstraWithPriorityQueue;
 import de.steffzilla.competitive.NodeWrapper;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.*;
 

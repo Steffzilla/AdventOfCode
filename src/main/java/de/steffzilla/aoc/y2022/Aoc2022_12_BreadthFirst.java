@@ -3,7 +3,7 @@ package de.steffzilla.aoc.y2022;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.BreadthFirstSearch;
 import de.steffzilla.competitive.CharacterField;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

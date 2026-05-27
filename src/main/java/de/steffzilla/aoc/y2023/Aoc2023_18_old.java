@@ -1,6 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.*;
 

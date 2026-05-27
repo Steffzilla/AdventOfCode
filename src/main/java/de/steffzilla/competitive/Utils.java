@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.io.IOException;
 import java.math.BigInteger;

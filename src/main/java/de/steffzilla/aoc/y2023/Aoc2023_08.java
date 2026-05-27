@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.MathUtils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -3,7 +3,7 @@ package de.steffzilla.aoc.y2024;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.InputUtils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.BFSShortestPath;

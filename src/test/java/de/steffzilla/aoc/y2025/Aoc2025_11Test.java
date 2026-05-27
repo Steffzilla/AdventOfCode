@@ -3,7 +3,7 @@ package de.steffzilla.aoc.y2025;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.steffzilla.competitive.Utils;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

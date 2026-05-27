@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

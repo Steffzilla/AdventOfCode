@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 
 public class InputUtils {
 

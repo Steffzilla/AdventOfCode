@@ -1,7 +1,7 @@
 package de.steffzilla.aoc.y2024;
 
 import de.steffzilla.competitive.CharacterField;
-import org.javatuples.Pair;
+import de.steffzilla.competitive.Pair;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultUndirectedGraph;
