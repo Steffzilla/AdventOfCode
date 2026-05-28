@@ -3,7 +3,7 @@ package de.steffzilla.aoc.y2025;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.MathUtils;
 import de.steffzilla.competitive.Pair;
-import de.steffzilla.competitive.Triplet;
+import de.steffzilla.competitive.Position3D;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.graph.DefaultEdge;
@@ -59,19 +59,19 @@ public class Aoc2025_08 {
     }
 
     private static String part1(List<String> inputLines, int maxConnections) {
-        List<Triplet<Integer, Integer, Integer>> boxes = getBoxes(inputLines);
+        List<Position3D> boxes = getBoxes(inputLines);
 
-        Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultEdge.class);
-        TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> distances =
+        Graph<Position3D, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultEdge.class);
+        TreeMap<Double, Set<Pair<Position3D, Position3D>>> distances =
                 getDistancesAndAddVerticesToGraph(boxes, graph);
 
         int counter = 0;
-        for (Map.Entry<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> entry : distances.entrySet()) {
-            Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>> pairs = entry.getValue();
-            for (Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>> pair : pairs) {
-                Triplet<Integer, Integer, Integer> box1 = pair.getValue0();
-                Triplet<Integer, Integer, Integer> box2 = pair.getValue1();
-                ConnectivityInspector<Triplet<Integer, Integer, Integer>, DefaultEdge> inspector =
+        for (Map.Entry<Double, Set<Pair<Position3D, Position3D>>> entry : distances.entrySet()) {
+            Set<Pair<Position3D, Position3D>> pairs = entry.getValue();
+            for (Pair<Position3D, Position3D> pair : pairs) {
+                Position3D box1 = pair.getValue0();
+                Position3D box2 = pair.getValue1();
+                ConnectivityInspector<Position3D, DefaultEdge> inspector =
                         new ConnectivityInspector<>(graph);
                 if (!inspector.pathExists(box1, box2)) {
                     graph.addEdge(box1, box2);
@@ -87,17 +87,16 @@ public class Aoc2025_08 {
         return String.valueOf(result);
     }
 
-    private static TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> getDistancesAndAddVerticesToGraph(List<Triplet<Integer, Integer, Integer>> boxes, Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph) {
-        TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> distances =
-                new TreeMap<>();
+    private static TreeMap<Double, Set<Pair<Position3D, Position3D>>> getDistancesAndAddVerticesToGraph(List<Position3D> boxes, Graph<Position3D, DefaultEdge> graph) {
+        TreeMap<Double, Set<Pair<Position3D, Position3D>>> distances = new TreeMap<>();
         for (int i = 0; i < boxes.size(); i++) {
-            Triplet<Integer, Integer, Integer> box = boxes.get(i);
+            Position3D box = boxes.get(i);
             graph.addVertex(box);
             for (int j = i + 1; j < boxes.size(); j++) {
-                Triplet<Integer, Integer, Integer> otherBox = boxes.get(j);
+                Position3D otherBox = boxes.get(j);
                 if (!box.equals(otherBox)) {
                     double distance3D = MathUtils.euclideanDistance3D(box, otherBox);
-                    Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>> pairs;
+                    Set<Pair<Position3D, Position3D>> pairs;
                     if (distances.containsKey(distance3D)) {
                         pairs = distances.get(distance3D);
                     } else {
@@ -111,14 +110,14 @@ public class Aoc2025_08 {
         return distances;
     }
 
-    private static long getResultPart1(Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph) {
-        ConnectivityInspector<Triplet<Integer, Integer, Integer>, DefaultEdge> inspector =
+    private static long getResultPart1(Graph<Position3D, DefaultEdge> graph) {
+        ConnectivityInspector<Position3D, DefaultEdge> inspector =
                 new ConnectivityInspector<>(graph);
-        List<Set<Triplet<Integer, Integer, Integer>>> connectedComponents = inspector.connectedSets();
+        List<Set<Position3D>> connectedComponents = inspector.connectedSets();
         int max1 = Integer.MIN_VALUE;
         int max2 = Integer.MIN_VALUE;
         int max3 = Integer.MIN_VALUE;
-        for (Set<Triplet<Integer, Integer, Integer>> component : connectedComponents) {
+        for (Set<Position3D> component : connectedComponents) {
             int size = component.size();
             if (size > max1) {
                 max3 = max2;
@@ -135,40 +134,40 @@ public class Aoc2025_08 {
         return (long) max1 * max2 * max3;
     }
 
-    private static List<Triplet<Integer, Integer, Integer>> getBoxes(List<String> inputLines) {
-        List<Triplet<Integer, Integer, Integer>> boxes = new ArrayList<>();
+    private static List<Position3D> getBoxes(List<String> inputLines) {
+        List<Position3D> boxes = new ArrayList<>();
         for (String line : inputLines) {
             String[] split = line.split(",");
-            Triplet<Integer, Integer, Integer> box =
-                    new Triplet<>(Integer.valueOf(split[0]), Integer.valueOf(split[1]), Integer.valueOf(split[2]));
+            Position3D box =
+                    new Position3D(Integer.valueOf(split[0]), Integer.valueOf(split[1]), Integer.valueOf(split[2]));
             boxes.add(box);
         }
         return boxes;
     }
 
     private static String part2(List<String> inputLines) {
-        List<Triplet<Integer, Integer, Integer>> boxes = getBoxes(inputLines);
+        List<Position3D> boxes = getBoxes(inputLines);
 
-        Graph<Triplet<Integer, Integer, Integer>, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultEdge.class);
-        TreeMap<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> distances =
+        Graph<Position3D, DefaultEdge> graph = new DefaultUndirectedGraph<>(DefaultEdge.class);
+        TreeMap<Double, Set<Pair<Position3D, Position3D>>> distances =
                 getDistancesAndAddVerticesToGraph(boxes, graph);
 
         long result = Long.MIN_VALUE;
-        for (Map.Entry<Double, Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>>> entry : distances.entrySet()) {
-            Set<Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>>> pairs = entry.getValue();
-            for (Pair<Triplet<Integer, Integer, Integer>, Triplet<Integer, Integer, Integer>> pair : pairs) {
-                Triplet<Integer, Integer, Integer> box1 = pair.getValue0();
-                Triplet<Integer, Integer, Integer> box2 = pair.getValue1();
-                ConnectivityInspector<Triplet<Integer, Integer, Integer>, DefaultEdge> inspector =
+        for (Map.Entry<Double, Set<Pair<Position3D, Position3D>>> entry : distances.entrySet()) {
+            Set<Pair<Position3D, Position3D>> pairs = entry.getValue();
+            for (Pair<Position3D, Position3D> pair : pairs) {
+                Position3D box1 = pair.getValue0();
+                Position3D box2 = pair.getValue1();
+                ConnectivityInspector<Position3D, DefaultEdge> inspector =
                         new ConnectivityInspector<>(graph);
                 if (!inspector.pathExists(box1, box2)) {
                     graph.addEdge(box1, box2);
                 }
                 // find first connection which causes all the junction boxes to form a single circuit
                 inspector = new ConnectivityInspector<>(graph);
-                List<Set<Triplet<Integer, Integer, Integer>>> connectedComponents = inspector.connectedSets();
+                List<Set<Position3D>> connectedComponents = inspector.connectedSets();
                 if (connectedComponents.size() == 1) {
-                    result = (long) box1.getValue0() * box2.getValue0();
+                    result = box1.x() * box2.x();
                     break;
                 }
             }

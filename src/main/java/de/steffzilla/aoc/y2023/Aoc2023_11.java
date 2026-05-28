@@ -2,7 +2,7 @@ package de.steffzilla.aoc.y2023;
 
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
-import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -37,13 +37,13 @@ public class Aoc2023_11 {
         List<String> newInputLines = adjustInput(inputLines);
         CharacterField field = new CharacterField(newInputLines);
         //field.prettyPrint();
-        List<Pair<Integer, Integer>> galaxies = field.searchCharacters(GALAXY);
+        List<Position> galaxies = field.searchCharacters(GALAXY);
         System.out.println("No of Galaxies:"+galaxies.size());
         long sum = 0;
         for (int i = 0; i < galaxies.size(); i++) {
-            Pair<Integer, Integer> galaxyStart = galaxies.get(i);
+            Position galaxyStart = galaxies.get(i);
             for (int j = i + 1; j < galaxies.size(); j++) {
-                Pair<Integer, Integer> galaxyEnd = galaxies.get(j);
+                Position galaxyEnd = galaxies.get(j);
                 long distance = Utils.getManhattanDistance(galaxyEnd, galaxyStart);
                 sum+=distance;
                 System.out.println("Start: "+galaxyStart+" End: "+galaxyEnd+ " Distance:"+distance);
@@ -94,26 +94,26 @@ public class Aoc2023_11 {
         System.out.println("Lines:"+emptyLineNumbers);
 
         CharacterField field = new CharacterField(inputLines);
-        List<Pair<Integer, Integer>> galaxies = field.searchCharacters(GALAXY);
+        List<Position> galaxies = field.searchCharacters(GALAXY);
         System.out.println("No of Galaxies:"+galaxies.size());
         BigInteger sum = new BigInteger("0");
         //long sum=0;
         for (int i = 0; i < galaxies.size(); i++) {
-            Pair<Integer, Integer> galaxyStart = galaxies.get(i);
+            Position galaxyStart = galaxies.get(i);
             for (int j = i + 1; j < galaxies.size(); j++) {
-                Pair<Integer, Integer> galaxyEnd = galaxies.get(j);
+                Position galaxyEnd = galaxies.get(j);
                 // Expansion
                 int xExpansion;
-                if(galaxyStart.getValue0() < galaxyEnd.getValue0()) {
-                    xExpansion = emptyColumnNumbers.subSet(galaxyStart.getValue0(), galaxyEnd.getValue0()).size();
+                if(galaxyStart.x() < galaxyEnd.x()) {
+                    xExpansion = emptyColumnNumbers.subSet((int) galaxyStart.x(), (int) galaxyEnd.x()).size();
                 } else {
-                    xExpansion = emptyColumnNumbers.subSet(galaxyEnd.getValue0(), galaxyStart.getValue0()).size();
+                    xExpansion = emptyColumnNumbers.subSet((int) galaxyEnd.x(), (int) galaxyStart.x()).size();
                 }
                 int yExpansion;
-                if(galaxyStart.getValue1() < galaxyEnd.getValue1()) {
-                    yExpansion = emptyLineNumbers.subSet(galaxyStart.getValue1(), galaxyEnd.getValue1()).size();
+                if(galaxyStart.y() < galaxyEnd.y()) {
+                    yExpansion = emptyLineNumbers.subSet((int) galaxyStart.y(), (int) galaxyEnd.y()).size();
                 } else {
-                    yExpansion = emptyLineNumbers.subSet(galaxyEnd.getValue1(), galaxyStart.getValue1()).size();
+                    yExpansion = emptyLineNumbers.subSet((int) galaxyEnd.y(), (int) galaxyStart.y()).size();
                 }
 
                 long distanceWithout = Utils.getManhattanDistance(galaxyEnd, galaxyStart);

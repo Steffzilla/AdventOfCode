@@ -3,6 +3,7 @@ package de.steffzilla.aoc.y2025;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -42,7 +43,7 @@ public class Aoc2025_07 {
             ...............
             """;
 
-    private static Pair<Integer, Integer> startField;
+    private static Position startField;
 
 
     public static void main(String[] args) {
@@ -61,11 +62,11 @@ public class Aoc2025_07 {
     private static String part1(List<String> inputLines) {
         long count = 0;
         CharacterField cf = new CharacterField(inputLines);
-        List<Pair<Integer, Integer>> startFields = cf.searchCharacters(START);
+        List<Position> startFields = cf.searchCharacters(START);
         if (startFields.size() != 1) throw new IllegalStateException("More than 1 Start!" + startFields.size());
-        Pair<Integer, Integer> startField = startFields.getFirst();
-        cf.setCharacterAt(BEAM, startField.getValue0(), startField.getValue1() + 1);
-        for (int yPosAbove = startField.getValue1() + 1; yPosAbove < cf.getMaxY() - 1; yPosAbove++) {
+        Position startField = startFields.getFirst();
+        cf.setCharacterAt(BEAM, (int) startField.x(), (int) startField.y() + 1);
+        for (int yPosAbove = (int) startField.y() + 1; yPosAbove < cf.getMaxY() - 1; yPosAbove++) {
             for (int xPos = 0; xPos < cf.getMaxX(); xPos++) {
                 String characterAbove = cf.getCharacterAt(xPos, yPosAbove);
                 if (BEAM.equals(characterAbove)) {
@@ -90,26 +91,26 @@ public class Aoc2025_07 {
         return String.valueOf(count);
     }
 
-    private static Graph<Pair<Integer, Integer>, DefaultEdge> buildGraph(CharacterField cf) {
-        Graph<Pair<Integer, Integer>, DefaultEdge> graph = new DefaultDirectedGraph<>(DefaultEdge.class);
-        List<Pair<Integer, Integer>> startFields = cf.searchCharacters(START);
+    private static Graph<Position, DefaultEdge> buildGraph(CharacterField cf) {
+        Graph<Position, DefaultEdge> graph = new DefaultDirectedGraph<>(DefaultEdge.class);
+        List<Position> startFields = cf.searchCharacters(START);
         if (startFields.size() != 1) throw new IllegalStateException("More than 1 Start!" + startFields.size());
         startField = startFields.getFirst();
         graph.addVertex(startField);
-        Pair<Integer, Integer> firstBeam = new Pair<>(startField.getValue0(), startField.getValue1() + 1);
+        Position firstBeam = new Position(startField.x(), startField.y() + 1);
         cf.setCharacterAt(BEAM, firstBeam);
         graph.addVertex(firstBeam);
         graph.addEdge(startField, firstBeam);
         int counter = 0;
-        for (int yPosAbove = startField.getValue1() + 1; yPosAbove < cf.getMaxY() - 1; yPosAbove++) {
+        for (int yPosAbove = (int) startField.y() + 1; yPosAbove < cf.getMaxY() - 1; yPosAbove++) {
             for (int xPos = 0; xPos < cf.getMaxX(); xPos++) {
-                Pair<Integer, Integer> posAbove = new Pair<>(xPos, yPosAbove);
+                Position posAbove = new Position(xPos, yPosAbove);
                 String characterAbove = cf.getCharacterAt(posAbove);
                 if (BEAM.equals(characterAbove)) {
-                    Pair<Integer, Integer> potentialNewPos = new Pair<>(xPos, yPosAbove + 1);
+                    Position potentialNewPos = new Position(xPos, yPosAbove + 1);
                     String characterToBeProcessed = cf.getCharacterAt(potentialNewPos);
                     if (EMPTY.equals(characterToBeProcessed)) {
-                        Pair<Integer, Integer> newPos = new Pair<>(xPos, yPosAbove + 1);
+                        Position newPos = new Position(xPos, yPosAbove + 1);
                         cf.setCharacterAt(BEAM, newPos);
                         graph.addVertex(newPos);
                         graph.addEdge(posAbove, newPos);
@@ -117,13 +118,13 @@ public class Aoc2025_07 {
                         //graph.addVertex(potentialNewPos);
                         counter++;//TODO remove me
                         if (!SPLITTER.equals(cf.getCharacterAt(xPos - 1, yPosAbove + 1))) {
-                            Pair<Integer, Integer> newPos = new Pair<>(xPos - 1, yPosAbove + 1);
+                            Position newPos = new Position(xPos - 1, yPosAbove + 1);
                             cf.setCharacterAt(BEAM, newPos);
                             graph.addVertex(newPos);
                             graph.addEdge(posAbove, newPos);
                         }
                         if (!SPLITTER.equals(cf.getCharacterAt(xPos + 1, yPosAbove + 1))) {
-                            Pair<Integer, Integer> newPos = new Pair<>(xPos + 1, yPosAbove + 1);
+                            Position newPos = new Position(xPos + 1, yPosAbove + 1);
                             cf.setCharacterAt(BEAM, newPos);
                             graph.addVertex(newPos);
                             graph.addEdge(posAbove, newPos);

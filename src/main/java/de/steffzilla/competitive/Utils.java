@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -153,12 +153,12 @@ public class Utils {
         return true; // No duplicates encountered
     }
 
-    public static List<List<String>> createFilledDotMatrix(List<Pair<Integer, Integer>> points, int dimensionX, int dimensionY, String empty) {
+    public static List<List<String>> createFilledDotMatrix(List<Position> points, int dimensionX, int dimensionY, String empty) {
         List<List<String>> twoDimList = createEmptyMatrix(dimensionX, dimensionY, empty);
 
-        for (Pair<Integer, Integer> point : points) {
-            int x = point.getValue0();
-            int y = point.getValue1();
+        for (Position point : points) {
+            int x = (int) point.x();
+            int y = (int) point.y();
             List<String> list = twoDimList.get(y);
             list.set(x, "#");
         }
@@ -239,7 +239,7 @@ public class Utils {
         return sb.reverse().toString();
     }
 
-    public static int getManhattanDistance(Pair<Integer, Integer> endPoint, Pair<Integer, Integer> startPoint) {
-        return Math.abs(endPoint.getValue0() - startPoint.getValue0()) + Math.abs(endPoint.getValue1() - startPoint.getValue1());
+    public static long getManhattanDistance(Position endPoint, Position startPoint) {
+        return Math.abs(endPoint.x() - startPoint.x()) + Math.abs(endPoint.y() - startPoint.y());
     }
 }

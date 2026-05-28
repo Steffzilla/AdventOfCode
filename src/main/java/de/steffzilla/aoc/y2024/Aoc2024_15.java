@@ -4,6 +4,7 @@ import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.InputUtils;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.util.*;
 
@@ -26,7 +27,7 @@ public class Aoc2024_15 {
             #...O..#
             #......#
             ########
-            
+
             <^^>>>vv<v>>v<<
             """;
     public static final String ROBOT = "@";
@@ -39,7 +40,7 @@ public class Aoc2024_15 {
     public static final String DOWN = "v";
     public static final String UP = "^";
     public static final String EMPTY = ".";
-    private static Pair<Integer, Integer> robotPos;
+    private static Position robotPos;
 
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
@@ -70,7 +71,7 @@ public class Aoc2024_15 {
     }
 
     static void setRobotPosition(CharacterField cf) {
-        List<Pair<Integer, Integer>> positions = cf.searchCharacters(ROBOT);
+        List<Position> positions = cf.searchCharacters(ROBOT);
         if (positions.size() != 1) {
             throw new IllegalStateException("Robot position needs to be unique!" + positions.size());
         }
@@ -89,18 +90,16 @@ public class Aoc2024_15 {
                     moveRobot(cf, xDelta, yDelta);
                 }
             } else {
-                Queue<Pair<Integer, Integer>> boxesToBeMoved = new LinkedList<>();
+                Queue<Position> boxesToBeMoved = new LinkedList<>();
                 if (tryMovePart2(robotPos, xDelta, yDelta, boxesToBeMoved, cf)) {
-                    for (Pair<Integer, Integer> boxLeft : boxesToBeMoved) {
-                        Pair<Integer, Integer> boxRight = new Pair<>(boxLeft.getValue0() + 1, boxLeft.getValue1());
+                    for (Position boxLeft : boxesToBeMoved) {
+                        Position boxRight = new Position(boxLeft.x() + 1, boxLeft.y());
                         cf.setCharacterAt(EMPTY, boxLeft);
                         cf.setCharacterAt(EMPTY, boxRight);
                         // move left side
-                        cf.setCharacterAt(BIG_BOX_LEFT,
-                                new Pair<>(boxLeft.getValue0() + xDelta, boxLeft.getValue1() + yDelta));
+                        cf.setCharacterAt(BIG_BOX_LEFT, new Position(boxLeft.x() + xDelta, boxLeft.y() + yDelta));
                         // move right side
-                        cf.setCharacterAt(BIG_BOX_RIGHT,
-                                new Pair<>(boxRight.getValue0() + xDelta, boxRight.getValue1() + yDelta));
+                        cf.setCharacterAt(BIG_BOX_RIGHT, new Position(boxRight.x() + xDelta, boxRight.y() + yDelta));
                     }
                     moveRobot(cf, xDelta, yDelta);
                 }
@@ -132,15 +131,15 @@ public class Aoc2024_15 {
     }
 
     private static void moveRobot(CharacterField cf, int x, int y) {
-        Pair<Integer, Integer> oldPos = robotPos;
-        Pair<Integer, Integer> newPos = new Pair<>(robotPos.getValue0() + x, robotPos.getValue1() + y);
+        Position oldPos = robotPos;
+        Position newPos = new Position(robotPos.x() + x, robotPos.y() + y);
         cf.setCharacterAt(cf.getCharacterAt(oldPos), newPos);
         cf.setCharacterAt(EMPTY, oldPos);
         robotPos = newPos;
     }
 
-    static boolean tryMovePart1(Pair<Integer, Integer> oldPos, int x, int y, CharacterField cf) {
-        Pair<Integer, Integer> potentialNewPos = new Pair<>(oldPos.getValue0() + x, oldPos.getValue1() + y);
+    static boolean tryMovePart1(Position oldPos, int x, int y, CharacterField cf) {
+        Position potentialNewPos = new Position(oldPos.x() + x, oldPos.y() + y);
         String nextCharacter = cf.getCharacterAt(potentialNewPos);
         switch (nextCharacter) {
             case WALL -> {
@@ -155,7 +154,7 @@ public class Aoc2024_15 {
                 if (tryMovePart1(potentialNewPos, x, y, cf)) {
                     //System.out.println("do move:");
                     cf.setCharacterAt(cf.getCharacterAt(potentialNewPos),
-                            new Pair<>(potentialNewPos.getValue0() + x, potentialNewPos.getValue1() + y));
+                            new Position(potentialNewPos.x() + x, potentialNewPos.y() + y));
                     cf.setCharacterAt(EMPTY, potentialNewPos);
                     return true;
                 }
@@ -169,8 +168,8 @@ public class Aoc2024_15 {
      * Checks if the object at oldPos can be moved by the delta x and y.
      * Boxes that should potentially be moved are collected in boxesToBeMoved
      */
-    static boolean tryMovePart2(Pair<Integer, Integer> oldPos, int x, int y, Queue<Pair<Integer, Integer>> boxesToBeMoved, CharacterField cf) {
-        Pair<Integer, Integer> potentialNewPos = new Pair<>(oldPos.getValue0() + x, oldPos.getValue1() + y);
+    static boolean tryMovePart2(Position oldPos, int x, int y, Queue<Position> boxesToBeMoved, CharacterField cf) {
+        Position potentialNewPos = new Position(oldPos.x() + x, oldPos.y() + y);
         String nextCharacter = cf.getCharacterAt(potentialNewPos);
         switch (nextCharacter) {
             case WALL -> {
@@ -195,7 +194,7 @@ public class Aoc2024_15 {
                 boolean canMove = handleBigBox(x, y, cf, -1, potentialNewPos, boxesToBeMoved);
                 if (canMove) {
                     // collect the coordinates of the left side box the boxes that shall possibly be moved
-                    Pair<Integer, Integer> leftSideOfTheBox = new Pair<>(potentialNewPos.getValue0() - 1, potentialNewPos.getValue1());
+                    Position leftSideOfTheBox = new Position(potentialNewPos.x() - 1, potentialNewPos.y());
                     if (!boxesToBeMoved.contains(leftSideOfTheBox)) {
                         boxesToBeMoved.add(leftSideOfTheBox);
                     }
@@ -206,14 +205,13 @@ public class Aoc2024_15 {
         }
     }
 
-    private static boolean handleBigBox(int x, int y, CharacterField cf, int deltaOf2ndHalf, Pair<Integer, Integer> potentialNewPos, Queue<Pair<Integer, Integer>> boxesToBeMoved) {
+    private static boolean handleBigBox(int x, int y, CharacterField cf, int deltaOf2ndHalf, Position potentialNewPos, Queue<Position> boxesToBeMoved) {
         if (y == 0) {
             // horizontal case = easy case
             return tryMovePart2(potentialNewPos, x, y, boxesToBeMoved, cf);
         } else {
             // try to move both parts
-            Pair<Integer, Integer> potentialNewPos2ndHalf =
-                    new Pair<>(potentialNewPos.getValue0() + deltaOf2ndHalf, potentialNewPos.getValue1());
+            Position potentialNewPos2ndHalf = new Position(potentialNewPos.x() + deltaOf2ndHalf, potentialNewPos.y());
             return tryMovePart2(potentialNewPos, x, y, boxesToBeMoved, cf) &&
                     tryMovePart2(potentialNewPos2ndHalf, x, y, boxesToBeMoved, cf);
         }
@@ -221,9 +219,9 @@ public class Aoc2024_15 {
 
     static long sumOfGPSCoordinates(CharacterField characterField, String boxCharacter) {
         long sum = 0;
-        List<Pair<Integer, Integer>> boxes = characterField.searchCharacters(boxCharacter);
-        for (Pair<Integer, Integer> pos : boxes) {
-            sum += pos.getValue0() + pos.getValue1() * 100;
+        List<Position> boxes = characterField.searchCharacters(boxCharacter);
+        for (Position pos : boxes) {
+            sum += pos.x() + pos.y() * 100;
         }
         return sum;
     }

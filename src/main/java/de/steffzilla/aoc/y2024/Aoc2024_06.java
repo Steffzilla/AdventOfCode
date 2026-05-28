@@ -3,6 +3,7 @@ package de.steffzilla.aoc.y2024;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Aoc2024_06 {
     public static final String PATH = BASEDIR + FILENAME;
     public static final String BLOCKER = "#";
     private static Directions orientation;
-    private static HashSet<Pair<Integer, Integer>> distinctPositions;
+    private static HashSet<Position> distinctPositions;
 
     private enum Directions {
         UP,
@@ -39,7 +40,7 @@ public class Aoc2024_06 {
     static Pair<String, String> solve(List<String> inputLines) {
         distinctPositions = new HashSet<>();
         cf = new CharacterField(inputLines);
-        List<Pair<Integer, Integer>> positions = cf.searchCharacters("^");
+        List<Position> positions = cf.searchCharacters("^");
         if (positions.size() != 1) {
             throw new IllegalStateException("^ pos not found");
         }
@@ -50,7 +51,7 @@ public class Aoc2024_06 {
         return new Pair<>(result1, result2); // for testability
     }
 
-    static String part1(List<String> inputLines, Pair<Integer, Integer> currentPos) {
+    static String part1(List<String> inputLines, Position currentPos) {
         distinctPositions.add(currentPos);
         while (cf.isContained(currentPos)) {
             distinctPositions.add(currentPos);
@@ -61,12 +62,12 @@ public class Aoc2024_06 {
         return String.valueOf(distinctPositions.size());
     }
 
-    private static Pair<Integer, Integer> move(Pair<Integer, Integer> currentPos, CharacterField field) {
-        Pair<Integer, Integer> newPos = switch (orientation) {
-            case UP -> new Pair<>(currentPos.getValue0(), currentPos.getValue1() - 1);
-            case DOWN -> new Pair<>(currentPos.getValue0(), currentPos.getValue1() + 1);
-            case LEFT -> new Pair<>(currentPos.getValue0() - 1, currentPos.getValue1());
-            case RIGHT -> new Pair<>(currentPos.getValue0() + 1, currentPos.getValue1());
+    private static Position move(Position currentPos, CharacterField field) {
+        Position newPos = switch (orientation) {
+            case UP -> new Position(currentPos.x(), currentPos.y() - 1);
+            case DOWN -> new Position(currentPos.x(), currentPos.y() + 1);
+            case LEFT -> new Position(currentPos.x() - 1, currentPos.y());
+            case RIGHT -> new Position(currentPos.x() + 1, currentPos.y());
         };
         if (!field.isContained(newPos)) {
             return newPos; // way out found
@@ -83,25 +84,25 @@ public class Aoc2024_06 {
         return newPos;
     }
 
-    static String part2(Pair<Integer, Integer> startPos) {
+    static String part2(Position startPos) {
         long loopCount = 0;
 
-        for (Pair<Integer, Integer> newBlockerPos : distinctPositions) {
+        for (Position newBlockerPos : distinctPositions) {
             CharacterField newField = new CharacterField(cf);
             newField.setCharacterAt(BLOCKER, newBlockerPos);
             //System.out.println("Check if Block on " + newBlockerPos + " causes a loop");
             orientation = Directions.UP; // start orientation
-            if (checkForLoop(newField, new Pair<>(startPos.getValue0(), startPos.getValue1()))) loopCount++;
+            if (checkForLoop(newField, startPos)) loopCount++;
         }
         System.out.println("\nPart 2 > Result: " + loopCount);
         return String.valueOf(loopCount);
     }
 
-    private static boolean checkForLoop(CharacterField newField, Pair<Integer, Integer> currentPos) {
-        HashSet<Pair<Pair<Integer, Integer>, Directions>> positionsForLoopDetection = new HashSet<>();
+    private static boolean checkForLoop(CharacterField newField, Position currentPos) {
+        HashSet<Pair<Position, Directions>> positionsForLoopDetection = new HashSet<>();
         int oldSize = 0;
         while (newField.isContained(currentPos)) {
-            positionsForLoopDetection.add(new Pair<>(new Pair<>(currentPos.getValue0(), currentPos.getValue1()), orientation));
+            positionsForLoopDetection.add(new Pair<>(currentPos, orientation));
             if(oldSize == positionsForLoopDetection.size()) {
                 return true;
             } else {

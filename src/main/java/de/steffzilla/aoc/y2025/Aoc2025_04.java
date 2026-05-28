@@ -3,6 +3,7 @@ package de.steffzilla.aoc.y2025;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,18 +65,18 @@ public class Aoc2025_04 {
     }
 
     private static long removeRolls(CharacterField cf) {
-        HashSet<Pair<Integer, Integer>> toBeRemoved = new HashSet<>();
+        HashSet<Position> toBeRemoved = new HashSet<>();
         for (int y = 0; y < cf.getMaxY(); y++) {
             for (int x = 0; x < cf.getMaxX(); x++) {
                 if (!cf.getCharacterAt(x, y).equals(ROLL)) continue;
                 List<String> surroundingChars = cf.getNeighborChars(x, y);
                 int frequency = Collections.frequency(surroundingChars, ROLL);
                 if (frequency < 4) {
-                    toBeRemoved.add(new Pair<>(x, y));
+                    toBeRemoved.add(new Position(x, y));
                 }
             }
         }
-        for (Pair<Integer, Integer> posToBeRemoved : toBeRemoved) {
+        for (Position posToBeRemoved : toBeRemoved) {
             cf.setCharacterAt(".", posToBeRemoved);
         }
         return toBeRemoved.size();

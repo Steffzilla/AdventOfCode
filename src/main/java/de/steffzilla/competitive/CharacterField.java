@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.util.*;
 
@@ -100,13 +100,13 @@ public class CharacterField {
         this.maxY = maxY;
     }
 
-    public List<Pair<Integer, Integer>> searchCharacters(String character) {
-        List<Pair<Integer, Integer>> list = new ArrayList<>();
+    public List<Position> searchCharacters(String character) {
+        List<Position> list = new ArrayList<>();
         if (character != null) {
             for (int y = 0; y < maxY; y++) {
                 for (int x = 0; x < maxX; x++) {
                     if (character.equals(getCharacterAt(x, y))) {
-                        list.add(new Pair<>(x, y));
+                        list.add(new Position(x, y));
                     }
                 }
             }
@@ -130,15 +130,15 @@ public class CharacterField {
         return chars;
     }
 
-    public Map<Pair<Integer, Integer>, String> getNeighbors(int x, int y) {
+    public Map<Position, String> getNeighbors(int x, int y) {
         return getNeighbors(x, y, null);
     }
 
-    public Map<Pair<Integer, Integer>, String> getNeighbors(int x, int y, String ignoreChar) {
+    public Map<Position, String> getNeighbors(int x, int y, String ignoreChar) {
         if (!isContained(x, y)) {
             throw new IllegalStateException("These coordinates are out of Bounds: " + x + "," + y);
         }
-        HashMap<Pair<Integer, Integer>, String> fields = new HashMap<>();
+        HashMap<Position, String> fields = new HashMap<>();
         for (int yPos = y - 1; yPos <= y + 1; yPos++) {
             for (int xPos = x - 1; xPos <= x + 1; xPos++) {
                 if (yPos == y && xPos == x) {
@@ -147,7 +147,7 @@ public class CharacterField {
                 if (isContained(xPos, yPos)) {
                     String characterFound = getCharacterAt(xPos, yPos);
                     if (ignoreChar!=null && ignoreChar.equals(characterFound)) continue;
-                    fields.put(new Pair<>(xPos, yPos), characterFound);
+                    fields.put(new Position(xPos, yPos), characterFound);
                 }
             }
         }
@@ -173,8 +173,8 @@ public class CharacterField {
         }
     }
 
-    public boolean isContained(Pair<Integer, Integer> pos) {
-        return isContained(pos.getValue0(), pos.getValue1());
+    public boolean isContained(Position pos) {
+        return isContained((int) pos.x(), (int) pos.y());
     }
 
     public boolean isContained(int x, int y) {
@@ -185,16 +185,16 @@ public class CharacterField {
         return field.get(y).contains(charSequence);
     }
 
-    public String getCharacterAt(Pair<Integer, Integer> pos) {
-        return getCharacterAt(pos.getValue0(), pos.getValue1());
+    public String getCharacterAt(Position pos) {
+        return getCharacterAt((int) pos.x(), (int) pos.y());
     }
 
     public String getCharacterAt(int x, int y) {
         return field.get(y).substring(x, x + 1);
     }
 
-    public void setCharacterAt(String newCharacter, Pair<Integer, Integer> pos) {
-        setCharacterAt(newCharacter, pos.getValue0(), pos.getValue1());
+    public void setCharacterAt(String newCharacter, Position pos) {
+        setCharacterAt(newCharacter, (int) pos.x(), (int) pos.y());
     }
 
     public void setCharacterAt(String newCharacter, int x, int y) {

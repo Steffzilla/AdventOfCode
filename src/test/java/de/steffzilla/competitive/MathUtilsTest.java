@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import de.steffzilla.competitive.Triplet;
+import de.steffzilla.competitive.Position3D;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -56,34 +56,34 @@ public class MathUtilsTest {
 
     @Test
     public void testEuclideanDistance3D() {
-        Triplet<Integer, Integer, Integer> p1 = new Triplet<>(10, 10, 10);
+        Position3D p1 = new Position3D(10, 10, 10);
         assertEquals(0d, MathUtils.euclideanDistance3D(p1, p1));
 
-        p1 = new Triplet<>(0, 0, 0);
-        Triplet<Integer, Integer, Integer> p2 = new Triplet<>(5, 0, 0);
+        p1 = new Position3D(0, 0, 0);
+        Position3D p2 = new Position3D(5, 0, 0);
 
         assertEquals(5d, MathUtils.euclideanDistance3D(p1, p2));
 
-        p1 = new Triplet<>(1, 2, 3);
-        p2 = new Triplet<>(4, 6, 15);
+        p1 = new Position3D(1, 2, 3);
+        p2 = new Position3D(4, 6, 15);
 
         assertEquals(13d, MathUtils.euclideanDistance3D(p1, p2));
 
-        p1 = new Triplet<>(3, -4, 1);
-        p2 = new Triplet<>(-3, 4, 1);
+        p1 = new Position3D(3, -4, 1);
+        p2 = new Position3D(-3, 4, 1);
 
         assertEquals(10d, MathUtils.euclideanDistance3D(p1, p2));
 
         // test large coordinates overflow risk
-        p1 = new Triplet<>(1_000_000_000, 0, 0);
-        p2 = new Triplet<>(-1_000_000_000, 0, 0);
+        p1 = new Position3D(1_000_000_000, 0, 0);
+        p2 = new Position3D(-1_000_000_000, 0, 0);
 
         // dx = -2000000000, Abstand = 2000000000
         assertEquals(2_000_000_000d, MathUtils.euclideanDistance3D(p1, p2), 0.000001);
 
         // test with Integer Max and Min
-        p1 = new Triplet<>(Integer.MAX_VALUE, 0, 0);
-        p2 = new Triplet<>(Integer.MIN_VALUE, 0, 0);
+        p1 = new Position3D(Integer.MAX_VALUE, 0, 0);
+        p2 = new Position3D(Integer.MIN_VALUE, 0, 0);
 
         long dx = (long) Integer.MIN_VALUE - (long) Integer.MAX_VALUE;
         double expected = Math.sqrt((double) dx * dx);
@@ -91,8 +91,8 @@ public class MathUtilsTest {
         assertEquals(expected, MathUtils.euclideanDistance3D(p1, p2), 0.000001);
 
         // test symmetric negative positive
-        p1 = new Triplet<>(-1000, -1000, -1000);
-        p2 = new Triplet<>(1000, 1000, 1000);
+        p1 = new Position3D(-1000, -1000, -1000);
+        p2 = new Position3D(1000, 1000, 1000);
 
         expected = Math.sqrt(
                 2000d * 2000d +

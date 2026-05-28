@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 public class InputUtils {
 
@@ -106,22 +107,22 @@ public class InputUtils {
         return new Pair<>(beforeEmptyLine, afterEmptyLine);
     }
 
-    public static List<Pair<Integer, Integer>> readLinesAsCoordinates(List<String> inputLines) {
+    public static List<Position> readLinesAsCoordinates(List<String> inputLines) {
         return readLinesAsCoordinates(inputLines, Integer.MAX_VALUE);
     }
 
     /**
      * Returns the lines as coordinates including line number untilLineNumber.
      */
-    public static List<Pair<Integer, Integer>> readLinesAsCoordinates(List<String> inputLines, int untilLineNumber) {
-        List<Pair<Integer, Integer>> coordinates = new ArrayList<>();
+    public static List<Position> readLinesAsCoordinates(List<String> inputLines, int untilLineNumber) {
+        List<Position> coordinates = new ArrayList<>();
         int lineNumber = 1;
         for (String line : inputLines) {
             if (lineNumber > untilLineNumber) {
                 break;
             }
             String[] parts = line.split(",");
-            coordinates.add(new Pair<>(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])));
+            coordinates.add(new Position(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])));
             lineNumber++;
         }
         return coordinates;

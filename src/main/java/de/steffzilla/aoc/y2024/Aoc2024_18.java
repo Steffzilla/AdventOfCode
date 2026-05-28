@@ -4,6 +4,7 @@ import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 import de.steffzilla.competitive.InputUtils;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.BFSShortestPath;
@@ -54,9 +55,9 @@ public class Aoc2024_18 {
     }
 
     private static String part1(List<String> inputLines) {
-        List<Pair<Integer, Integer>> coordinates = InputUtils.readLinesAsCoordinates(inputLines, numberOfBytesPart1);
+        List<Position> coordinates = InputUtils.readLinesAsCoordinates(inputLines, numberOfBytesPart1);
         CharacterField cf = new CharacterField(maxXCoordinate + 1, maxYCoordinate + 1, ".");
-        for (Pair<Integer, Integer> blockingByte : coordinates) {
+        for (Position blockingByte : coordinates) {
             cf.setCharacterAt(BLOCKING, blockingByte);
         }
         //cf.prettyPrint();
@@ -70,12 +71,12 @@ public class Aoc2024_18 {
     }
 
     private static String part2(List<String> inputLines) {
-        List<Pair<Integer, Integer>> coordinates = InputUtils.readLinesAsCoordinates(inputLines);
+        List<Position> coordinates = InputUtils.readLinesAsCoordinates(inputLines);
         CharacterField cf = new CharacterField(maxXCoordinate + 1, maxYCoordinate + 1, ".");
         // from part 1 we know that there is a path for the first numberOfBytesPart1 blocking bytes
         int i = 0;
         while (i < numberOfBytesPart1) {
-            Pair<Integer, Integer> blockingByte = coordinates.get(i);
+            Position blockingByte = coordinates.get(i);
             cf.setCharacterAt(BLOCKING, blockingByte);
             i++;
         }
@@ -83,7 +84,7 @@ public class Aoc2024_18 {
         String result = "";
         while (i < coordinates.size()) {
             // add one more byte
-            Pair<Integer, Integer> blockingByte = coordinates.get(i);
+            Position blockingByte = coordinates.get(i);
             cf.setCharacterAt(BLOCKING, blockingByte);
 
             Graph<Pair<Integer, Integer>, DefaultEdge> graph = CharacterFieldUtils.calculateUndirectedGraph(cf, BLOCKING);
@@ -91,7 +92,7 @@ public class Aoc2024_18 {
             GraphPath<Pair<Integer, Integer>, DefaultEdge> path =
                     bsfShortestPath.getPath(new Pair<>(0, 0), new Pair<>(maxXCoordinate, maxYCoordinate));
             if (path == null) {
-                result = blockingByte.getValue0() + "," + blockingByte.getValue1();
+                result = blockingByte.x() + "," + blockingByte.y();
                 break;
             }
             i++;

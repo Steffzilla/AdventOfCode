@@ -1,7 +1,7 @@
 package de.steffzilla.competitive;
 
 import de.steffzilla.competitive.Pair;
-import de.steffzilla.competitive.Triplet;
+import de.steffzilla.competitive.Position3D;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -100,10 +100,10 @@ public class MathUtils {
         return primes;
     }
 
-    public static double euclideanDistance3D(Triplet<Integer, Integer, Integer> p1, Triplet<Integer, Integer, Integer> p2) {
-        long dx = (long) p2.getValue0() - p1.getValue0();
-        long dy = (long) p2.getValue1() - p1.getValue1();
-        long dz = (long) p2.getValue2() - p1.getValue2();
+    public static double euclideanDistance3D(Position3D p1, Position3D p2) {
+        long dx = p2.x() - p1.x();
+        long dy = p2.y() - p1.y();
+        long dz = p2.z() - p1.z();
         return Math.sqrt((double) dx * dx + (double) dy * dy + (double) dz * dz);
     }
 

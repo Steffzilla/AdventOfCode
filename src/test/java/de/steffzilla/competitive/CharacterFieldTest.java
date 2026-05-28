@@ -1,6 +1,6 @@
 package de.steffzilla.competitive;
 
-import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -50,7 +50,7 @@ public class CharacterFieldTest {
     @Test
     public void testGetNeighbors() {
         CharacterField characterField = new CharacterField(Arrays.asList("ABCD","EFGH","IJKL"));
-        Map<Pair<Integer, Integer>, String> neighbors =
+        Map<Position, String> neighbors =
                 characterField.getNeighbors(0, 0);
         assertEquals(3, neighbors.size());
         assertTrue(neighbors.containsValue("B"));
@@ -104,9 +104,9 @@ public class CharacterFieldTest {
     @Test
     public void testSearchCharacters() {
         CharacterField characterField = new CharacterField(Arrays.asList("....", "S...", "...."));
-        List<Pair<Integer, Integer>> s = characterField.searchCharacters("S");
+        List<Position> s = characterField.searchCharacters("S");
         assertTrue(s!=null && s.size()==1);
-        assertEquals(new Pair<>(0,1), s.getFirst());
+        assertEquals(new Position(0, 1), s.getFirst());
         s = characterField.searchCharacters(".");
         assertTrue(s!=null && s.size()==11);
     }

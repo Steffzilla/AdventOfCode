@@ -2,6 +2,7 @@ package de.steffzilla.aoc.y2021;
 
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class Aoc2021_13 {
         List<List<String>> paper;
         Pattern pattern = Pattern.compile("fold along (x|y){1}=(\\d{1,3})");
         List<Pair<String, Integer>> foldings = new ArrayList<>();
-        List<Pair<Integer, Integer>> points = new ArrayList<>();
+        List<Position> points = new ArrayList<>();
         int maxX = 0;
         int maxY = 0;
         for (String line : inputLines) {
@@ -39,7 +40,7 @@ public class Aoc2021_13 {
                 if (y > maxY) {
                     maxY = y;
                 }
-                points.add(new Pair<>(x,y));
+                points.add(new Position(x, y));
             } else if(line.startsWith("fold along")) {
                 Matcher matcher = pattern.matcher(line);
                 matcher.find();
