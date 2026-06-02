@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
@@ -22,10 +23,14 @@ public class Aoc2024_02 {
         List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines) {
         int counter = 0;
         for (String line : inputLines) {
             List<Integer> numbers = new ArrayList<>();
@@ -37,6 +42,7 @@ public class Aoc2024_02 {
             if (isIncreasing(numbers) || isDecreasing(numbers)) counter++;
         }
         System.out.println("\nPart 1 > Result: " + counter);
+        return String.valueOf(counter);
     }
 
     private static boolean isDecreasing(List<Integer> numbers) {
@@ -60,7 +66,7 @@ public class Aoc2024_02 {
     }
 
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         int counter = 0;
         for (String line : inputLines) {
             List<Integer> numbers = new ArrayList<>();
@@ -79,6 +85,7 @@ public class Aoc2024_02 {
             }
         }
         System.out.println("\nPart 2 > Result: " + counter);
+        return String.valueOf(counter);
     }
 
 }

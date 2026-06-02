@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
@@ -24,14 +25,16 @@ public class Aoc2024_05 {
         System.out.println(DAY + ".12." + YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
 
-        map = new HashMap<>();
-        incorrectOrder = new ArrayList<>();
-
-        part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        map = new HashMap<>();
+        incorrectOrder = new ArrayList<>();
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines) {
         boolean orderingRules = true;
         long count = 0;
         for (String line : inputLines) {
@@ -55,6 +58,7 @@ public class Aoc2024_05 {
             }
         }
         System.out.println("\nPart 1 > Result: " + count);
+        return String.valueOf(count);
     }
 
     private static boolean isOrderOk(List<Integer> pageNumbers) {
@@ -109,7 +113,7 @@ public class Aoc2024_05 {
         return null;
     }
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         long count = 0;
 
         for (List<Integer> incorrectLine : incorrectOrder) {
@@ -117,6 +121,7 @@ public class Aoc2024_05 {
             count += correctOrder.get(correctOrder.size() / 2);
         }
         System.out.println("\nPart 2 > Result: " + count);
+        return String.valueOf(count);
     }
 
 }

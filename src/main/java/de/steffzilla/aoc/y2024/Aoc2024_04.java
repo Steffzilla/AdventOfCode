@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 
@@ -40,14 +41,16 @@ public class Aoc2024_04 {
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
-        cf = new CharacterField(inputLines);
-        //cf = new CharacterField(examplePart2Wrong);
-
-        part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        //cf = new CharacterField(examplePart2Wrong);
+        cf = new CharacterField(inputLines);
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines) {
         long count = 0;
 
         for (int y = 0; y < cf.getMaxY(); y++) {
@@ -59,6 +62,7 @@ public class Aoc2024_04 {
             }
         }
         System.out.println("\nPart 1 > Result: " + count);
+        return String.valueOf(count);
     }
 
     private static long numberOfWordsStartingHere(int x, int y) {
@@ -131,7 +135,7 @@ public class Aoc2024_04 {
     }
 
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         long count = 0;
 
         for (int y = 0; y < cf.getMaxY(); y++) {
@@ -141,6 +145,7 @@ public class Aoc2024_04 {
             }
         }
         System.out.println("\nPart 2 > Result: " + count);
+        return String.valueOf(count);
     }
 
     private static boolean isPart2Xmas(int x, int y) {

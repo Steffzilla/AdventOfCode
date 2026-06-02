@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2024;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
@@ -20,24 +21,29 @@ public class Aoc2024_03 {
     public static final String DO = "do()";
     public static final String DON_T = "don't()";
 
-    private static long sum = 0;
-
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
 
         //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines) {
+        long sum = 0;
         for (String line : inputLines) {
-            processString(line);
+            sum += processString(line);
         }
         System.out.println("\nPart 1 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
-    private static void processString(String line) {
+    private static long processString(String line) {
+        long sum = 0;
         Pattern pattern = Pattern.compile("(mul\\(\\d*,\\d*\\))");
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
@@ -47,11 +53,12 @@ public class Aoc2024_03 {
             sum += (long) Integer.parseInt(split[0]) * Integer.parseInt(split[1]);
             //System.out.println(statement);
         }
+        return sum;
     }
 
 
-    private static void part2(List<String> inputLines) {
-        sum = 0;
+    private static String part2(List<String> inputLines) {
+        long sum = 0;
         boolean doProcess = true;
         List<String> toBeProcessed = new ArrayList<>();
         for (String line : inputLines) {
@@ -86,10 +93,11 @@ public class Aoc2024_03 {
             }
         }
         for (String statement : toBeProcessed) {
-            processString(statement);
+            sum += processString(statement);
         }
 
         System.out.println("\nPart 2 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
 }
