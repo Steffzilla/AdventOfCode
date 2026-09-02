@@ -1,0 +1,3 @@
+# Store all text files with LF in the repository and check them out with LF,
+# regardless of each workstation's core.autocrlf setting.
+* text=auto eol=lf
