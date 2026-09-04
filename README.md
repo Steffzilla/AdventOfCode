@@ -14,3 +14,7 @@ Started in 2021
 - Graph related utils
 - Class that represents a 2D character field
 - Some test classes
+
+## AI assistance
+- All solutions are implemented by me
+- Sometimes I use AI assistance for refactorings and such
