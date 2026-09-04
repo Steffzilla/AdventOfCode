@@ -2,3 +2,7 @@
 /.idea/
 *.iml
 /target/
+/.claude/
+
+# Don't publish AoC solutions
+/src/test/resources/
