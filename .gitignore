@@ -6,3 +6,6 @@
 
 # Don't publish AoC solutions
 /src/test/resources/
+
+# Don't publish puzzle inputs
+/input/
