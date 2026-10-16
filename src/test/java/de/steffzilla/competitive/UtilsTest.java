@@ -24,6 +24,12 @@ class UtilsTest {
     }
 
     @Test
+    void testInputDir() {
+        Assertions.assertEquals("input/AoC/2024/", Utils.inputDir("AoC", "2024"));
+        Assertions.assertEquals("input/EC/2025/", Utils.inputDir("EC", "2025"));
+    }
+
+    @Test
     void testCountCharInString() {
         long l = Utils.countCharInString("aaAAAccA", 'A');
         Assertions.assertEquals(4, l);

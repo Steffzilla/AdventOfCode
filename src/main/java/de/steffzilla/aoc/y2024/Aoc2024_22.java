@@ -2,6 +2,7 @@ package de.steffzilla.aoc.y2024;
 
 import de.steffzilla.competitive.InputUtils;
 import de.steffzilla.competitive.Pair;
+import de.steffzilla.competitive.Utils;
 
 import java.util.List;
 
@@ -9,8 +10,7 @@ public class Aoc2024_22 {
 
     private static final String DAY = "22";
     private static final String YEAR = "2024";
-    private static final String USERNAME = System.getProperty("user.name");
-    public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
+    public static final String BASEDIR = Utils.inputDir("AoC", YEAR);
     public static final String INPUT_FILENAME = "input" + YEAR + "_" + DAY + ".txt";
 
     static final String example = """

@@ -10,8 +10,7 @@ public class EC2025Day01 {
 
     private static final String DAY = "01";
     private static final String YEAR = "2025";
-    private static final String USERNAME = System.getProperty("user.name");
-    public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//EC//" + YEAR + "//";
+    public static final String BASEDIR = Utils.inputDir("EC", YEAR);
     public static final String FILENAME_BASE = "everybody_codes_e" + YEAR + "_q" + DAY + "_p";
     public static final String PATH = BASEDIR + FILENAME_BASE;
 

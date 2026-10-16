@@ -61,6 +61,10 @@ public class Utils {
         }
     }
 
+    public static String inputDir(String contest, String year) {
+        return "input/" + contest + "/" + year + "/";
+    }
+
     public static long countLines(String fileName) {
         Path path = Paths.get(fileName);
         long numberOfLines = 0;

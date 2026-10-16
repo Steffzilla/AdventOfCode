@@ -8,8 +8,7 @@ public class Aoc2021_6 {
 
     private static final String DAY = "06";
     private static final String YEAR = "2021";
-    private static final String USERNAME = System.getProperty("user.name");
-    public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
+    public static final String BASEDIR = Utils.inputDir("AoC", YEAR);
     public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
     public static String PATH = BASEDIR + FILENAME;

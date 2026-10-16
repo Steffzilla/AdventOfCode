@@ -10,8 +10,7 @@ public class Aoc2023_13 {
 
     private static final String DAY = "13";
     private static final String YEAR = "2023";
-    private static final String USERNAME = System.getProperty("user.name");
-    public static final String BASEDIR = "C://Users//" + USERNAME + "//Downloads//AoC" + YEAR + "//";
+    public static final String BASEDIR = Utils.inputDir("AoC", YEAR);
     //public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     public static final String FILENAME = "sample" + YEAR + "_" + DAY + ".txt";
     public static final String PATH = BASEDIR + FILENAME;
