@@ -138,7 +138,7 @@ public class Aoc2025_08 {
         for (String line : inputLines) {
             String[] split = line.split(",");
             Position3D box =
-                    new Position3D(Integer.valueOf(split[0]), Integer.valueOf(split[1]), Integer.valueOf(split[2]));
+                    new Position3D(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
             boxes.add(box);
         }
         return boxes;
