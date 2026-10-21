@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class Aoc2024_08 {
 
@@ -48,9 +49,9 @@ public class Aoc2024_08 {
         HashMap<String, List<Pair<Integer, Integer>>> antennaPositions = readPositions(cf);
         HashSet<Pair<Integer, Integer>> antinodePositions = new HashSet<>();
 
-        for (String frequency : antennaPositions.keySet()) {
-            System.out.print(frequency + ": ");
-            List<Pair<Integer, Integer>> pairs = antennaPositions.get(frequency);
+        for (Map.Entry<String, List<Pair<Integer, Integer>>> entry : antennaPositions.entrySet()) {
+            System.out.print(entry.getKey() + ": ");
+            List<Pair<Integer, Integer>> pairs = entry.getValue();
             System.out.println(pairs);
             for (int outerIter = 0; outerIter < pairs.size(); outerIter++) {
                 for (int innerIter = outerIter + 1; innerIter < pairs.size(); innerIter++) {
@@ -93,9 +94,9 @@ public class Aoc2024_08 {
         HashMap<String, List<Pair<Integer, Integer>>> antennaPositions = readPositions(cf);
         HashSet<Pair<Integer, Integer>> antinodePositions = new HashSet<>();
 
-        for (String frequency : antennaPositions.keySet()) {
-            System.out.print(frequency + ": ");
-            List<Pair<Integer, Integer>> pairs = antennaPositions.get(frequency);
+        for (Map.Entry<String, List<Pair<Integer, Integer>>> entry : antennaPositions.entrySet()) {
+            System.out.print(entry.getKey() + ": ");
+            List<Pair<Integer, Integer>> pairs = entry.getValue();
             System.out.println(pairs);
             for (int outerIter = 0; outerIter < pairs.size(); outerIter++) {
                 for (int innerIter = outerIter + 1; innerIter < pairs.size(); innerIter++) {

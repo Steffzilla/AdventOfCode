@@ -66,11 +66,12 @@ public class Aoc2022_21 {
         boolean hasChanged = true;
         while (hasChanged) {
             hasChanged = false;
-            for (String monkeysName : monkeyTasks.keySet()) {
+            for (Map.Entry<String, MonkeyTask> entry : monkeyTasks.entrySet()) {
+                String monkeysName = entry.getKey();
                 if (ignoreHumn && monkeysName.equals(HUMAN)) {
                     continue;
                 }
-                MonkeyTask task = monkeyTasks.get(monkeysName);
+                MonkeyTask task = entry.getValue();
                 MonkeyTask updatedTask = processTask(monkeyTasks, task);
                 if (!task.equals(updatedTask)) {
                     monkeyTasks.replace(monkeysName, updatedTask);
