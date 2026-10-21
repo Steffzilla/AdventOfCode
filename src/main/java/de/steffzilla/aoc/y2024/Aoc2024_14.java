@@ -19,8 +19,6 @@ public class Aoc2024_14 {
 
     static int part1Moves = 100;
     static int part2Moves = 100000;
-    static int fieldDimensionX = 101;
-    static int fieldDimensionY = 103;
     static List<Robot> robots;
 
     public static void main(String[] args) {
@@ -31,17 +29,21 @@ public class Aoc2024_14 {
     }
 
     static Pair<String, String> solve(List<String> inputLines) {
-        List<List<Integer>> inputData = InputUtils.readLinesAsIntegers("^p=(-?\\d*),(-?\\d*) v=(-?\\d*),(-?\\d*)", inputLines);
-        return new Pair<>(part1(inputData), part2(inputData));
+        return solve(inputLines, 101, 103);
     }
 
-    private static String part1(List<List<Integer>> inputLines) {
+    static Pair<String, String> solve(List<String> inputLines, int fieldDimensionX, int fieldDimensionY) {
+        List<List<Integer>> inputData = InputUtils.readLinesAsIntegers("^p=(-?\\d*),(-?\\d*) v=(-?\\d*),(-?\\d*)", inputLines);
+        return new Pair<>(part1(inputData, fieldDimensionX, fieldDimensionY), part2(inputData, fieldDimensionX, fieldDimensionY));
+    }
+
+    private static String part1(List<List<Integer>> inputLines, int fieldDimensionX, int fieldDimensionY) {
         setupInitialRobotState(inputLines);
         for (int i = 0; i < part1Moves; i++) {
-            moveRobots(robots);
+            moveRobots(robots, fieldDimensionX, fieldDimensionY);
         }
         // In which quadrant are the robots
-        long safetyFactor = calculateSafetyFactor(robots);
+        long safetyFactor = calculateSafetyFactor(robots, fieldDimensionX, fieldDimensionY);
         System.out.println("\nPart 1 > Result: " + safetyFactor);
         return String.valueOf(safetyFactor);
     }
@@ -54,7 +56,7 @@ public class Aoc2024_14 {
         }
     }
 
-    private static long calculateSafetyFactor(List<Robot> robots) {
+    private static long calculateSafetyFactor(List<Robot> robots, int fieldDimensionX, int fieldDimensionY) {
         long q1 = 0;
         long q2 = 0;
         long q3 = 0;
@@ -79,7 +81,7 @@ public class Aoc2024_14 {
         return q1 * q2 * q3 * q4;
     }
 
-    private static void moveRobots(List<Robot> robots) {
+    private static void moveRobots(List<Robot> robots, int fieldDimensionX, int fieldDimensionY) {
         for (Robot robot : robots) {
             int x = robot.posX + robot.velX;
             if (x >= fieldDimensionX) { // the max value is out of bounds
@@ -98,12 +100,12 @@ public class Aoc2024_14 {
         }
     }
 
-    private static String part2(List<List<Integer>> inputLines) {
+    private static String part2(List<List<Integer>> inputLines, int fieldDimensionX, int fieldDimensionY) {
         long count = 0;
         setupInitialRobotState(inputLines);
         for (int i = 1; i <= part2Moves; i++) {
-            moveRobots(robots);
-            if (searchLine(robots)) {
+            moveRobots(robots, fieldDimensionX, fieldDimensionY);
+            if (searchLine(robots, fieldDimensionX, fieldDimensionY)) {
                 count = i;
                 break;
             }
@@ -112,7 +114,7 @@ public class Aoc2024_14 {
         return String.valueOf(count);
     }
 
-    private static boolean searchLine(List<Robot> robots) {
+    private static boolean searchLine(List<Robot> robots, int fieldDimensionX, int fieldDimensionY) {
         CharacterField cf = new CharacterField(fieldDimensionX, fieldDimensionY, ".");
         for (Robot robot : robots) {
             cf.setCharacterAt("#", robot.posX, robot.posY);

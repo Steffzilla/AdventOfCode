@@ -64,19 +64,15 @@ public class Aoc2024_14Test {
 
     @Test
     public void testQuadrants() {
-        Aoc2024_14.fieldDimensionX = 11;
-        Aoc2024_14.fieldDimensionY = 7;
-        Pair<String, String> solutions = Aoc2024_14.solve(testQ.lines().toList());
+        Pair<String, String> solutions = Aoc2024_14.solve(testQ.lines().toList(), 11, 7);
         assertEquals("16", solutions.getValue0());
-        solutions = Aoc2024_14.solve(testQExample.lines().toList());
+        solutions = Aoc2024_14.solve(testQExample.lines().toList(), 11, 7);
         assertEquals("12", solutions.getValue0());
     }
 
     @Test
     public void testSolveExample() {
-        Aoc2024_14.fieldDimensionX = 11;
-        Aoc2024_14.fieldDimensionY = 7;
-        Pair<String, String> solutions = Aoc2024_14.solve(sample.lines().toList());
+        Pair<String, String> solutions = Aoc2024_14.solve(sample.lines().toList(), 11, 7);
         assertEquals("12", solutions.getValue0());
     }
 
