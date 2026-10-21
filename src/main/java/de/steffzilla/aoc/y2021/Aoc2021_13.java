@@ -16,7 +16,7 @@ public class Aoc2021_13 {
     public static final String BASEDIR = Utils.inputDir("AoC", YEAR);
     public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
-    public static String PATH = BASEDIR + FILENAME;
+    public static final String PATH = BASEDIR + FILENAME;
     public static final String HASH = "#";
 
     public static void main(String[] args) {

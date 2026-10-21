@@ -14,7 +14,7 @@ public class Aoc2021_11 {
     public static final String BASEDIR = Utils.inputDir("AoC", YEAR);
     public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
-    public static String PATH = BASEDIR + FILENAME;
+    public static final String PATH = BASEDIR + FILENAME;
     public static final int X_DIMENSION = 10;
     private static final int NUMBER_OF_ROUNDS=500;
 

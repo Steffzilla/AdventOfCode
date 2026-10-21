@@ -16,7 +16,7 @@ public class Aoc2020_4 {
     //public static String FILENAME = "sample2020_4.txt";
     //public static String FILENAME = "sample2020_4_2.txt";
     //public static String FILENAME = "sample2020_4_3.txt";
-    public static String PATH = BASEDIR + FILENAME;
+    public static final String PATH = BASEDIR + FILENAME;
 
     public static void main(String[] args) {
         List<String> stringList = Utils.getStringList(PATH);

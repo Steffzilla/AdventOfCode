@@ -13,7 +13,7 @@ public class Aoc2021_15 {
     public static final String BASEDIR = Utils.inputDir("AoC", YEAR);
     //public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
-    public static String PATH = BASEDIR + FILENAME;
+    public static final String PATH = BASEDIR + FILENAME;
     private final static int FACTOR = 5;
 
     public static void main(String[] args) {

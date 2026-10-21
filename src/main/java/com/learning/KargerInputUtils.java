@@ -9,7 +9,7 @@ import java.util.List;
 
 public class KargerInputUtils {
     public static BufferedReader reader;
-    public static String FILE_PATH = "KargerAlgorithmInput.txt";
+    public static final String FILE_PATH = "KargerAlgorithmInput.txt";
 
     public static void initInputReader() {
         try {

@@ -13,7 +13,7 @@ public class Aoc2019_02 {
     public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
     public static final String PATH = BASEDIR + FILENAME;
-    public static int REQUIRED_OUTPUT_PART2 = 19690720;
+    public static final int REQUIRED_OUTPUT_PART2 = 19690720;
 
 
     private static long[] numbers;

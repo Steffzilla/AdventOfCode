@@ -15,7 +15,7 @@ public class Aoc2021_12 {
     public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     //public static String FILENAME = "sample2021_12_3.txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
-    public static String PATH = BASEDIR + FILENAME;
+    public static final String PATH = BASEDIR + FILENAME;
     private static Set<String> pathsPart2;
 
     public static void main(String[] args) {
