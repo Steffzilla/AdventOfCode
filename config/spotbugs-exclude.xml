@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter
+        xmlns="https://github.com/spotbugs/filter/3.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/3.1.0/spotbugs/etc/findbugsfilter.xsd">
+
+    <!-- Global: patterns without value for puzzle code (no external callers, no untrusted code, no Java serialization) -->
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2,CT_CONSTRUCTOR_THROW,SE_COMPARATOR_SHOULD_BE_SERIALIZABLE"/>
+    </Match>
+
+    <!-- Individual: findings in code without test coverage; remove an entry once the code is tested and fixed -->
+    <Match>
+        <Class name="com.learning.KargerAlgorithm"/>
+        <Or>
+            <Method name="chooseNeighborAtRandom"/>
+            <Method name="chooseNodeAtRandom"/>
+        </Or>
+        <Bug pattern="DMI_RANDOM_USED_ONLY_ONCE"/>
+    </Match>
+    <Match>
+        <Class name="com.learning.KargerInputUtils"/>
+        <Field name="reader"/>
+        <Bug pattern="MS_PKGPROTECT,PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2020.Aoc2020_3"/>
+        <Method name="getNumberTilesNeeded"/>
+        <Bug pattern="NP_DEREFERENCE_OF_READLINE_VALUE,OS_OPEN_STREAM"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2020.Aoc2020_3"/>
+        <Method name="countTrees"/>
+        <Bug pattern="SBSC_USE_STRINGBUFFER_CONCATENATION"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2020.Aoc2020_6"/>
+        <Method name="getSumOfGroupCountsPart2"/>
+        <Bug pattern="WMI_WRONG_MAP_ITERATOR"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2020.PassData"/>
+        <Or>
+            <Method name="addFieldValuePart1"/>
+            <Method name="addFieldValuePart2"/>
+            <Method name="checkEyeColor"/>
+        </Or>
+        <Bug pattern="SF_SWITCH_NO_DEFAULT"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2020.PassData"/>
+        <Field name="countryId"/>
+        <Bug pattern="URF_UNREAD_FIELD"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2021.Aoc2021_8"/>
+        <Method name="solveLine"/>
+        <Bug pattern="UC_USELESS_OBJECT"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2021.Aoc2021_8"/>
+        <Method name="removeXXX"/>
+        <Bug pattern="WMI_WRONG_MAP_ITERATOR"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2021.Lanternfish"/>
+        <Method name="toString"/>
+        <Bug pattern="DM_BOXED_PRIMITIVE_TOSTRING"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2022.Aoc2022_01_Streams"/>
+        <Method name="main"/>
+        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2022.Aoc2022_13"/>
+        <Method name="part1"/>
+        <Bug pattern="UC_USELESS_OBJECT"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2022.Aoc22File"/>
+        <Field name="parentDir"/>
+        <Bug pattern="URF_UNREAD_FIELD"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2023.Aoc2023_01_Streams"/>
+        <Or>
+            <Method name="replaceFirst"/>
+            <Method name="replaceFirstReversed"/>
+        </Or>
+        <Bug pattern="SF_SWITCH_NO_DEFAULT"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2023.Aoc2023_03Test"/>
+        <Method name="testGetGearRatio"/>
+        <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2023.Aoc2023_07$CardHand"/>
+        <Method name="compareTo"/>
+        <Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2023.Aoc2023_10"/>
+        <Method name="markAndCountEnclosedNodes"/>
+        <Bug pattern="IM_BAD_CHECK_FOR_ODD"/>
+    </Match>
+    <Match>
+        <Class name="de.steffzilla.aoc.y2023.Aoc2023_22"/>
+        <Method name="part2"/>
+        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
+    </Match>
+</FindBugsFilter>
