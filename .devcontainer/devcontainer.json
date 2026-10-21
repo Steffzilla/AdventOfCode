@@ -1,7 +1,8 @@
 {
+  "name": "Advent of Code",
   "image": "ubuntu:24.04",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/node:2": {},
     "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
     "ghcr.io/devcontainers/features/java:1": {
       "version": "25",
