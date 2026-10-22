@@ -146,6 +146,19 @@ public class Aoc2023_07 {
             return result;
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (!(o instanceof CardHand other)) {
+                return false;
+            }
+            return resultType == other.resultType && orgHand.equals(other.orgHand);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(resultType, orgHand);
+        }
+
         // FIXME in enum CARD_TYPE verlegen?
         private CARD_TYPE getType(String s) {
             return switch (s) {

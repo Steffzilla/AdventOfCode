@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Aoc2023_07Test {
@@ -47,6 +48,16 @@ public class Aoc2023_07Test {
         assertEquals(0, a2345.compareTo(a2345_2));
         assertTrue(aaaa9.compareTo(aaaak) < 0);
         assertTrue(aaaa9.compareTo(a9aaa) > 0);
+    }
+
+    @Test
+    public void testEqualsConsistentWithCompareTo() {
+        Aoc2023_07.CardHand a2345 = new Aoc2023_07.CardHand("A2345", 23);
+        Aoc2023_07.CardHand a2345_2 = new Aoc2023_07.CardHand("A2345", 43);
+        Aoc2023_07.CardHand a2346 = new Aoc2023_07.CardHand("A2346", 23);
+        assertEquals(a2345, a2345_2);
+        assertEquals(a2345.hashCode(), a2345_2.hashCode());
+        assertNotEquals(a2345, a2346);
     }
 
     @Test
