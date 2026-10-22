@@ -58,11 +58,11 @@ public class Aoc2023_07 {
         ACE
     }
 
-    static class CardHand implements Comparable<CardHand> {
-        String adjustedHand;
-        String orgHand;
-        int bid;
-        RESULT_TYPE resultType;
+    static final class CardHand implements Comparable<CardHand> {
+        final String adjustedHand;
+        final String orgHand;
+        final int bid;
+        final RESULT_TYPE resultType;
 
         public CardHand(String orgHand, String adjustedHand, int bid) {
             this.adjustedHand = adjustedHand;
