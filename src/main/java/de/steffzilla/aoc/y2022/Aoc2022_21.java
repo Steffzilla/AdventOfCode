@@ -111,7 +111,32 @@ public class Aoc2022_21 {
 
 
     private static String part2(List<String> inputLines) {
-        return "TODO";
+        HashMap<String, MonkeyTask> monkeyTasks = getMonkeyTasks(inputLines);
+        MonkeyTask rootTask = monkeyTasks.get(ROOT);
+        String left = rootTask.part1.orElseThrow(()
+                -> new IllegalStateException("Part 1 should not be empty: " + rootTask));
+        String right = rootTask.part2.orElseThrow(()
+                -> new IllegalStateException("Part 2 should not be empty: " + rootTask));
+        HashSet<String> leftSideMonkeys = getMonkeysOfSubtree(left, monkeyTasks);
+        HashSet<String> rightSideMonkeys = getMonkeysOfSubtree(right, monkeyTasks);
+        String humanSideStart;
+        String nonHumanSideStart;
+        if (leftSideMonkeys.contains(HUMAN)) {
+            humanSideStart = left;
+            nonHumanSideStart = right;
+        } else if (rightSideMonkeys.contains(HUMAN)) {
+            humanSideStart = right;
+            nonHumanSideStart = left;
+        } else {
+            throw new IllegalStateException("Root needs to be on one of the sides!");
+        }
+        MonkeyTask nonHumanSideBase = processTree(monkeyTasks, nonHumanSideStart, false);
+        long nonHumanSideValue = nonHumanSideBase.number.get();
+        System.out.println(nonHumanSideValue);
+        MonkeyTask humanSideBase = processTree(monkeyTasks, humanSideStart, true);
+        long humn = 0;
+        System.out.println("\nPart 2 > Result: " + humn);
+        return String.valueOf(humn);
     }
 
 
