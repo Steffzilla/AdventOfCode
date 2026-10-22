@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
@@ -39,13 +40,17 @@ public class Aoc2023_01_Streams {
         System.out.println(DAY+".12."+YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
 
-        //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines){
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines){
         long sum = getSumPart1(inputLines);
         System.out.println("\nPart 1 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
     private static long getSumPart1(List<String> inputLines) {
@@ -72,7 +77,7 @@ public class Aoc2023_01_Streams {
     }
 
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
 
 
         List<String> processedLines = new ArrayList<>();
@@ -84,7 +89,9 @@ public class Aoc2023_01_Streams {
 
         }
         System.out.println();
-        System.out.println("\nPart 2 > Result: " + getSumPart1(processedLines));
+        long sum = getSumPart1(processedLines);
+        System.out.println("\nPart 2 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
     static String replaceStringNumbers(String line) {
