@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.*;
@@ -189,8 +190,11 @@ public class Aoc2023_07 {
         System.out.println(DAY+".12."+YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
 
-        //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
+    }
+
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
     }
 
     private static TreeSet<CardHand> readData(List<String> inputLines, boolean part2) {
@@ -232,7 +236,7 @@ public class Aoc2023_07 {
         }
     }
 
-    private static void part1(List<String> inputLines){
+    private static String part1(List<String> inputLines){
         part2 = false;
         TreeSet<CardHand> cardHands = readData(inputLines, false);
         int rank = 1;
@@ -243,9 +247,10 @@ public class Aoc2023_07 {
             rank++;
         }
         System.out.println("\nPart 1 > Result: " + result);
+        return String.valueOf(result);
     }
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         part2 = true;
         TreeSet<CardHand> cardHands = readData(inputLines, true);
         int rank = 1;
@@ -256,6 +261,7 @@ public class Aoc2023_07 {
             rank++;
         }
         System.out.println("\nPart 2 > Result: " + result);
+        return String.valueOf(result);
     }
 
 }

@@ -1,11 +1,20 @@
 package de.steffzilla.aoc.y2023;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.steffzilla.competitive.Utils;
+import de.steffzilla.competitive.Pair;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Aoc2023_07Test {
+
+    static final String DAY = "07";
 
     @Test
     public void testCardHandConstruction() {
@@ -38,6 +47,17 @@ public class Aoc2023_07Test {
         assertEquals(0, a2345.compareTo(a2345_2));
         assertTrue(aaaa9.compareTo(aaaak) < 0);
         assertTrue(aaaa9.compareTo(a9aaa) > 0);
+    }
+
+    @Test
+    public void testSolvePuzzle() throws IOException {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("solutionsAoC.json");
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(inputStream);
+
+        Pair<String, String> solutions = Aoc2023_07.solve(Utils.getStringList(Aoc2023_07.PATH));
+        assertEquals(root.at("/adventOfCode/2023/day" + DAY + "/part1").asText(), solutions.getValue0());
+        assertEquals(root.at("/adventOfCode/2023/day" + DAY + "/part2").asText(), solutions.getValue1());
     }
 
 }
