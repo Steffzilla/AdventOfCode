@@ -151,6 +151,8 @@ public class Aoc2023_01_Streams {
             case NINE:
                 line = line.replaceFirst(NINE, "9"+NINE);
                 break;
+            default:
+                throw new IllegalArgumentException("Unexpected number word: " + replacement);
         }
         return line;
     }
@@ -184,6 +186,8 @@ public class Aoc2023_01_Streams {
             case NINE_REVERSED:
                 line = line.replaceFirst(NINE_REVERSED, "9");
                 break;
+            default:
+                throw new IllegalArgumentException("Unexpected reversed number word: " + replacement);
         }
         return line;
     }

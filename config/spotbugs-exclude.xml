@@ -88,14 +88,6 @@
         <Bug pattern="URF_UNREAD_FIELD"/>
     </Match>
     <Match>
-        <Class name="de.steffzilla.aoc.y2023.Aoc2023_01_Streams"/>
-        <Or>
-            <Method name="replaceFirst"/>
-            <Method name="replaceFirstReversed"/>
-        </Or>
-        <Bug pattern="SF_SWITCH_NO_DEFAULT"/>
-    </Match>
-    <Match>
         <Class name="de.steffzilla.aoc.y2023.Aoc2023_03Test"/>
         <Method name="testGetGearRatio"/>
         <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD"/>
