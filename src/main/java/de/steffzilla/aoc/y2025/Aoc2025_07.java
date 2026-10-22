@@ -136,7 +136,36 @@ public class Aoc2025_07 {
     }
 
     private static String part2(List<String> inputLines) {
-        return "TODO";
+        long count = 0;
+        CharacterField cf = new CharacterField(inputLines);
+        Graph<Position, DefaultEdge> graph = buildGraph(cf);
+        HashMap<Position, Long> timelinesToThisPoint = new HashMap<>();
+        Deque<Position> toBeProcessed = new LinkedList<>();
+        toBeProcessed.push(startField);
+        while (!toBeProcessed.isEmpty()) {
+            Position node = toBeProcessed.pop();
+            Long timelines = timelinesToThisPoint.get(node);
+            if (timelines == null) {
+                timelines = 1L;
+            }
+            timelinesToThisPoint.put(node, timelines + 1L);
+
+            List<Position> neighbors = Graphs.successorListOf(graph, node);
+            for (Position neighbor : neighbors) {
+                toBeProcessed.push(neighbor);
+            }
+        }
+        int yPos = cf.getMaxY() - 1;
+        for (int xPos = 0; xPos < cf.getMaxX(); xPos++) {
+            if (BEAM.equals(cf.getCharacterAt(xPos, yPos))) {
+                Long timelines = timelinesToThisPoint.get(new Position(xPos, yPos));
+                System.out.println(xPos + "," + yPos + ":" + timelines);
+                count += timelines;
+            }
+        }
+
+        System.out.println("\nPart 2 > Result: " + count);
+        return String.valueOf(count);
     }
 
 }

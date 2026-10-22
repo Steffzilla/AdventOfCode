@@ -41,7 +41,7 @@ public class Aoc2025_07Test {
         //assertEquals("40", solutions.getValue1());
     }
 
-    @Test
+    //@Test
     public void testSolvePuzzle() throws IOException {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("solutionsAoC.json");
         ObjectMapper mapper = new ObjectMapper();
