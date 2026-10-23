@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.*;
@@ -40,11 +41,14 @@ public class Aoc2022_13 {
         System.out.println(DAY+".12."+YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
 
-        //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines){
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines){
         int rightOrderCounterSum = 0;
         Queue<List> leftQueue = new LinkedList<>();
         Queue<List> rightQueue = new LinkedList<>();
@@ -82,6 +86,7 @@ public class Aoc2022_13 {
             System.out.println();
         }
         System.out.println("\nPart 1 > Result: " + rightOrderCounterSum);
+        return String.valueOf(rightOrderCounterSum);
     }
 
     static void readList(List parentList, String line) {
@@ -191,7 +196,7 @@ public class Aoc2022_13 {
         queue.add(list);
     }
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         LinkedList<List> queue = new LinkedList<>();
         List list;
 
@@ -218,6 +223,7 @@ public class Aoc2022_13 {
         int index2 = queue.indexOf(secondDecoderKey);
 
         System.out.println("\nPart 2 > Result: " + (index1 + 1) * (index2 + 1));
+        return String.valueOf((index1 + 1) * (index2 + 1));
     }
 
 }
