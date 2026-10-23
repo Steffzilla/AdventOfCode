@@ -70,7 +70,6 @@ public class Aoc2022_13 {
                 useLeft = true;
             }
         }
-        List<Integer> correctPairNumbers = new ArrayList<>();
         int pairCounter = 1;
         while (!leftQueue.isEmpty()) {
             List left = leftQueue.poll();
@@ -79,7 +78,6 @@ public class Aoc2022_13 {
             //System.out.println(right.toString().replaceAll("\\s+",""));
             if(checkRightOrder(left, right) == State.CORRECT) {
                 System.out.println("Correct: " + pairCounter);
-                correctPairNumbers.add(pairCounter);
                 rightOrderCounterSum+=pairCounter;
             }
             pairCounter++;
