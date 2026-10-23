@@ -17,8 +17,6 @@ public class Aoc2023_03 {
     public static final String PATH = BASEDIR + FILENAME;
     public static final String GEAR = "*";
 
-    static CharacterField field;
-
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
@@ -27,14 +25,14 @@ public class Aoc2023_03 {
     }
 
     static Pair<String, String> solve(List<String> inputLines) {
-        field = new CharacterField(inputLines);
+        CharacterField field = new CharacterField(inputLines);
         field.prettyPrint();
         System.out.println();
 
-        return new Pair<>(part1(), part2());
+        return new Pair<>(part1(field), part2(field));
     }
 
-    private static String part1(){
+    private static String part1(CharacterField field){
         long sum = 0;
         for (int y = 0; y < field.getMaxY(); y++) {
             for (int x = 0; x < field.getMaxX(); x++) {
@@ -42,10 +40,10 @@ public class Aoc2023_03 {
                 if (!character.equals(".")) {
                      if(Character.isDigit(character.charAt(0))) {
                          // first digit found
-                         String number = getCompleteNumber(x, y);
+                         String number = getCompleteNumber(field, x, y);
                          System.out.println(number);
 
-                         if (isPartNumber(x,y, number)) {
+                         if (isPartNumber(field, x,y, number)) {
                             sum+=Integer.parseInt(number);
                          }
 
@@ -65,7 +63,7 @@ public class Aoc2023_03 {
         return String.valueOf(sum);
     }
 
-    private static boolean isPartNumber(int x, int y, String number) {
+    private static boolean isPartNumber(CharacterField field, int x, int y, String number) {
         for (int y2 = y-1; y2 <= y+1; y2++) {
             for (int x2 = x-1; x2 <= x+number.length(); x2++) {
                 if (field.isContained(x2,y2)) {
@@ -80,7 +78,7 @@ public class Aoc2023_03 {
         return false;
     }
 
-    static int getGearRatio(int xGear, int yGear) {
+    static int getGearRatio(CharacterField field, int xGear, int yGear) {
         List<Integer> numbers = new ArrayList<>(2);
         for (int y = yGear - 1; y <= yGear + 1; y++) {
             boolean numberFound = false;
@@ -91,7 +89,7 @@ public class Aoc2023_03 {
                         numberFound = false;
                     } else if (!numberFound) {
                         numberFound = true;
-                        String number = getCompleteNumber(x, y);
+                        String number = getCompleteNumber(field, x, y);
                         numbers.add(Integer.valueOf(number));
                     }
                 }
@@ -105,7 +103,7 @@ public class Aoc2023_03 {
         }
     }
 
-    private static String getCompleteNumber(int x, int y) {
+    private static String getCompleteNumber(CharacterField field, int x, int y) {
         StringBuilder stringBuilder = new StringBuilder();
         // first go left to the start
         for (int x1 = x; x1 >= 0; x1--) {
@@ -132,13 +130,13 @@ public class Aoc2023_03 {
     }
 
 
-    private static String part2() {
+    private static String part2(CharacterField field) {
         long sumOfRatios = 0;
         for (int y = 0; y < field.getMaxY(); y++) {
             for (int x = 0; x < field.getMaxX(); x++) {
                 String character = field.getCharacterAt(x,y);
                 if (GEAR.equals(character)) {
-                    sumOfRatios+=getGearRatio(x, y);
+                    sumOfRatios+=getGearRatio(field, x, y);
                 }
             }
         }

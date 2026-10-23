@@ -88,11 +88,6 @@
         <Bug pattern="URF_UNREAD_FIELD"/>
     </Match>
     <Match>
-        <Class name="de.steffzilla.aoc.y2023.Aoc2023_03Test"/>
-        <Method name="testGetGearRatio"/>
-        <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD"/>
-    </Match>
-    <Match>
         <Class name="de.steffzilla.aoc.y2023.Aoc2023_10"/>
         <Method name="markAndCountEnclosedNodes"/>
         <Bug pattern="IM_BAD_CHECK_FOR_ODD"/>

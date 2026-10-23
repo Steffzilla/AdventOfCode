@@ -57,14 +57,12 @@ public class Aoc2023_03Test {
 
     @Test
     public void testGetGearRatio() {
-        Aoc2023_03.field = new CharacterField(field1);
-        assertEquals(63045, Aoc2023_03.getGearRatio(3,1));
-        Aoc2023_03.field = new CharacterField(field2);
-        assertEquals(451490, Aoc2023_03.getGearRatio(5,2));
-        Aoc2023_03.field = new CharacterField(field3);
-        assertEquals(2864, Aoc2023_03.getGearRatio(0, 0));
-        assertEquals(30745, Aoc2023_03.getGearRatio(11, 1));
-        assertEquals(972, Aoc2023_03.getGearRatio(30, 2));
+        assertEquals(63045, Aoc2023_03.getGearRatio(new CharacterField(field1), 3,1));
+        assertEquals(451490, Aoc2023_03.getGearRatio(new CharacterField(field2), 5,2));
+        CharacterField characterField3 = new CharacterField(field3);
+        assertEquals(2864, Aoc2023_03.getGearRatio(characterField3, 0, 0));
+        assertEquals(30745, Aoc2023_03.getGearRatio(characterField3, 11, 1));
+        assertEquals(972, Aoc2023_03.getGearRatio(characterField3, 30, 2));
     }
 
     @Test
