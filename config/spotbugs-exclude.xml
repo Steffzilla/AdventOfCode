@@ -68,11 +68,6 @@
         <Bug pattern="DM_BOXED_PRIMITIVE_TOSTRING"/>
     </Match>
     <Match>
-        <Class name="de.steffzilla.aoc.y2022.Aoc2022_01_Streams"/>
-        <Method name="main"/>
-        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
-    </Match>
-    <Match>
         <Class name="de.steffzilla.aoc.y2022.Aoc2022_13"/>
         <Method name="part1"/>
         <Bug pattern="UC_USELESS_OBJECT"/>
