@@ -88,11 +88,6 @@
         <Bug pattern="URF_UNREAD_FIELD"/>
     </Match>
     <Match>
-        <Class name="de.steffzilla.aoc.y2023.Aoc2023_10"/>
-        <Method name="markAndCountEnclosedNodes"/>
-        <Bug pattern="IM_BAD_CHECK_FOR_ODD"/>
-    </Match>
-    <Match>
         <Class name="de.steffzilla.aoc.y2023.Aoc2023_22"/>
         <Method name="part2"/>
         <Bug pattern="DLS_DEAD_LOCAL_STORE"/>

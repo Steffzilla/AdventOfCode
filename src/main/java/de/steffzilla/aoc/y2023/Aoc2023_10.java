@@ -253,7 +253,7 @@ public class Aoc2023_10 {
                 if (!allGraphNodes.contains(currentPos)) {
                     // needs to be checked
                     int count = countCycleCrossings(field, allGraphNodes, x, y);
-                    if (count % 2 == 1) {
+                    if (count % 2 != 0) {
                         field.setCharacterAt("I", x, y);
                         countInnerNodes++;
                     } else {
