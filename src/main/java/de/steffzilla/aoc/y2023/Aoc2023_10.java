@@ -80,14 +80,17 @@ public class Aoc2023_10 {
         //List<String> inputLines = example4.lines().toList();
         List<String> inputLines = Utils.getStringList(PATH);
 
+        solve(inputLines);
+    }
+
+    static Pair<String, String> solve(List<String> inputLines) {
         CharacterField field = new CharacterField(inputLines);
         field.prettyPrint();
         System.out.println();
 
         HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> graph = readMaze(inputLines);
 
-        //part1(graph);
-        part2(field, graph);
+        return new Pair<>(part1(graph), part2(field, graph));
     }
 
     private static HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> readMaze(List<String> inputLines) {
@@ -215,7 +218,7 @@ public class Aoc2023_10 {
         throw new IllegalStateException("Should not occur during calculation of S:"+x+","+y);
     }
 
-    private static void part1(HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> graph){
+    private static String part1(HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> graph){
         BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>(graph);
         // get all nodes connected to start node
         List<Pair<Integer, Integer>> dfsOrder = GraphUtil.getDfsOrderIterative(graph, startNode);
@@ -227,9 +230,10 @@ public class Aoc2023_10 {
             }
         }
         System.out.println("\nPart 1 > Result: " + (longestPath-1));
+        return String.valueOf(longestPath-1);
     }
 
-    private static void part2(CharacterField field, HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> graph) {
+    private static String part2(CharacterField field, HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> graph) {
         List<Pair<Integer, Integer>> dfsOrder = GraphUtil.getDfsOrderIterative(graph, startNode);
         /*for (Pair<Integer, Integer> node : dfsOrder) {
             field.setCharacterAt(CYCLE_MARKER, node.getValue0(), node.getValue1());
@@ -238,6 +242,7 @@ public class Aoc2023_10 {
         //System.out.println();
         long count = markAndCountEnclosedNodes(field, dfsOrder);
         System.out.println("\nPart 2 > Result: " + count);
+        return String.valueOf(count);
     }
 
     private static long markAndCountEnclosedNodes(CharacterField field, List<Pair<Integer, Integer>> allGraphNodes) {
