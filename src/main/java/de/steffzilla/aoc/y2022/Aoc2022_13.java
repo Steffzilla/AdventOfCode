@@ -7,7 +7,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@SuppressWarnings("rawtypes")
 public class Aoc2022_13 {
 
     private static final String DAY = "13";
@@ -23,10 +22,10 @@ public class Aoc2022_13 {
     }
 
 
-    static class ListComparatorPart2 implements Comparator<List> {
+    static class ListComparatorPart2 implements Comparator<List<?>> {
 
         @Override
-        public int compare(List left, List right) {
+        public int compare(List<?> left, List<?> right) {
             State state = checkRightOrder(left, right);
             return switch (state) {
                 case UNKNOWN -> 0;
@@ -50,16 +49,16 @@ public class Aoc2022_13 {
 
     private static String part1(List<String> inputLines){
         int rightOrderCounterSum = 0;
-        Queue<List> leftQueue = new LinkedList<>();
-        Queue<List> rightQueue = new LinkedList<>();
-        List list;
+        Queue<List<Object>> leftQueue = new LinkedList<>();
+        Queue<List<Object>> rightQueue = new LinkedList<>();
+        List<Object> list;
         boolean useLeft = true;
 
         for (String line : inputLines) {
             if(line.isBlank()) {
                 continue;
             }
-            list = new ArrayList();
+            list = new ArrayList<>();
             // only pass the inner part. Starting [ and closing ] are left out
             readList(list, line.substring(1,line.length()-1));
             if (useLeft) {
@@ -72,8 +71,8 @@ public class Aoc2022_13 {
         }
         int pairCounter = 1;
         while (!leftQueue.isEmpty()) {
-            List left = leftQueue.poll();
-            List right = rightQueue.poll();
+            List<Object> left = leftQueue.poll();
+            List<Object> right = rightQueue.poll();
             //System.out.println(left.toString().replaceAll("\\s+",""));
             //System.out.println(right.toString().replaceAll("\\s+",""));
             if(checkRightOrder(left, right) == State.CORRECT) {
@@ -87,7 +86,7 @@ public class Aoc2022_13 {
         return String.valueOf(rightOrderCounterSum);
     }
 
-    static void readList(List parentList, String line) {
+    static void readList(List<Object> parentList, String line) {
         char[] cArray = line.toCharArray();
         for (int i = 0; i < cArray.length; i++) {
             if (cArray[i] == '[') {
@@ -101,7 +100,7 @@ public class Aoc2022_13 {
                             intermediateBracketsCounter--;
                         } else {
                             // end of inner list found
-                            List innerList = new ArrayList();
+                            List<Object> innerList = new ArrayList<>();
                             parentList.add(innerList);
                             readList(innerList, line.substring(i + 1, j));
                             i = j; // outer loop continues after the inner list
@@ -123,7 +122,7 @@ public class Aoc2022_13 {
         }
     }
 
-    static State checkRightOrder(List leftList, List rightList) {
+    static State checkRightOrder(List<?> leftList, List<?> rightList) {
         System.out.println("Compare "+ leftList + "\n     vs " + rightList);
 
         int maxNoOfItems;
@@ -166,11 +165,11 @@ public class Aoc2022_13 {
                     return State.INCORRECT;
                 }
             } else if (left instanceof Integer && right instanceof List) {
-                localState = checkRightOrder(Arrays.asList(left), (List) right);
+                localState = checkRightOrder(Arrays.asList(left), (List<?>) right);
             } else if(left instanceof List && right instanceof Integer) {
-                localState = checkRightOrder((List) left, Arrays.asList(right));
+                localState = checkRightOrder((List<?>) left, Arrays.asList(right));
             } else if (left instanceof List && right instanceof List) {
-                localState = checkRightOrder((List) left, (List) right);
+                localState = checkRightOrder((List<?>) left, (List<?>) right);
             } else {
                 throw new IllegalStateException("Should never occur: " + left + " | " + right);
             }
@@ -183,36 +182,36 @@ public class Aoc2022_13 {
         return State.UNKNOWN;
     }
 
-    private static void addDecoderKeys(Queue<List> queue) {
-        List list = new ArrayList();
+    private static void addDecoderKeys(Queue<List<Object>> queue) {
+        List<Object> list = new ArrayList<>();
         // only pass the inner part. Starting [ and closing ] are left out
         readList(list, "[2]");
         queue.add(list);
-        list = new ArrayList();
+        list = new ArrayList<>();
         // only pass the inner part. Starting [ and closing ] are left out
         readList(list, "[6]");
         queue.add(list);
     }
 
     private static String part2(List<String> inputLines) {
-        LinkedList<List> queue = new LinkedList<>();
-        List list;
+        LinkedList<List<Object>> queue = new LinkedList<>();
+        List<Object> list;
 
         for (String line : inputLines) {
             if(line.isBlank()) {
                 continue;
             }
-            list = new ArrayList();
+            list = new ArrayList<>();
             // only pass the inner part. Starting [ and closing ] are left out
             readList(list, line.substring(1, line.length()-1));
             queue.add(list);
         }
 
         //addDecoderKeys(queue);
-        List fristDecoderKey = new ArrayList();
+        List<Object> fristDecoderKey = new ArrayList<>();
         readList(fristDecoderKey, "[2]");
         queue.add(fristDecoderKey);
-        List secondDecoderKey = new ArrayList();
+        List<Object> secondDecoderKey = new ArrayList<>();
         readList(secondDecoderKey, "[6]");
         queue.add(secondDecoderKey);
 
