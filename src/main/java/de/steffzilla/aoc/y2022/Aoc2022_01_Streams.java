@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.*;
@@ -2267,19 +2268,24 @@ public class Aoc2022_01_Streams {
     public static void main(String[] args) {
         List<String> inputLines = Utils.getStringList(PATH);
 
-        part1();
-        //part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(){
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(), part2(inputLines));
+    }
+
+    private static String part1(){
         String[] blocks = input.split("\\n\\n");
         int sum = Arrays.stream(blocks).mapToInt(block -> block.lines().mapToInt(Integer::parseInt).sum()).max().orElse(0);;
         System.out.println("\nResult: "+sum);
+        return String.valueOf(sum);
     }
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
 
         System.out.println("\nResult: ");
+        return "";
 
     }
 
