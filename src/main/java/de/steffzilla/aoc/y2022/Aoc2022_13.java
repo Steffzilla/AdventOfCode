@@ -23,7 +23,7 @@ public class Aoc2022_13 {
     }
 
 
-    static class ListComperatorPart2 implements Comparator<List> {
+    static class ListComparatorPart2 implements Comparator<List> {
 
         @Override
         public int compare(List left, List right) {
@@ -216,7 +216,7 @@ public class Aoc2022_13 {
         readList(secondDecoderKey, "[6]");
         queue.add(secondDecoderKey);
 
-        Collections.sort(queue, new ListComperatorPart2());
+        Collections.sort(queue, new ListComparatorPart2());
         int index1 = queue.indexOf(fristDecoderKey);
         int index2 = queue.indexOf(secondDecoderKey);
 
