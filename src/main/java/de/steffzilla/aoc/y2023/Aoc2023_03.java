@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2023;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 import de.steffzilla.competitive.CharacterField;
 
@@ -21,15 +22,19 @@ public class Aoc2023_03 {
     public static void main(String[] args) {
         System.out.println(DAY+".12."+YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
+
+        solve(inputLines);
+    }
+
+    static Pair<String, String> solve(List<String> inputLines) {
         field = new CharacterField(inputLines);
         field.prettyPrint();
         System.out.println();
 
-        //part1();
-        part2();
+        return new Pair<>(part1(), part2());
     }
 
-    private static void part1(){
+    private static String part1(){
         long sum = 0;
         for (int y = 0; y < field.getMaxY(); y++) {
             for (int x = 0; x < field.getMaxX(); x++) {
@@ -57,6 +62,7 @@ public class Aoc2023_03 {
             }
         }
         System.out.println("\nPart 1 > Result: " + sum);
+        return String.valueOf(sum);
     }
 
     private static boolean isPartNumber(int x, int y, String number) {
@@ -126,7 +132,7 @@ public class Aoc2023_03 {
     }
 
 
-    private static void part2() {
+    private static String part2() {
         long sumOfRatios = 0;
         for (int y = 0; y < field.getMaxY(); y++) {
             for (int x = 0; x < field.getMaxX(); x++) {
@@ -137,6 +143,7 @@ public class Aoc2023_03 {
             }
         }
         System.out.println("\nPart 2 > Result: " + sumOfRatios);
+        return String.valueOf(sumOfRatios);
     }
 
 }
