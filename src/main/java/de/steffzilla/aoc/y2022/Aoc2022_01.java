@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2022;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.ArrayList;
@@ -18,11 +19,14 @@ public class Aoc2022_01 {
     public static void main(String[] args) {
         List<String> inputLines = Utils.getStringList(PATH);
 
-        //part1(inputLines);
-        part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines){
+    static Pair<String, String> solve(List<String> inputLines) {
+        return new Pair<>(part1(inputLines), part2(inputLines));
+    }
+
+    private static String part1(List<String> inputLines){
         long sumOfElf = 0;
         long biggestSum = 0;
         for (String line : inputLines) {
@@ -42,9 +46,10 @@ public class Aoc2022_01 {
             biggestSum = sumOfElf;
         }
         System.out.println("\nResult: "+biggestSum);
+        return String.valueOf(biggestSum);
     }
 
-    private static void part2(List<String> inputLines) {
+    private static String part2(List<String> inputLines) {
         ArrayList<Long> listOfCalories = new ArrayList<>();
         long sumOfElf = 0;
         for (String line : inputLines) {
@@ -62,6 +67,7 @@ public class Aoc2022_01 {
         biggestSum += listOfCalories.get(listOfCalories.size()-2);
         biggestSum += listOfCalories.get(listOfCalories.size()-3);
         System.out.println("\nResult: "+biggestSum);
+        return String.valueOf(biggestSum);
 
     }
 
