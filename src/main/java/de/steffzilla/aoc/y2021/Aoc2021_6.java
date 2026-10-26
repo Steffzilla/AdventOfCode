@@ -1,5 +1,6 @@
 package de.steffzilla.aoc.y2021;
 
+import de.steffzilla.competitive.Pair;
 import de.steffzilla.competitive.Utils;
 
 import java.util.*;
@@ -13,16 +14,20 @@ public class Aoc2021_6 {
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
-    static final int DAYS = 256;
+    static final int DAYS_PART1 = 80;
+    static final int DAYS_PART2 = 256;
 
     public static void main(String[] args) {
         List<String> stringList = Utils.getStringList(PATH);
-        String[] sNumbers = stringList.getFirst().split(",");
-        //part1(sNumbers);
-        part2(sNumbers);
+        solve(stringList);
     }
 
-    private static void part2(String[] sNumbers) {
+    static Pair<String, String> solve(List<String> inputLines) {
+        String[] sNumbers = inputLines.getFirst().split(",");
+        return new Pair<>(part1(sNumbers), part2(sNumbers));
+    }
+
+    private static String part2(String[] sNumbers) {
         long[] fishes = new long[9];
         for (int i = 0; i < sNumbers.length; i++) {
             int internalTimer = Integer.parseInt(sNumbers[i]);
@@ -30,7 +35,7 @@ public class Aoc2021_6 {
         }
         System.out.println(Arrays.toString(fishes));
 
-        for (int i = 0; i < DAYS; i++) {
+        for (int i = 0; i < DAYS_PART2; i++) {
             long internalTimerWasZeroFishes = fishes[0];
             // internal timer --
             fishes[0] = fishes[1];
@@ -49,13 +54,14 @@ public class Aoc2021_6 {
             numberOfFishs = numberOfFishs + fish;
         }
         System.out.println(numberOfFishs);
+        return String.valueOf(numberOfFishs);
     }
 
     private static int getDirectChildren(int days) {
         return (int) Math.ceil((double) days / 7);
     }
 
-    private static void part1(String[] sNumbers) {
+    private static String part1(String[] sNumbers) {
         List<Lanternfish> fishes = new ArrayList<>();
         // create Fishes
         for (int i = 0; i < sNumbers.length; i++) {
@@ -63,7 +69,7 @@ public class Aoc2021_6 {
         }
         System.out.println(fishes);
 
-        for (int i = 1; i <= DAYS; i++) {
+        for (int i = 1; i <= DAYS_PART1; i++) {
             List<Lanternfish> newFishes = new ArrayList<>();
 
             for (Lanternfish fish : fishes) {
@@ -78,6 +84,7 @@ public class Aoc2021_6 {
         }
 
         System.out.println("\nResult: " + fishes.size());
+        return String.valueOf(fishes.size());
     }
 
 }
