@@ -20,6 +20,6 @@ public class Lanternfish {
 
     @Override
     public String toString() {
-        return Integer.valueOf(timer).toString();
+        return String.valueOf(timer);
     }
 }

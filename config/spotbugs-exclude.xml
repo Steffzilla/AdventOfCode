@@ -63,11 +63,6 @@
         <Bug pattern="WMI_WRONG_MAP_ITERATOR"/>
     </Match>
     <Match>
-        <Class name="de.steffzilla.aoc.y2021.Lanternfish"/>
-        <Method name="toString"/>
-        <Bug pattern="DM_BOXED_PRIMITIVE_TOSTRING"/>
-    </Match>
-    <Match>
         <Class name="de.steffzilla.aoc.y2022.Aoc2022_21"/>
         <Method name="part2"/>
         <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
