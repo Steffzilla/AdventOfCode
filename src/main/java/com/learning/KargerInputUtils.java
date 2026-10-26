@@ -1,5 +1,7 @@
 package com.learning;
 
+import de.steffzilla.competitive.Utils;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,7 +11,7 @@ import java.util.List;
 
 public class KargerInputUtils {
     public static BufferedReader reader;
-    public static final String FILE_PATH = "KargerAlgorithmInput.txt";
+    public static final String FILE_PATH = Utils.inputDir("AoC", "2023") + "input2023_25_KargerAlgorithmInput.txt";
 
     public static void initInputReader() {
         try {
