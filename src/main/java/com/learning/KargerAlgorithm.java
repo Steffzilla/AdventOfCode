@@ -13,6 +13,7 @@ import static com.learning.KargerInputUtils.*;
 public class KargerAlgorithm {
 
     private static final int NUMBER_ITERATIONS_ALGORITHM = 1000;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     public static void buildNeighborhood(MutableNetwork<String, EdgeType> graph, ArrayList<String> adjacencyList) {
         String node = adjacencyList.get(0);
@@ -47,10 +48,8 @@ public class KargerAlgorithm {
     public static String chooseNodeAtRandom(MutableNetwork<String, EdgeType> graph) {
         int i = 0;
         String node = "";
-        SecureRandom random = new SecureRandom();
-        random.setSeed(System.currentTimeMillis());
         int numberOfNodes = graph.nodes().size();
-        int randomNodeIndex = (random.nextInt(numberOfNodes));
+        int randomNodeIndex = (RANDOM.nextInt(numberOfNodes));
 
         for (Iterator<String> it = graph.nodes().iterator();
              it.hasNext() && i <= randomNodeIndex;
@@ -64,12 +63,10 @@ public class KargerAlgorithm {
         int i = 0;
         int randomNeighborIndex = 0;
         String chosenNeighborNode = "";
-        SecureRandom random = new SecureRandom();
-        random.setSeed(System.currentTimeMillis());
         Set<String> neighbors = graph.adjacentNodes(node);
         Iterator<String> listOfNeighbors = neighbors.iterator();
 
-        randomNeighborIndex = random.nextInt(neighbors.size());
+        randomNeighborIndex = RANDOM.nextInt(neighbors.size());
 
         for (;
             listOfNeighbors.hasNext() && i <= randomNeighborIndex;

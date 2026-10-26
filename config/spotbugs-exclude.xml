@@ -11,14 +11,6 @@
 
     <!-- Individual: findings in code without test coverage; remove an entry once the code is tested and fixed -->
     <Match>
-        <Class name="com.learning.KargerAlgorithm"/>
-        <Or>
-            <Method name="chooseNeighborAtRandom"/>
-            <Method name="chooseNodeAtRandom"/>
-        </Or>
-        <Bug pattern="DMI_RANDOM_USED_ONLY_ONCE"/>
-    </Match>
-    <Match>
         <Class name="com.learning.KargerInputUtils"/>
         <Field name="reader"/>
         <Bug pattern="MS_PKGPROTECT,PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
