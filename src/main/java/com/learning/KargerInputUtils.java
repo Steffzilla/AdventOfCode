@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class KargerInputUtils {
-    public static BufferedReader reader;
+    private static BufferedReader reader;
     public static final String FILE_PATH = Utils.inputDir("AoC", "2023") + "input2023_25_KargerAlgorithmInput.txt";
 
     public static void initInputReader() {

@@ -11,11 +11,6 @@
 
     <!-- Individual: findings in code without test coverage; remove an entry once the code is tested and fixed -->
     <Match>
-        <Class name="com.learning.KargerInputUtils"/>
-        <Field name="reader"/>
-        <Bug pattern="MS_PKGPROTECT,PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
-    </Match>
-    <Match>
         <Class name="de.steffzilla.aoc.y2020.Aoc2020_3"/>
         <Method name="getNumberTilesNeeded"/>
         <Bug pattern="NP_DEREFERENCE_OF_READLINE_VALUE,OS_OPEN_STREAM"/>
