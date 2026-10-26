@@ -20,11 +20,14 @@ public class Aoc2023_25 {
         System.out.println(DAY+".12."+YEAR);
         List<String> inputLines = Utils.getStringList(PATH);
 
-        part1(inputLines);
-        //part2(inputLines);
+        solve(inputLines);
     }
 
-    private static void part1(List<String> inputLines) {
+    static String solve(List<String> inputLines) {
+        return part1(inputLines);
+    }
+
+    private static String part1(List<String> inputLines) {
         HashMap<String, List<String>> graph = new HashMap<>();
         for (String line : inputLines) {
             String[] parts = line.split(": ");
@@ -43,15 +46,7 @@ public class Aoc2023_25 {
         List<String> component1 = GraphUtil.getDfsOrderIterative(graph, "jll");
         List<String> component2 = GraphUtil.getDfsOrderIterative(graph, "lnf");
         System.out.println("\nPart 1 > Result: " + component1.size()*component2.size());
-    }
-
-
-
-    private static void part2(List<String> inputLines) {
-        for (String line : inputLines) {
-
-        }
-        System.out.println("\nPart 2 > Result: " + "x");
+        return String.valueOf(component1.size()*component2.size());
     }
 
 }
