@@ -14,7 +14,7 @@ public class Aoc2025_02 {
     public static final String FILENAME = "input" + YEAR + "_" + DAY + ".txt";
     public static final String PATH = BASEDIR + FILENAME;
 
-    static final String example = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124";
+    //static final String example = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124";
 
     public static void main(String[] args) {
         System.out.println(DAY + ".12." + YEAR);
@@ -58,9 +58,9 @@ public class Aoc2025_02 {
             if (stringID.length() % 2 == 0) {
                 String part1 = stringID.substring(0, stringID.length() / 2);
                 String part2 = stringID.substring(stringID.length() / 2);
-                System.out.println(part1 + " " + part2);
+                //System.out.println(part1 + " " + part2);
                 if (part1.equals(part2)) {
-                    System.out.println("==>" + part1);
+                    //System.out.println("==>" + part1);
                     invalidIdsSum += Long.parseLong(stringID);
                 }
             }
@@ -101,7 +101,7 @@ public class Aoc2025_02 {
                 String substring = stringID.substring(0, i + 1);
                 String regex = "^(" + substring + ")+$";
                 if (stringID.matches(regex)) {
-                    System.out.println(regex + "==>" + stringID);
+                    //System.out.println(regex + "==>" + stringID);
                     foundInvalidIds.add(Long.parseLong(stringID));
                 }
             }
