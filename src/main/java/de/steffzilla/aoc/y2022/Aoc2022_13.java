@@ -15,7 +15,7 @@ public class Aoc2022_13 {
     public static final String FILENAME = "input"+YEAR+"_"+DAY+".txt";
     //public static final String FILENAME = "sample"+YEAR+"_"+DAY+".txt";
     public static final String PATH = BASEDIR + FILENAME;
-    private static Pattern pattern = Pattern.compile("(\\d+)");
+    private static final Pattern PATTERN = Pattern.compile("(\\d+)");
 
     enum State {
         CORRECT, INCORRECT, UNKNOWN;
@@ -76,11 +76,11 @@ public class Aoc2022_13 {
             //System.out.println(left.toString().replaceAll("\\s+",""));
             //System.out.println(right.toString().replaceAll("\\s+",""));
             if(checkRightOrder(left, right) == State.CORRECT) {
-                System.out.println("Correct: " + pairCounter);
+                //System.out.println("Correct: " + pairCounter);
                 rightOrderCounterSum+=pairCounter;
             }
             pairCounter++;
-            System.out.println();
+            //System.out.println();
         }
         System.out.println("\nPart 1 > Result: " + rightOrderCounterSum);
         return String.valueOf(rightOrderCounterSum);
@@ -113,7 +113,7 @@ public class Aoc2022_13 {
             } else {
                 // numbers can have more than 1 digit --> get all digits form the start of the string
                 String substring = line.substring(i);
-                Matcher matcher = pattern.matcher(substring);
+                Matcher matcher = PATTERN.matcher(substring);
                 matcher.find();
                 String number = matcher.group(0);
                 parentList.add(Integer.valueOf(number));
@@ -123,7 +123,7 @@ public class Aoc2022_13 {
     }
 
     static State checkRightOrder(List<?> leftList, List<?> rightList) {
-        System.out.println("Compare "+ leftList + "\n     vs " + rightList);
+        //System.out.println("Compare "+ leftList + "\n     vs " + rightList);
 
         int maxNoOfItems;
         if (leftList.size() >= rightList.size()) {
@@ -141,15 +141,15 @@ public class Aoc2022_13 {
             if (i < rightList.size()) {
                 right = rightList.get(i);
             }
-            System.out.println("  Compare "+ left + " vs " + right);
+            //System.out.println("  Compare "+ left + " vs " + right);
 
             // if left or right list is empty fist, return correct / incorrect
             if (left == null && right != null) {
-                System.out.println("Left is empty, right not (" + right + ") --> CORRECT");
+                //System.out.println("Left is empty, right not (" + right + ") --> CORRECT");
                 return State.CORRECT;
             }
             if (left != null && right == null) {
-                System.out.println("Left is not empty (" + left + "), right is empty --> INcorrect");
+                //System.out.println("Left is not empty (" + left + "), right is empty --> INcorrect");
                 return State.INCORRECT;
             }
 
@@ -157,11 +157,11 @@ public class Aoc2022_13 {
             // compare 2 Integers
             if (left instanceof Integer && right instanceof Integer) {
                 if ((Integer) left < (Integer) right) {
-                    System.out.println(left + " < " + right + " --> CORRECT");
+                    //System.out.println(left + " < " + right + " --> CORRECT");
                     return State.CORRECT;
                 }
                 if ((Integer) left > (Integer) right) {
-                    System.out.println(left + " > " + right + " --> INcorrect");
+                    //System.out.println(left + " > " + right + " --> INcorrect");
                     return State.INCORRECT;
                 }
             } else if (left instanceof Integer && right instanceof List) {
@@ -208,15 +208,15 @@ public class Aoc2022_13 {
         }
 
         //addDecoderKeys(queue);
-        List<Object> fristDecoderKey = new ArrayList<>();
-        readList(fristDecoderKey, "[2]");
-        queue.add(fristDecoderKey);
+        List<Object> firstDecoderKey = new ArrayList<>();
+        readList(firstDecoderKey, "[2]");
+        queue.add(firstDecoderKey);
         List<Object> secondDecoderKey = new ArrayList<>();
         readList(secondDecoderKey, "[6]");
         queue.add(secondDecoderKey);
 
-        Collections.sort(queue, new ListComparatorPart2());
-        int index1 = queue.indexOf(fristDecoderKey);
+        queue.sort(new ListComparatorPart2());
+        int index1 = queue.indexOf(firstDecoderKey);
         int index2 = queue.indexOf(secondDecoderKey);
 
         System.out.println("\nPart 2 > Result: " + (index1 + 1) * (index2 + 1));
