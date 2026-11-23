@@ -56,7 +56,7 @@ public class Aoc2023_01_Streams {
     private static long getSumPart1(List<String> inputLines) {
         long sum = 0;
         for (String line : inputLines) {
-            System.out.println(line);
+            //System.out.println(line);
             Stream<Character> characterStream
                     = line.codePoints().mapToObj(c -> (char) c);
             Character digit = characterStream.filter(Character::isDigit)
@@ -70,7 +70,7 @@ public class Aoc2023_01_Streams {
                     .findFirst()
                     .get();
             sb.append(digit2);
-            System.out.println(sb);
+            //System.out.println(sb);
             sum+=Integer.parseInt(sb.toString());
         }
         return sum;
@@ -82,7 +82,7 @@ public class Aoc2023_01_Streams {
 
         List<String> processedLines = new ArrayList<>();
         for (String line : inputLines) {
-            System.out.println(line);
+            //System.out.println(line);
 
             line = replaceStringNumbers(line);
             processedLines.add(line);

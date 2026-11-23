@@ -229,7 +229,7 @@ public class Aoc2023_07 {
         TreeSet<CardHand> set = new TreeSet<>();
         String orgHand = parts[0];
         if(orgHand.contains("J")) {
-            System.out.println(orgHand);
+            //System.out.println(orgHand);
             set.add(new CardHand(orgHand, orgHand.replace('J','2'), Integer.parseInt(parts[1])));
             set.add(new CardHand(orgHand, orgHand.replace('J','3'), Integer.parseInt(parts[1])));
             set.add(new CardHand(orgHand, orgHand.replace('J','4'), Integer.parseInt(parts[1])));
@@ -242,7 +242,7 @@ public class Aoc2023_07 {
             set.add(new CardHand(orgHand, orgHand.replace('J','Q'), Integer.parseInt(parts[1])));
             set.add(new CardHand(orgHand, orgHand.replace('J','K'), Integer.parseInt(parts[1])));
             set.add(new CardHand(orgHand, orgHand.replace('J','A'), Integer.parseInt(parts[1])));
-            System.out.println(set.last().adjustedHand);
+            //System.out.println(set.last().adjustedHand);
             return set.last();
         } else {
             return new CardHand(orgHand, Integer.parseInt(parts[1]));
@@ -270,7 +270,7 @@ public class Aoc2023_07 {
         long result = 0L;
         for (CardHand hand : cardHands) {
             result+= (long) hand.bid * rank;
-            System.out.println(result+"|"+hand.orgHand+"|"+hand.adjustedHand +"|"+hand.bid+"|"+rank+"|"+(hand.bid*rank));
+            //System.out.println(result+"|"+hand.orgHand+"|"+hand.adjustedHand +"|"+hand.bid+"|"+rank+"|"+(hand.bid*rank));
             rank++;
         }
         System.out.println("\nPart 2 > Result: " + result);

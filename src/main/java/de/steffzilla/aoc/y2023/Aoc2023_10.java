@@ -85,8 +85,8 @@ public class Aoc2023_10 {
 
     static Pair<String, String> solve(List<String> inputLines) {
         CharacterField field = new CharacterField(inputLines);
-        field.prettyPrint();
-        System.out.println();
+        //field.prettyPrint();
+        //System.out.println();
 
         HashMap<Pair<Integer, Integer>, List<Pair<Integer, Integer>>> graph = readMaze(inputLines);
 
@@ -262,7 +262,7 @@ public class Aoc2023_10 {
                 }
             }
         }
-        field.prettyPrint();
+        //field.prettyPrint();
         return countInnerNodes;
     }
 

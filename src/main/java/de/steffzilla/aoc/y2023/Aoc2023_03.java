@@ -41,7 +41,7 @@ public class Aoc2023_03 {
                      if(Character.isDigit(character.charAt(0))) {
                          // first digit found
                          String number = getCompleteNumber(field, x, y);
-                         System.out.println(number);
+                         //System.out.println(number);
 
                          if (isPartNumber(field, x,y, number)) {
                             sum+=Integer.parseInt(number);
@@ -69,7 +69,7 @@ public class Aoc2023_03 {
                 if (field.isContained(x2,y2)) {
                     String character = field.getCharacterAt(x2, y2);
                     if (!character.equals(".") && !Character.isDigit(character.charAt(0))) {
-                        System.out.println("found " + character + " for "+number);
+                        //System.out.println("found " + character + " for "+number);
                         return true;
                     }
                 }
@@ -96,7 +96,7 @@ public class Aoc2023_03 {
             }
         }
         if (numbers.size() == 2) {
-            System.out.println(numbers.get(0) + "*" + numbers.get(1) + "=" + (numbers.get(0) * numbers.get(1)));
+            //System.out.println(numbers.get(0) + "*" + numbers.get(1) + "=" + (numbers.get(0) * numbers.get(1)));
             return numbers.get(0) * numbers.get(1);
         } else {
             return 0;

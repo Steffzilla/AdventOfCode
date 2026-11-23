@@ -50,9 +50,9 @@ public class Aoc2024_08 {
         HashSet<Pair<Integer, Integer>> antinodePositions = new HashSet<>();
 
         for (Map.Entry<String, List<Pair<Integer, Integer>>> entry : antennaPositions.entrySet()) {
-            System.out.print(entry.getKey() + ": ");
+            //System.out.print(entry.getKey() + ": ");
             List<Pair<Integer, Integer>> pairs = entry.getValue();
-            System.out.println(pairs);
+            //System.out.println(pairs);
             for (int outerIter = 0; outerIter < pairs.size(); outerIter++) {
                 for (int innerIter = outerIter + 1; innerIter < pairs.size(); innerIter++) {
                     Pair<Integer, Integer> first = pairs.get(outerIter);
@@ -95,9 +95,9 @@ public class Aoc2024_08 {
         HashSet<Pair<Integer, Integer>> antinodePositions = new HashSet<>();
 
         for (Map.Entry<String, List<Pair<Integer, Integer>>> entry : antennaPositions.entrySet()) {
-            System.out.print(entry.getKey() + ": ");
+            //System.out.print(entry.getKey() + ": ");
             List<Pair<Integer, Integer>> pairs = entry.getValue();
-            System.out.println(pairs);
+            //System.out.println(pairs);
             for (int outerIter = 0; outerIter < pairs.size(); outerIter++) {
                 for (int innerIter = outerIter + 1; innerIter < pairs.size(); innerIter++) {
                     Pair<Integer, Integer> first = pairs.get(outerIter);

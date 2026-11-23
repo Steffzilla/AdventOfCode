@@ -159,7 +159,7 @@ public class Aoc2025_07 {
         for (int xPos = 0; xPos < cf.getMaxX(); xPos++) {
             if (BEAM.equals(cf.getCharacterAt(xPos, yPos))) {
                 Long timelines = timelinesToThisPoint.get(new Position(xPos, yPos));
-                System.out.println(xPos + "," + yPos + ":" + timelines);
+                //System.out.println(xPos + "," + yPos + ":" + timelines);
                 count += timelines;
             }
         }
